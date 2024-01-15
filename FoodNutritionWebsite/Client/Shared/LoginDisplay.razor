@@ -1,15 +1,21 @@
 ﻿@inject NavigationManager Navigation
 
+<head>
+    <link rel="stylesheet" href="css/LogDis.css">
+</head>
+
+
+
 <AuthorizeView>
-   
+   @* Authorized shows the information after you have like log in*@
     <Authorized>
-        <div class="nav-item px-3">
+        <div>
             <NavLink class="nav-link" href="authentication/profile" Match="NavLinkMatch.All">
                 <span class="oi oi-person" aria-hidden="true"></span> Hello, @context.User.Identity?.Name!
             </NavLink>
         </div>
 
-        <div class="nav-item px-3">
+        <div>
             <NavLink class="nav-link" href="#" @onclick="BeginLogOut" Match="NavLinkMatch.All">
                 <span class="oi oi-account-logout" aria-hidden="true"></span> log out
             </NavLink>
@@ -18,22 +24,25 @@
 
     </Authorized>
        
-
+    @* While not authorized means that you have not log in and the code inside will be shown when you have not log in. *@
     <NotAuthorized>
 
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="authentication/register">
+        <div class="arrangement">
+            <NavLink href="authentication/register" Match="NavLinkMatch.All">
                 <span class="oi oi-person" aria-hidden="true"></span> Register
-
             </NavLink>
         </div>
 
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="authentication/login">
+
+
+
+
+        <div>
+            <NavLink href="authentication/login" Match="NavLinkMatch.All">
                 <span class="oi oi-account-login" aria-hidden="true"></span> log in
             </NavLink>
-        </div> 
-        
+        </div>
+
     </NotAuthorized>
 </AuthorizeView>
 
