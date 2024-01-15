@@ -1,0 +1,71 @@
+.arrangement {
+	margin-right: 55px;
+	margin-left: 120px;
+	font-size:27px;
+}
+
+.intro {
+	position: absolute;
+	width: 250px;
+	height: 300px;
+	border: 1px solid #000;
+	color: black;
+	font-weight: bold;
+	text-align: left;
+}
+
+.half-page-text {
+	width: 45%; /* Set the width to 45% of the container */
+	float: left; /* Float the element to the left */
+	padding: 20px; /* Add padding for better readability (adjust as needed) */
+	font-size:85px;
+}
+
+.FoodPic1 {
+	border-radius: 50px;
+	overflow: hidden;
+	width: 15%;
+	bottom: 20px;
+	margin-left: 45%
+}
+
+.FoodPic2 {
+	width: 36%;
+	height: 50vh;
+	border-radius: 50px 50px 50px 50px; /* Top corners curved */
+	overflow: hidden;
+	position: fixed;
+	top: 127px;
+	right: 0;
+}
+
+.FoodPic2Size {
+	width: 90%;
+	height: 75%;
+	object-fit: cover;
+	border-radius: 50px 50px 50px 50px;
+}
+
+
+
+.FoodPic3 {
+	width: 36%;
+	height: 50vh;
+	border-radius: 50px;
+	overflow: hidden;
+	position: fixed;
+	bottom: 0px;
+	right: 0;
+	top:415px;
+}
+
+.FoodPic3Size {
+	width: 90%;
+	height: 75%;
+	object-fit: cover;
+	border-radius: 50px 50px 50px 50px;
+}
+
+.turquoise-color {
+	color:turquoise;
+}

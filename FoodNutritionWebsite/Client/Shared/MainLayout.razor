@@ -3,27 +3,32 @@
 <div class="page">
 
     <main>
-        
-        <div class="top-row">
 
-            <div class = "TopRow">
-                <NewMenu/>
+        <div class="header">
+
+            <div>
+                <img class="Logo-size" src="Logo.png">
             </div>
 
-            <LoginDisplay />
+            <div class="tabs">
+                <div>
+                    <NavMenu/>
+                </div>
+                
+            </div>
+
             
-        </div>
 
-
-        <div class=" = "tabs>
-            <NavMenu/>
         </div>
+       
         
 
-        
-
+        @* An article is used to define a self-controlled piece of content that could be used repeatedly*@
         <article class="content px-4">
+            @* When a body is called, it would call a url with the "/" which is from the index.razor file*@
             @Body
         </article>
+
+
     </main>
 </div>

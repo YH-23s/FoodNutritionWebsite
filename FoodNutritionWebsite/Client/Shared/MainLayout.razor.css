@@ -1,52 +1,61 @@
 .page {
     position: relative;
     display: flex;
-    flex-direction: column;
-    background-color:salmon;
+    flex-direction: row;
+    background: linear-gradient(to right, #FF706F 60%, hsl(330, 100%, 53.5%))
+}
+    
+
+.header{
+    display: flex;
+    gap: 130px;
+    height: 110px;
+}
+
+
+
+
+.Logo-size {
+    top:5px;
+    max-width: 410px;
+    max-height: 220px;
+    margin: auto;
 }
 
 
 .tabs {
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    width: 100%;
-    height: 69px;
-    text-align: center;
-    color: white;
-    background-color: salmon;
-    font-size: 1.2rem;
-}
-
-.TopRow {
-    width: 100%;
-    height: 35px;
-    position: sticky;
-    color: white;
-    background-color: salmon;
+    /* When you put position: relative, you would allow the information in this calss to have the access to move around
+        and not be at a fixed place. To change the location, you would use top, bottom, left and right as shown below.
+    */
+    position: relative;
+    top:37px;
 }
 
 
-
-
-
-
-
-
-main {
+.main {
     flex: 1;
 }
 
-.sidebar {
-    /*background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, black 70%);*/
-    background-color: #343a40;
+
+
+.content {
+    /* The padding-top is to create a space between the top ans the code you are using this class for. */
+    padding-top:5px;
+    /* The border-top is used to make a visible color line to show the break and show where the bottom start for the padding-top. */
+    border-top: 1px solid white;
+    color:white;
 }
 
-.top-row {
+
+
+
+
+/*.top-row {
     background-color: salmon;
     border-bottom: 1px solid #d6d5d5;
-    justify-content: flex-end;
-    height: 3.5rem;
+    justify-content: flex-start;
+    height: 0px;
+    position: sticky;
     display: flex;
     align-items: center;
 }
@@ -87,7 +96,7 @@ main {
 
     .sidebar {
         width: 250px;
-        height: 100vh;
+        height: 35vh;
         position: sticky;
         top: 0;
     }
@@ -109,3 +118,4 @@ main {
         padding-right: 0.6rem !important;
     }
 }
+*/
