@@ -13,8 +13,6 @@ namespace FoodNutritionWebsite.Shared.Domain
 
         public DateTime? UserDOB { get; set; }
 
-        public string? UserDOB  { get; set; }
-
         public string? Gender { get; set; }
         public string? UserPhoneNum { get; set; }
         public string? UserEmail { get; set; }

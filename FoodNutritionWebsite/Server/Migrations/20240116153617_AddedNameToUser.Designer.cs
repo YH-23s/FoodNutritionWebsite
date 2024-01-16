@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodNutritionWebsite.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240116111209_newdb")]
-    partial class newdb
+    [Migration("20240116153617_AddedNameToUser")]
+    partial class AddedNameToUser
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -244,7 +244,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bd94d1c9-9abf-47ff-8f54-4557ab6d862f",
+                            ConcurrencyStamp = "8cd9e3a6-f85b-42bc-961c-f7ab9f428d02",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -252,9 +252,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEabzDzo+PfKtGWS6tWTA4G8pwQ/MeR25xSWcmukg+kfInD8FFBFfvdChbx8I3UnYA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEE+hXJ79gSYDkK5bo4J1ahSHv/jk7LJnMBh1EMcLluNgEnYZ+O8MUceuN54wombUuw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4adf4813-84d9-45c5-8e38-9601ce90174e",
+                            SecurityStamp = "bc800691-6182-45f7-b51e-b25064835640",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         });
@@ -572,7 +572,7 @@ namespace FoodNutritionWebsite.Server.Migrations
 
                     b.HasIndex("SubscriptionID");
 
-                    b.ToTable("User");
+                    b.ToTable("Usersssss");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
