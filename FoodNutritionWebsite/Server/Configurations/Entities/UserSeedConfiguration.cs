@@ -1,25 +1,26 @@
-﻿/*
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace FoodNutritionWebsite.Server.Configurations.Entities
 {
-    public class UserSeedConfiguration : IEntityTypeConfiguration<User>
+    public class UserSeedConfiguration : IEntityTypeConfiguration<ApplicationUser>
     {
-        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<User> builder)
+        public void Configure(EntityTypeBuilder<ApplicationUser> builder)
         {
+            var hasher = new PasswordHasher<ApplicationUser>();
             builder.HasData(
-                new User
-                {
-                    Id = 1,
-                    UserName = "Joshua",
-                    UserDOB = DateTime.Parse("2016-05-02"),
-                    Gender = "Male",
-                    UserPhoneNum = 98765432,
-                    UserEmail = "joshua@gmail.com",
-                    UserPassword = "1111"
-                });
+            new ApplicationUser
+            {
+                Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
+                Email = "admin@localhost.com",
+                NormalizedEmail = "ADMIN@LOCALHOST.COM",
+                FirstName = "Admin",
+                LastName = "User",
+                UserName = "admin@localhost.com",
+                NormalizedUserName = "ADMIN@LOCALHOST.COM",
+                PasswordHash = hasher.HashPassword(null, "P@ssword1")
+            }
+            );
         }
     }
 }
-*/

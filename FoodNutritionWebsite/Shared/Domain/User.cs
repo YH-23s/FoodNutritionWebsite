@@ -6,15 +6,9 @@ using System.Threading.Tasks;
 
 namespace FoodNutritionWebsite.Shared.Domain
 {
-    public class User : BaseDomainModel
+    internal class User
     {
-        public string? UserName { get; set; }
-        public string? UserPassword { get; set; }
-        public DateTime? DOB { get; set; }
-        public string? UserEmail { get; set; }
-        public string? UserPhoneNum { get; set; }
-        public string? Gender { get; set; }
-        public int SubscriptionID { get; set; }
-        public virtual Subscription? Subscription { get; set; }
     }
+
+}
 }
