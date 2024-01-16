@@ -6,6 +6,6 @@ namespace FoodNutritionWebsite.Server.Models
     {
         public String? FirstName { get; set; }
         public String? SecondName { get; set; }
-        public string LastName { get; internal set; }
+        public string? LastName { get; internal set; }
     }
 }

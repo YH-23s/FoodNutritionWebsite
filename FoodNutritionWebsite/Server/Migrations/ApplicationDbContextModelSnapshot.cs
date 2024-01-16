@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace FoodNutritionWebsite.Server.Data.Migrations
+namespace FoodNutritionWebsite.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -185,6 +185,9 @@ namespace FoodNutritionWebsite.Server.Data.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
@@ -232,6 +235,26 @@ namespace FoodNutritionWebsite.Server.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "bd94d1c9-9abf-47ff-8f54-4557ab6d862f",
+                            Email = "admin@localhost.com",
+                            EmailConfirmed = false,
+                            FirstName = "Admin",
+                            LastName = "User",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@LOCALHOST.COM",
+                            NormalizedUserName = "ADMIN@LOCALHOST.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEabzDzo+PfKtGWS6tWTA4G8pwQ/MeR25xSWcmukg+kfInD8FFBFfvdChbx8I3UnYA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "4adf4813-84d9-45c5-8e38-9601ce90174e",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@localhost.com"
+                        });
                 });
 
             modelBuilder.Entity("FoodNutritionWebsite.Shared.Domain.AddNutrition", b =>
@@ -521,14 +544,14 @@ namespace FoodNutritionWebsite.Server.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime?>("DOB")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Gender")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SubscriptionID")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("UserDOB")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("UserEmail")
                         .HasColumnType("nvarchar(max)");
@@ -546,7 +569,7 @@ namespace FoodNutritionWebsite.Server.Data.Migrations
 
                     b.HasIndex("SubscriptionID");
 
-                    b.ToTable("Users");
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
