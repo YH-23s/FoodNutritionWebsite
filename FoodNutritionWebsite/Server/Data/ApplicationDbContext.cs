@@ -6,6 +6,7 @@ using Microsoft.Extensions.Options;
 using FoodNutritionWebsite.Shared.Domain;
 using FoodNutritionWebsite.Server.Configurations.Entities;
 
+
 namespace FoodNutritionWebsite.Server.Data
 {
 	public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>
@@ -17,6 +18,7 @@ namespace FoodNutritionWebsite.Server.Data
 		}
 		public DbSet<AddNutrition> AddNutritions { get; set; }
         public DbSet<Food> Foods { get; set; }
+        public DbSet<User> User { get; set; }
         public DbSet<FoodAddedL> FoodAddedLs { get; set; }
         public DbSet<FoodAddedMP> FoodAddedMPs { get; set; }
         public DbSet<FoodLog> FoodLogs { get; set; }
@@ -25,7 +27,6 @@ namespace FoodNutritionWebsite.Server.Data
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Staff> Staffs { get; set; }
         public DbSet<Subscription> Subscriptions { get; set; }
-        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
