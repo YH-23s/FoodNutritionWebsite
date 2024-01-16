@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FoodNutritionWebsite.Shared.Domain
 {
-    internal class Payment : BaseDomainModel
+    public class Payment : BaseDomainModel
     {
         public int PaymentAmount { get; set; }
         public DateTime StartingDate { get; set; }

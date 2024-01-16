@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿/*
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace FoodNutritionWebsite.Server.Configurations.Entities
@@ -21,3 +22,4 @@ namespace FoodNutritionWebsite.Server.Configurations.Entities
         }
     }
 }
+*/

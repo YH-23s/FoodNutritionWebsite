@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FoodNutritionWebsite.Shared.Domain
 {
-    internal class FoodLog : BaseDomainModel
+    public class FoodLog : BaseDomainModel
     {
         public DateTime FoodLogDateTime { get; set; }
         public string? FoodType { get; set; }

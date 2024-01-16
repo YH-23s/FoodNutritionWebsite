@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FoodNutritionWebsite.Shared.Domain
 {
-    internal class FoodAddedMP : BaseDomainModel
+    public class FoodAddedMP : BaseDomainModel
     {
         public int FoodID { get; set; }
         public virtual Food? Food { get; set; }

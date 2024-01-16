@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FoodNutritionWebsite.Shared.Domain
 {
-    internal class Food : BaseDomainModel
+    public class Food : BaseDomainModel
     {
         public string? FoodName { get; set; }
         public string? FoodDescription { get; set;}

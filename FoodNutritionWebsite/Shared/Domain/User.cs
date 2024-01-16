@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FoodNutritionWebsite.Shared.Domain
 {
-    internal class User : BaseDomainModel
+    public class User : BaseDomainModel
     {
         public string? UserName { get; set; }
         public string? UserPassword { get; set; }
