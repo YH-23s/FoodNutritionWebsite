@@ -241,7 +241,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8cd9e3a6-f85b-42bc-961c-f7ab9f428d02",
+                            ConcurrencyStamp = "22da5e1f-ff14-4a4c-8b45-359d6bc1efc6",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -249,9 +249,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEE+hXJ79gSYDkK5bo4J1ahSHv/jk7LJnMBh1EMcLluNgEnYZ+O8MUceuN54wombUuw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAECcKjbxuUYhidrouWBdirKWWKrgG5gg3Fk2OCmBDSy2NgXCN+mgeBOPResNXswhHbQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "bc800691-6182-45f7-b51e-b25064835640",
+                            SecurityStamp = "f3591c20-effd-4bbe-8993-12570b2cdade",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         });
