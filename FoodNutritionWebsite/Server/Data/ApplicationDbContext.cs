@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using FoodNutritionWebsite.Shared.Domain;
-using FoodNutritionWebsite.Server.Configurations.Entities;
 
 
 namespace FoodNutritionWebsite.Server.Data
