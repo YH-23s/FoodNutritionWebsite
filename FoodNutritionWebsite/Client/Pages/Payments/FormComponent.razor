@@ -1,0 +1,69 @@
+﻿@inject HttpClient _client
+
+<EditForm Model="@payment" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>Payment Description: </label>
+        <div>
+            <InputText @bind-Value="payment.PaymentDescription" class="form-control" />
+            <ValidationMessage For="@(() => payment.PaymentDescription)" />
+
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label>Price: </label>
+        <div>
+            <InputNumber @bind-Value="payment.PaymentAmount" class="form-control" />
+            <ValidationMessage For="@(() => payment.PaymentAmount)" />
+
+        </div>
+    </div>
+
+
+
+
+    <div class="form-group">
+        <label>Subscription:</label>
+        <div>
+            <InputSelect @bind-Value="payment.SubscriptionID" class="form-control">
+                <option value="">--Select Subscription--</option>
+                @if (subscription != null)
+                {
+                    foreach (var subscrip in subscription)
+                    {
+                        <option value="@subscrip.Id">@subscrip.SubscriptionName</option>
+                    }
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => payment.SubscriptionID)" />
+        </div>
+    </div>
+
+
+    <!-- Other form components go here -->
+
+    <button type="submit" class="btn btn-success btn-block">
+        @ButtonText
+    </button>
+
+
+</EditForm>
+
+@code {
+    [Parameter] public Payment? payment { get; set; }
+    //[Parameter] public List<Subscription>? subscription { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+
+    private IList<Subscription>? subscription;
+
+    protected async override Task OnInitializedAsync()
+    {
+        subscription = await _client.GetFromJsonAsync<List<Subscription>>($"{"api/Subscriptions/"}");
+
+    }
+}

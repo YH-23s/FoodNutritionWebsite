@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FoodNutritionWebsite.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class newdb : Migration
+    public partial class testing0 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -181,6 +181,24 @@ namespace FoodNutritionWebsite.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Usersssss",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserDOB = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserPhoneNum = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserPassword = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Usersssss", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -335,6 +353,28 @@ namespace FoodNutritionWebsite.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "FoodLogs",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FoodLogDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FoodType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FoodName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FoodLogs", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_FoodLogs_Usersssss_UserID",
+                        column: x => x.UserID,
+                        principalTable: "Usersssss",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "FoodAddedMPs",
                 columns: table => new
                 {
@@ -391,53 +431,6 @@ namespace FoodNutritionWebsite.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Usersssss",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserDOB = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserPhoneNum = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserPassword = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SubscriptionID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Usersssss", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Usersssss_Subscriptions_SubscriptionID",
-                        column: x => x.SubscriptionID,
-                        principalTable: "Subscriptions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "FoodLogs",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FoodLogDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    FoodType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FoodName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FoodLogs", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_FoodLogs_Usersssss_UserID",
-                        column: x => x.UserID,
-                        principalTable: "Usersssss",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "FoodAddedLs",
                 columns: table => new
                 {
@@ -467,7 +460,7 @@ namespace FoodNutritionWebsite.Server.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecondName", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "22da5e1f-ff14-4a4c-8b45-359d6bc1efc6", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAECcKjbxuUYhidrouWBdirKWWKrgG5gg3Fk2OCmBDSy2NgXCN+mgeBOPResNXswhHbQ==", null, false, null, "f3591c20-effd-4bbe-8993-12570b2cdade", false, "admin@localhost.com" });
+                values: new object[] { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "70d301e0-d188-4f4a-b361-bac783ef9400", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAENKh8L61V9yB129aPDlisenExlOB4VYSVUmM7LwQb8DeFoyOP84OXvjR+Yyd8NJCEg==", null, false, null, "0e4eb20e-c368-4ae0-a2f7-ea23fe7caaa1", false, "admin@localhost.com" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AddNutritions_FoodID",
@@ -593,11 +586,6 @@ namespace FoodNutritionWebsite.Server.Migrations
                 name: "IX_Subscriptions_PaymentID",
                 table: "Subscriptions",
                 column: "PaymentID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Usersssss_SubscriptionID",
-                table: "Usersssss",
-                column: "SubscriptionID");
         }
 
         /// <inheritdoc />
@@ -637,6 +625,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                 name: "PersistedGrants");
 
             migrationBuilder.DropTable(
+                name: "Subscriptions");
+
+            migrationBuilder.DropTable(
                 name: "FoodNutritions");
 
             migrationBuilder.DropTable(
@@ -652,16 +643,13 @@ namespace FoodNutritionWebsite.Server.Migrations
                 name: "Foods");
 
             migrationBuilder.DropTable(
-                name: "Usersssss");
-
-            migrationBuilder.DropTable(
-                name: "Subscriptions");
-
-            migrationBuilder.DropTable(
                 name: "MealPlans");
 
             migrationBuilder.DropTable(
                 name: "Payments");
+
+            migrationBuilder.DropTable(
+                name: "Usersssss");
 
             migrationBuilder.DropTable(
                 name: "Staffs");

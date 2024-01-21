@@ -1,0 +1,100 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+
+
+@page "/users"
+@inject HttpClient _client
+@inject IJSRuntime js
+@attribute [Authorize]
+
+<h3>Users Index</h3>
+
+<a href="/users/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New Users
+</a>
+<br />
+<br />
+
+
+
+
+
+
+
+
+<table class="table table-responsive">
+
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Users)
+        {
+
+            <tr>
+                <td>@user.UserName</td>
+                <td>
+                    <a href="/users/view/@user.Id" class="bth btn-primary">
+                        <span class="oi oi-book"></span>
+                    </a>
+
+                    <a href="/users/edit/@user.Id" class="bth btn-primary">
+                        <span class="oi oi-pencil"></span>
+                    </a>
+
+                    <button class="btn btn-danger" @onclick="@(()=>Delete(user.Id))">
+                        <span class="oi oi-book"></span>
+                    </button>
+
+                </td>
+            </tr>
+        }
+
+
+
+    </tbody>
+
+</table>
+
+
+
+
+
+
+@code {
+    private List<User>? Users;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Users = await _client.GetFromJsonAsync<List<User>>($"api/Users");
+    }
+
+    async Task Delete(int userId)
+    {
+        if (Users != null)
+        {
+            var user = Users.First(q => q.Id == userId);
+            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {user.UserName}?");
+
+            if (confirm)
+            {
+                await _client.DeleteAsync($"api/Users/{userId}");
+                await OnInitializedAsync();
+            }
+
+        }
+    }
+
+
+    int GetUserCount()
+    {
+        return Users?.Count ?? 0;
+    }
+
+}
+
+<p>Total Users: @GetUserCount()</p>

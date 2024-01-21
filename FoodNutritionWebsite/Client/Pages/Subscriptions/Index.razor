@@ -1,0 +1,103 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+
+
+@page "/Subscriptions"
+@inject HttpClient _client
+@inject IJSRuntime js
+@attribute [Authorize]
+
+<h3>Subscriptions Index</h3>
+
+
+<a href="/Subscriptions/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New Subscriptions Plan
+</a>
+<br />
+<br />
+
+
+
+
+
+
+
+
+
+
+<table class="table table-responsive">
+
+    <thead>
+        <tr>
+            <th> Subscription Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var subscription in Subscriptions)
+        {
+
+            <tr>
+                <td>@subscription.SubscriptionName</td>
+                <td>
+                    <a href="/Subscriptions/view/@subscription.Id" class="btn btn-primary">
+                        <span class="oi oi-book"></span>
+                    </a>
+
+                    <a href="/Subscriptions/edit/@subscription.Id" class="btn btn-primary">
+                        <span class="oi oi-pencil"></span>
+                    </a>
+
+                    <button class="btn btn-danger" @onclick="@(()=>Delete(subscription.Id))">
+                        <span class="oi oi-book"></span>
+                    </button>
+
+                </td>
+            </tr>
+        }
+
+
+
+    </tbody>
+
+</table>
+
+
+
+
+
+
+@code {
+    public List<Subscription>? Subscriptions;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Subscriptions = await _client.GetFromJsonAsync<List<Subscription>>($"api/Subscriptions");
+    }
+
+    async Task Delete(int subscriptionId)
+    {
+        if (Subscriptions != null)
+        {
+            var subscription = Subscriptions.First(q => q.Id == subscriptionId);
+            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {subscription}?");
+
+            if (confirm)
+            {
+                await _client.DeleteAsync($"api/Subscriptions/{subscriptionId}");
+                await OnInitializedAsync();
+            }
+
+        }
+    }
+
+
+    int GetSubscriptionCount()
+    {
+        return Subscriptions?.Count ?? 0;
+    }
+
+}
+
+<p>Total Subscriptions: @GetSubscriptionCount()</p>
