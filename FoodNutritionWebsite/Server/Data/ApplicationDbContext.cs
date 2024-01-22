@@ -6,7 +6,6 @@ using Microsoft.Extensions.Options;
 using FoodNutritionWebsite.Shared.Domain;
 using FoodNutritionWebsite.Server.Configurations.Entities;
 
-
 namespace FoodNutritionWebsite.Server.Data
 {
 	public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>
@@ -37,6 +36,8 @@ namespace FoodNutritionWebsite.Server.Data
             builder.ApplyConfiguration(new SubscriptionSeedConfiguration());
             builder.ApplyConfiguration(new FoodLogSeedConfiguration());
             builder.ApplyConfiguration(new PaymentSeedConfiguration());
+            builder.ApplyConfiguration(new StaffSeedConfiguration());
+            builder.ApplyConfiguration(new FoodSeedConfiguration());
         }
     }
 }

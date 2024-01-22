@@ -1,0 +1,103 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+
+
+@page "/Food"
+@inject HttpClient _client
+@inject IJSRuntime js
+@attribute [Authorize]
+
+<h3>Food Index</h3>
+
+
+<a href="/Food/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New Food
+</a>
+<br />
+<br />
+
+
+
+
+<table class="table table-responsive">
+
+    <thead>
+        <tr>
+            <th>Food Name</th>
+            <th>Food Type</th>
+            <th>Date Description</th>
+            <th>Food Picture</th>
+            <th>Food Calory</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var foods in Food)
+        {
+
+            <tr>
+                <td>@foods.FoodName</td>
+                <td>@foods.FoodDescription</td>
+                <td>@foods.FoodCategory</td>
+                <td>@foods.FoodPicture</td>
+                <td>@foods.FoodCalory</td>
+                
+                <td>
+                    <a href="/Food/view/@foods.Id" class="bth btn-primary">
+                        <span class="oi oi-book"></span>
+                    </a>
+
+                    <a href="/Food/edit/@foods.Id" class="bth btn-primary">
+                        <span class="oi oi-pencil"></span>
+                    </a>
+
+                    <button class="btn btn-danger" @onclick="@(()=>Delete(foods.Id))">
+                        <span class="oi oi-book"></span>
+                    </button>
+
+                </td>
+            </tr>
+        }
+
+
+
+    </tbody>
+
+</table>
+
+
+@code {
+    public List<Food>? Food;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Food = await _client.GetFromJsonAsync<List<Food>>($"api/foods");
+    }
+
+    async Task Delete(int foodsId)
+    {
+        if (Food != null)
+        {
+            var foods = Food.First(q => q.Id == foodsId);
+            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {foods}?");
+
+            if (confirm)
+            {
+                await _client.DeleteAsync($"api/Food/{foodsId}");
+                await OnInitializedAsync();
+            }
+
+        }
+    }
+
+
+    int GetFoodCount()
+    {
+        return Food?.Count ?? 0;
+    }
+
+}
+
+<p>Total Food: @GetFoodCount()</p>
+
+

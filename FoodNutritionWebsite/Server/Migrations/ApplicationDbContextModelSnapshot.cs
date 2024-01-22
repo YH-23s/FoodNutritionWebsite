@@ -241,7 +241,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "07827aed-e70e-442e-bd77-707de08ab3af",
+                            ConcurrencyStamp = "1e7b0023-98bd-4336-91ea-b0ce5a4e523c",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -249,9 +249,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEB5wDXMogoaIgdQeLRduvC5CXhIk/GWH7XE9NBnAI2mcQ9qsfcK9u8SYwJH2MsxA0w==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKnZIY8Xa6MLlHUmyCLoLUVclGJbiXktLsZ+c8FAAskMSaFEpxs+pxWf6aMJhb4i6w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0e51f3e5-3ce6-4cf2-ad59-f6c08d70173e",
+                            SecurityStamp = "db96c641-71d3-4320-b5f2-573eb2397e99",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         });
@@ -333,6 +333,26 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Foods");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            FoodCalory = "2.1kcal",
+                            FoodCategory = "Meat",
+                            FoodDescription = "Taste what it feels like to be SPEED",
+                            FoodName = "Horse meatball",
+                            FoodPicture = "Placeholder for now"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            FoodCalory = "0.2kcal",
+                            FoodCategory = "Fruit",
+                            FoodDescription = "Boomerang yellow fruit",
+                            FoodName = "Banana",
+                            FoodPicture = "Placeholder for now"
+                        });
                 });
 
             modelBuilder.Entity("FoodNutritionWebsite.Shared.Domain.FoodAddedL", b =>
@@ -455,7 +475,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         new
                         {
                             Id = 1,
-                            FoodLogDateTime = new DateTime(2024, 1, 21, 12, 16, 7, 9, DateTimeKind.Local).AddTicks(938),
+                            FoodLogDateTime = new DateTime(2024, 1, 22, 16, 39, 24, 958, DateTimeKind.Local).AddTicks(5611),
                             FoodName = "Chicken Rice",
                             FoodType = "Protein"
                         });
@@ -576,10 +596,10 @@ namespace FoodNutritionWebsite.Server.Migrations
                         new
                         {
                             Id = 1,
-                            EndingDate = new DateTime(2024, 2, 21, 4, 16, 7, 9, DateTimeKind.Utc).AddTicks(1143),
+                            EndingDate = new DateTime(2024, 2, 22, 8, 39, 24, 958, DateTimeKind.Utc).AddTicks(5798),
                             PaymentAmount = 12,
                             PaymentDescription = "This is the payment detail for the subscription",
-                            StartingDate = new DateTime(2024, 1, 21, 4, 16, 7, 9, DateTimeKind.Utc).AddTicks(1140)
+                            StartingDate = new DateTime(2024, 1, 22, 8, 39, 24, 958, DateTimeKind.Utc).AddTicks(5798)
                         });
                 });
 
@@ -594,8 +614,8 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ContactNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("ContactNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -636,6 +656,50 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Staffs");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "123 Rivervale",
+                            ContactNumber = "98765432",
+                            DOB = new DateTime(1980, 1, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Darrell",
+                            Gender = "Male",
+                            LastName = "Tan",
+                            PersonalEmail = "abc@gmail.com",
+                            Role = "Manager",
+                            StartDate = new DateTime(2020, 1, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            WorkEmail = "abcd@officialweb.com"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Address = "485 Sengkang Streets",
+                            ContactNumber = "91827364",
+                            DOB = new DateTime(1990, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Elgin",
+                            Gender = "Male",
+                            LastName = "Chng",
+                            PersonalEmail = "abcde@gmail.com",
+                            Role = "Manager",
+                            StartDate = new DateTime(2021, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            WorkEmail = "abcdef@officialweb.com"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Address = "485 Lost Woods Streets",
+                            ContactNumber = "15429857",
+                            DOB = new DateTime(1930, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Li",
+                            Gender = "Female",
+                            LastName = "Wen",
+                            PersonalEmail = "wen@gmail.com",
+                            Role = "HR Representative",
+                            StartDate = new DateTime(2019, 9, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            WorkEmail = "wen1@officialweb.com"
+                        });
                 });
 
             modelBuilder.Entity("FoodNutritionWebsite.Shared.Domain.Subscription", b =>
@@ -742,7 +806,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 1, 21, 12, 16, 7, 9, DateTimeKind.Local).AddTicks(446),
+                            DateCreated = new DateTime(2024, 1, 22, 16, 39, 24, 958, DateTimeKind.Local).AddTicks(5193),
                             Gender = "Male",
                             UserDOB = "12/1/2001",
                             UserEmail = "TestingAccount@blazor.com",
@@ -754,7 +818,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 1, 21, 12, 16, 7, 9, DateTimeKind.Local).AddTicks(521),
+                            DateCreated = new DateTime(2024, 1, 22, 16, 39, 24, 958, DateTimeKind.Local).AddTicks(5207),
                             Gender = "Female",
                             UserDOB = "12/1/2005",
                             UserEmail = "TestAccount@blazor.com",

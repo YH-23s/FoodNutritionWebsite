@@ -12,7 +12,7 @@ namespace FoodNutritionWebsite.Shared.Domain
         public string? LastName { get; set; }
         public DateTime DOB { get; set; }
         public string? Gender { get; set; }
-        public int ContactNumber { get; set; }
+        public string? ContactNumber { get; set; }
         public string? PersonalEmail { get; set; }
         public string? WorkEmail { get; set; }
         public string? Address { get; set; }

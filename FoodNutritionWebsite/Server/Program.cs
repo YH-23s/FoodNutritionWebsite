@@ -6,8 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using FoodNutritionWebsite.Server.IRepository;
 using FoodNutritionWebsite.Server.Repository;
-using FoodNutritionWebsite.Server.IRepository;
-using FoodNutritionWebsite.Server.Repository;
 
 
 

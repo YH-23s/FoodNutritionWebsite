@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace FoodNutritionWebsite.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class testing0 : Migration
+    public partial class addFood : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -80,7 +82,11 @@ namespace FoodNutritionWebsite.Server.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FoodNutriName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FoodNutriDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FoodNutriCategory = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    FoodNutriCategory = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -97,7 +103,11 @@ namespace FoodNutritionWebsite.Server.Migrations
                     FoodDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FoodCategory = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FoodPicture = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FoodCalory = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    FoodCalory = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -120,22 +130,6 @@ namespace FoodNutritionWebsite.Server.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Keys", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Payments",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PaymentAmount = table.Column<int>(type: "int", nullable: false),
-                    StartingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PaymentDescription = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Payments", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -168,34 +162,20 @@ namespace FoodNutritionWebsite.Server.Migrations
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DOB = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ContactNumber = table.Column<int>(type: "int", nullable: false),
+                    ContactNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PersonalEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     WorkEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Role = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Staffs", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Usersssss",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserDOB = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserPhoneNum = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserPassword = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Usersssss", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -312,7 +292,11 @@ namespace FoodNutritionWebsite.Server.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Value = table.Column<int>(type: "int", nullable: false),
                     FoodID = table.Column<int>(type: "int", nullable: false),
-                    FoodNutritionID = table.Column<int>(type: "int", nullable: false)
+                    FoodNutritionID = table.Column<int>(type: "int", nullable: false),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -339,7 +323,11 @@ namespace FoodNutritionWebsite.Server.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MealPlanCategory = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MealPlanName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StaffID = table.Column<int>(type: "int", nullable: false)
+                    StaffID = table.Column<int>(type: "int", nullable: false),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -353,35 +341,17 @@ namespace FoodNutritionWebsite.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "FoodLogs",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FoodLogDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    FoodType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FoodName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FoodLogs", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_FoodLogs_Usersssss_UserID",
-                        column: x => x.UserID,
-                        principalTable: "Usersssss",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "FoodAddedMPs",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FoodID = table.Column<int>(type: "int", nullable: false),
-                    MealPlanID = table.Column<int>(type: "int", nullable: false)
+                    MealPlanID = table.Column<int>(type: "int", nullable: false),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -410,8 +380,11 @@ namespace FoodNutritionWebsite.Server.Migrations
                     SubscriptionName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SubscriptionDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PaymentDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PaymentID = table.Column<int>(type: "int", nullable: false),
-                    MealPlanID = table.Column<int>(type: "int", nullable: false)
+                    MealPlanID = table.Column<int>(type: "int", nullable: true),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -420,14 +393,92 @@ namespace FoodNutritionWebsite.Server.Migrations
                         name: "FK_Subscriptions_MealPlans_MealPlanID",
                         column: x => x.MealPlanID,
                         principalTable: "MealPlans",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Payments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PaymentAmount = table.Column<int>(type: "int", nullable: false),
+                    StartingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PaymentDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SubscriptionID = table.Column<int>(type: "int", nullable: true),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Payments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Subscriptions_Payments_PaymentID",
-                        column: x => x.PaymentID,
-                        principalTable: "Payments",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        name: "FK_Payments_Subscriptions_SubscriptionID",
+                        column: x => x.SubscriptionID,
+                        principalTable: "Subscriptions",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Usersssss",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserDOB = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserPhoneNum = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserPassword = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SubscriptionID = table.Column<int>(type: "int", nullable: true),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Usersssss", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Usersssss_Subscriptions_SubscriptionID",
+                        column: x => x.SubscriptionID,
+                        principalTable: "Subscriptions",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FoodLogs",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FoodLogDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FoodType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FoodName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserID = table.Column<int>(type: "int", nullable: true),
+                    FoodID = table.Column<int>(type: "int", nullable: true),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FoodLogs", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_FoodLogs_Foods_FoodID",
+                        column: x => x.FoodID,
+                        principalTable: "Foods",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_FoodLogs_Usersssss_UserID",
+                        column: x => x.UserID,
+                        principalTable: "Usersssss",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -438,7 +489,11 @@ namespace FoodNutritionWebsite.Server.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FoodQty = table.Column<int>(type: "int", nullable: false),
                     FoodID = table.Column<int>(type: "int", nullable: false),
-                    FoodLogID = table.Column<int>(type: "int", nullable: false)
+                    FoodLogID = table.Column<int>(type: "int", nullable: false),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -460,7 +515,50 @@ namespace FoodNutritionWebsite.Server.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecondName", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "70d301e0-d188-4f4a-b361-bac783ef9400", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAENKh8L61V9yB129aPDlisenExlOB4VYSVUmM7LwQb8DeFoyOP84OXvjR+Yyd8NJCEg==", null, false, null, "0e4eb20e-c368-4ae0-a2f7-ea23fe7caaa1", false, "admin@localhost.com" });
+                values: new object[] { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "1e7b0023-98bd-4336-91ea-b0ce5a4e523c", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEKnZIY8Xa6MLlHUmyCLoLUVclGJbiXktLsZ+c8FAAskMSaFEpxs+pxWf6aMJhb4i6w==", null, false, null, "db96c641-71d3-4320-b5f2-573eb2397e99", false, "admin@localhost.com" });
+
+            migrationBuilder.InsertData(
+                table: "FoodLogs",
+                columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "FoodID", "FoodLogDateTime", "FoodName", "FoodType", "UpdatedBy", "UserID" },
+                values: new object[] { 1, null, null, null, null, new DateTime(2024, 1, 22, 16, 39, 24, 958, DateTimeKind.Local).AddTicks(5611), "Chicken Rice", "Protein", null, null });
+
+            migrationBuilder.InsertData(
+                table: "Foods",
+                columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "FoodCalory", "FoodCategory", "FoodDescription", "FoodName", "FoodPicture", "UpdatedBy" },
+                values: new object[,]
+                {
+                    { 1, null, null, null, "2.1kcal", "Meat", "Taste what it feels like to be SPEED", "Horse meatball", "Placeholder for now", null },
+                    { 2, null, null, null, "0.2kcal", "Fruit", "Boomerang yellow fruit", "Banana", "Placeholder for now", null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Payments",
+                columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "EndingDate", "PaymentAmount", "PaymentDescription", "StartingDate", "SubscriptionID", "UpdatedBy" },
+                values: new object[] { 1, null, null, null, new DateTime(2024, 2, 22, 8, 39, 24, 958, DateTimeKind.Utc).AddTicks(5798), 12, "This is the payment detail for the subscription", new DateTime(2024, 1, 22, 8, 39, 24, 958, DateTimeKind.Utc).AddTicks(5798), null, null });
+
+            migrationBuilder.InsertData(
+                table: "Staffs",
+                columns: new[] { "Id", "Address", "ContactNumber", "CreatedBy", "DOB", "DateCreated", "DateUpdated", "FirstName", "Gender", "LastName", "PersonalEmail", "Role", "StartDate", "UpdatedBy", "WorkEmail" },
+                values: new object[,]
+                {
+                    { 1, "123 Rivervale", "98765432", null, new DateTime(1980, 1, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "Darrell", "Male", "Tan", "abc@gmail.com", "Manager", new DateTime(2020, 1, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "abcd@officialweb.com" },
+                    { 2, "485 Sengkang Streets", "91827364", null, new DateTime(1990, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "Elgin", "Male", "Chng", "abcde@gmail.com", "Manager", new DateTime(2021, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "abcdef@officialweb.com" },
+                    { 3, "485 Lost Woods Streets", "15429857", null, new DateTime(1930, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "Li", "Female", "Wen", "wen@gmail.com", "HR Representative", new DateTime(2019, 9, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "wen1@officialweb.com" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Subscriptions",
+                columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "MealPlanID", "PaymentDescription", "SubscriptionDescription", "SubscriptionName", "SubscriptionPrice", "UpdatedBy" },
+                values: new object[] { 1, null, null, null, null, " This plan would be valid for a month", "This subscription plan is used for testing", "Test", 12, null });
+
+            migrationBuilder.InsertData(
+                table: "Usersssss",
+                columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "Gender", "SubscriptionID", "UpdatedBy", "UserDOB", "UserEmail", "UserName", "UserPassword", "UserPhoneNum" },
+                values: new object[,]
+                {
+                    { 1, "seed-script", new DateTime(2024, 1, 22, 16, 39, 24, 958, DateTimeKind.Local).AddTicks(5193), null, "Male", null, null, "12/1/2001", "TestingAccount@blazor.com", "TestingAccount", "TestingAccount_password123", "9012 0791" },
+                    { 2, "seed-script", new DateTime(2024, 1, 22, 16, 39, 24, 958, DateTimeKind.Local).AddTicks(5207), null, "Female", null, null, "12/1/2005", "TestAccount@blazor.com", "TestAccount@blazor.com", "TestAccount_password123", "9072 0791" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AddNutritions_FoodID",
@@ -543,6 +641,11 @@ namespace FoodNutritionWebsite.Server.Migrations
                 column: "MealPlanID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_FoodLogs_FoodID",
+                table: "FoodLogs",
+                column: "FoodID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_FoodLogs_UserID",
                 table: "FoodLogs",
                 column: "UserID");
@@ -556,6 +659,11 @@ namespace FoodNutritionWebsite.Server.Migrations
                 name: "IX_MealPlans_StaffID",
                 table: "MealPlans",
                 column: "StaffID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Payments_SubscriptionID",
+                table: "Payments",
+                column: "SubscriptionID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PersistedGrants_ConsumedTime",
@@ -583,9 +691,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                 column: "MealPlanID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Subscriptions_PaymentID",
-                table: "Subscriptions",
-                column: "PaymentID");
+                name: "IX_Usersssss_SubscriptionID",
+                table: "Usersssss",
+                column: "SubscriptionID");
         }
 
         /// <inheritdoc />
@@ -622,10 +730,10 @@ namespace FoodNutritionWebsite.Server.Migrations
                 name: "Keys");
 
             migrationBuilder.DropTable(
-                name: "PersistedGrants");
+                name: "Payments");
 
             migrationBuilder.DropTable(
-                name: "Subscriptions");
+                name: "PersistedGrants");
 
             migrationBuilder.DropTable(
                 name: "FoodNutritions");
@@ -643,13 +751,13 @@ namespace FoodNutritionWebsite.Server.Migrations
                 name: "Foods");
 
             migrationBuilder.DropTable(
-                name: "MealPlans");
-
-            migrationBuilder.DropTable(
-                name: "Payments");
-
-            migrationBuilder.DropTable(
                 name: "Usersssss");
+
+            migrationBuilder.DropTable(
+                name: "Subscriptions");
+
+            migrationBuilder.DropTable(
+                name: "MealPlans");
 
             migrationBuilder.DropTable(
                 name: "Staffs");

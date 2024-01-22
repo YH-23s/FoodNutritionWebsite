@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodNutritionWebsite.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240120065012_testing0")]
-    partial class testing0
+    [Migration("20240122083925_addFood")]
+    partial class addFood
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -244,7 +244,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "70d301e0-d188-4f4a-b361-bac783ef9400",
+                            ConcurrencyStamp = "1e7b0023-98bd-4336-91ea-b0ce5a4e523c",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -252,9 +252,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAENKh8L61V9yB129aPDlisenExlOB4VYSVUmM7LwQb8DeFoyOP84OXvjR+Yyd8NJCEg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKnZIY8Xa6MLlHUmyCLoLUVclGJbiXktLsZ+c8FAAskMSaFEpxs+pxWf6aMJhb4i6w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0e4eb20e-c368-4ae0-a2f7-ea23fe7caaa1",
+                            SecurityStamp = "db96c641-71d3-4320-b5f2-573eb2397e99",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         });
@@ -268,11 +268,23 @@ namespace FoodNutritionWebsite.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("FoodID")
                         .HasColumnType("int");
 
                     b.Property<int>("FoodNutritionID")
                         .HasColumnType("int");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Value")
                         .HasColumnType("int");
@@ -294,6 +306,15 @@ namespace FoodNutritionWebsite.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("FoodCalory")
                         .HasColumnType("nvarchar(max)");
 
@@ -309,9 +330,32 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.Property<string>("FoodPicture")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Foods");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            FoodCalory = "2.1kcal",
+                            FoodCategory = "Meat",
+                            FoodDescription = "Taste what it feels like to be SPEED",
+                            FoodName = "Horse meatball",
+                            FoodPicture = "Placeholder for now"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            FoodCalory = "0.2kcal",
+                            FoodCategory = "Fruit",
+                            FoodDescription = "Boomerang yellow fruit",
+                            FoodName = "Banana",
+                            FoodPicture = "Placeholder for now"
+                        });
                 });
 
             modelBuilder.Entity("FoodNutritionWebsite.Shared.Domain.FoodAddedL", b =>
@@ -322,6 +366,15 @@ namespace FoodNutritionWebsite.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("FoodID")
                         .HasColumnType("int");
 
@@ -330,6 +383,9 @@ namespace FoodNutritionWebsite.Server.Migrations
 
                     b.Property<int>("FoodQty")
                         .HasColumnType("int");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -348,11 +404,23 @@ namespace FoodNutritionWebsite.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("FoodID")
                         .HasColumnType("int");
 
                     b.Property<int>("MealPlanID")
                         .HasColumnType("int");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -371,6 +439,18 @@ namespace FoodNutritionWebsite.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("FoodID")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("FoodLogDateTime")
                         .HasColumnType("datetime2");
 
@@ -380,14 +460,28 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.Property<string>("FoodType")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserID")
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("UserID")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("FoodID");
+
                     b.HasIndex("UserID");
 
                     b.ToTable("FoodLogs");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            FoodLogDateTime = new DateTime(2024, 1, 22, 16, 39, 24, 958, DateTimeKind.Local).AddTicks(5611),
+                            FoodName = "Chicken Rice",
+                            FoodType = "Protein"
+                        });
                 });
 
             modelBuilder.Entity("FoodNutritionWebsite.Shared.Domain.FoodNutrition", b =>
@@ -398,6 +492,15 @@ namespace FoodNutritionWebsite.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("FoodNutriCategory")
                         .HasColumnType("nvarchar(max)");
 
@@ -405,6 +508,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FoodNutriName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -420,6 +526,15 @@ namespace FoodNutritionWebsite.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("MealPlanCategory")
                         .HasColumnType("nvarchar(max)");
 
@@ -428,6 +543,9 @@ namespace FoodNutritionWebsite.Server.Migrations
 
                     b.Property<int>("StaffID")
                         .HasColumnType("int");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -444,6 +562,15 @@ namespace FoodNutritionWebsite.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime>("EndingDate")
                         .HasColumnType("datetime2");
 
@@ -456,9 +583,27 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.Property<DateTime>("StartingDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("SubscriptionID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("SubscriptionID");
+
                     b.ToTable("Payments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            EndingDate = new DateTime(2024, 2, 22, 8, 39, 24, 958, DateTimeKind.Utc).AddTicks(5798),
+                            PaymentAmount = 12,
+                            PaymentDescription = "This is the payment detail for the subscription",
+                            StartingDate = new DateTime(2024, 1, 22, 8, 39, 24, 958, DateTimeKind.Utc).AddTicks(5798)
+                        });
                 });
 
             modelBuilder.Entity("FoodNutritionWebsite.Shared.Domain.Staff", b =>
@@ -472,10 +617,19 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ContactNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("ContactNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DOB")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
@@ -496,12 +650,59 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("WorkEmail")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Staffs");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "123 Rivervale",
+                            ContactNumber = "98765432",
+                            DOB = new DateTime(1980, 1, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Darrell",
+                            Gender = "Male",
+                            LastName = "Tan",
+                            PersonalEmail = "abc@gmail.com",
+                            Role = "Manager",
+                            StartDate = new DateTime(2020, 1, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            WorkEmail = "abcd@officialweb.com"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Address = "485 Sengkang Streets",
+                            ContactNumber = "91827364",
+                            DOB = new DateTime(1990, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Elgin",
+                            Gender = "Male",
+                            LastName = "Chng",
+                            PersonalEmail = "abcde@gmail.com",
+                            Role = "Manager",
+                            StartDate = new DateTime(2021, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            WorkEmail = "abcdef@officialweb.com"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Address = "485 Lost Woods Streets",
+                            ContactNumber = "15429857",
+                            DOB = new DateTime(1930, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Li",
+                            Gender = "Female",
+                            LastName = "Wen",
+                            PersonalEmail = "wen@gmail.com",
+                            Role = "HR Representative",
+                            StartDate = new DateTime(2019, 9, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            WorkEmail = "wen1@officialweb.com"
+                        });
                 });
 
             modelBuilder.Entity("FoodNutritionWebsite.Shared.Domain.Subscription", b =>
@@ -512,14 +713,20 @@ namespace FoodNutritionWebsite.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("MealPlanID")
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("MealPlanID")
                         .HasColumnType("int");
 
                     b.Property<string>("PaymentDescription")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PaymentID")
-                        .HasColumnType("int");
 
                     b.Property<string>("SubscriptionDescription")
                         .HasColumnType("nvarchar(max)");
@@ -530,13 +737,24 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.Property<int>("SubscriptionPrice")
                         .HasColumnType("int");
 
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("MealPlanID");
 
-                    b.HasIndex("PaymentID");
-
                     b.ToTable("Subscriptions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            PaymentDescription = " This plan would be valid for a month",
+                            SubscriptionDescription = "This subscription plan is used for testing",
+                            SubscriptionName = "Test",
+                            SubscriptionPrice = 12
+                        });
                 });
 
             modelBuilder.Entity("FoodNutritionWebsite.Shared.Domain.User", b =>
@@ -547,11 +765,26 @@ namespace FoodNutritionWebsite.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Gender")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("UserDOB")
-                        .HasColumnType("datetime2");
+                    b.Property<int?>("SubscriptionID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserDOB")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserEmail")
                         .HasColumnType("nvarchar(max)");
@@ -567,7 +800,35 @@ namespace FoodNutritionWebsite.Server.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("SubscriptionID");
+
                     b.ToTable("Usersssss");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedBy = "seed-script",
+                            DateCreated = new DateTime(2024, 1, 22, 16, 39, 24, 958, DateTimeKind.Local).AddTicks(5193),
+                            Gender = "Male",
+                            UserDOB = "12/1/2001",
+                            UserEmail = "TestingAccount@blazor.com",
+                            UserName = "TestingAccount",
+                            UserPassword = "TestingAccount_password123",
+                            UserPhoneNum = "9012 0791"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedBy = "seed-script",
+                            DateCreated = new DateTime(2024, 1, 22, 16, 39, 24, 958, DateTimeKind.Local).AddTicks(5207),
+                            Gender = "Female",
+                            UserDOB = "12/1/2005",
+                            UserEmail = "TestAccount@blazor.com",
+                            UserName = "TestAccount@blazor.com",
+                            UserPassword = "TestAccount_password123",
+                            UserPhoneNum = "9072 0791"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -766,11 +1027,15 @@ namespace FoodNutritionWebsite.Server.Migrations
 
             modelBuilder.Entity("FoodNutritionWebsite.Shared.Domain.FoodLog", b =>
                 {
+                    b.HasOne("FoodNutritionWebsite.Shared.Domain.Food", "Food")
+                        .WithMany()
+                        .HasForeignKey("FoodID");
+
                     b.HasOne("FoodNutritionWebsite.Shared.Domain.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserID");
+
+                    b.Navigation("Food");
 
                     b.Navigation("User");
                 });
@@ -786,23 +1051,31 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.Navigation("Staff");
                 });
 
+            modelBuilder.Entity("FoodNutritionWebsite.Shared.Domain.Payment", b =>
+                {
+                    b.HasOne("FoodNutritionWebsite.Shared.Domain.Subscription", "Subscription")
+                        .WithMany()
+                        .HasForeignKey("SubscriptionID");
+
+                    b.Navigation("Subscription");
+                });
+
             modelBuilder.Entity("FoodNutritionWebsite.Shared.Domain.Subscription", b =>
                 {
                     b.HasOne("FoodNutritionWebsite.Shared.Domain.MealPlan", "MealPlan")
                         .WithMany()
-                        .HasForeignKey("MealPlanID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FoodNutritionWebsite.Shared.Domain.Payment", "Payment")
-                        .WithMany()
-                        .HasForeignKey("PaymentID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MealPlanID");
 
                     b.Navigation("MealPlan");
+                });
 
-                    b.Navigation("Payment");
+            modelBuilder.Entity("FoodNutritionWebsite.Shared.Domain.User", b =>
+                {
+                    b.HasOne("FoodNutritionWebsite.Shared.Domain.Subscription", "Subscription")
+                        .WithMany()
+                        .HasForeignKey("SubscriptionID");
+
+                    b.Navigation("Subscription");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
