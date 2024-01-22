@@ -13,7 +13,7 @@
 
 @code {
 	[Parameter] public int id { get; set; }
-	FoodLog foodlog = new FoodLog();
+	FoodLog? foodlog = new FoodLog();
 
 	protected async override Task OnParametersSetAsync()
 	{

@@ -32,6 +32,7 @@
         </tr>
     </thead>
     <tbody>
+
         @foreach (var foods in Food)
         {
 
@@ -83,7 +84,7 @@
 
             if (confirm)
             {
-                await _client.DeleteAsync($"api/Food/{foodsId}");
+                await _client.DeleteAsync($"api/foods/{foodsId}");
                 await OnInitializedAsync();
             }
 

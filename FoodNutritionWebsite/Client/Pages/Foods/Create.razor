@@ -1,6 +1,4 @@
-﻿<h3>Create</h3>
-
-@page "/Food/create/"
+﻿@page "/Food/create/"
 @inject HttpClient _client
 @inject NavigationManager _navManager
 
@@ -58,7 +56,7 @@
 
 	private async Task CreateFood()
 	{
-		await _client.PostAsJsonAsync("api/Foods/", food);
-		_navManager.NavigateTo("/foods/");
+		await _client.PostAsJsonAsync("api/foods/", food);
+		_navManager.NavigateTo("/Food/");
 	}
 }

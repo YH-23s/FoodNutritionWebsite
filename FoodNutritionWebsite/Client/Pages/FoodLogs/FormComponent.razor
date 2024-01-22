@@ -63,7 +63,7 @@
     [Parameter] public FoodLog? foodlog { get; set; }
     [Parameter] public string ButtonText { get; set; } = "Save";
     [Parameter] public EventCallback OnValidSubmit { get; set; }
-    
+
     private IList<User>? Users;
 
     protected async override Task OnInitializedAsync()
