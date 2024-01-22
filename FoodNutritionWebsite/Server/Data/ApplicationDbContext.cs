@@ -33,6 +33,10 @@ namespace FoodNutritionWebsite.Server.Data
             base.OnModelCreating(builder);
 
             builder.ApplyConfiguration(new UserSeedConfiguration());
+            builder.ApplyConfiguration(new User_defSeedConfiguration());
+            builder.ApplyConfiguration(new SubscriptionSeedConfiguration());
+            builder.ApplyConfiguration(new FoodLogSeedConfiguration());
+            builder.ApplyConfiguration(new PaymentSeedConfiguration());
         }
     }
 }

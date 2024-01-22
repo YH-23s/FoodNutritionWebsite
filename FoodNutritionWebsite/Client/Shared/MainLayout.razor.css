@@ -4,9 +4,9 @@
     flex-direction: row;
     background: linear-gradient(to right, #FF706F 60%, hsl(330, 100%, 53.5%))
 }
-    
 
-.header{
+
+.header {
     display: flex;
     gap: 130px;
     height: 110px;
@@ -16,7 +16,7 @@
 
 
 .Logo-size {
-    top:5px;
+    top: 5px;
     max-width: 410px;
     max-height: 220px;
     margin: auto;
@@ -28,7 +28,7 @@
         and not be at a fixed place. To change the location, you would use top, bottom, left and right as shown below.
     */
     position: relative;
-    top:37px;
+    top: 37px;
 }
 
 
@@ -40,82 +40,8 @@
 
 .content {
     /* The padding-top is to create a space between the top ans the code you are using this class for. */
-    padding-top:5px;
+    padding-top: 5px;
     /* The border-top is used to make a visible color line to show the break and show where the bottom start for the padding-top. */
     border-top: 1px solid white;
-    color:white;
+    color: white;
 }
-
-
-
-
-
-/*.top-row {
-    background-color: salmon;
-    border-bottom: 1px solid #d6d5d5;
-    justify-content: flex-start;
-    height: 0px;
-    position: sticky;
-    display: flex;
-    align-items: center;
-}
-
-    .top-row ::deep a, .top-row ::deep .btn-link {
-        white-space: nowrap;
-        margin-left: 1.5rem;
-        text-decoration: none;
-    }
-
-        .top-row ::deep a:hover, .top-row ::deep .btn-link:hover {
-            text-decoration: underline;
-        }
-
-        .top-row ::deep a:first-child {
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-@media (max-width: 640.98px) {
-    .top-row:not(.auth) {
-        display: none;
-    }
-
-    .top-row.auth {
-        justify-content: space-between;
-    }
-
-    .top-row ::deep a, .top-row ::deep .btn-link {
-        margin-left: 0;
-    }
-}
-
-@media (min-width: 641px) {
-    .page {
-        flex-direction: row;
-    }
-
-    .sidebar {
-        width: 250px;
-        height: 35vh;
-        position: sticky;
-        top: 0;
-    }
-
-    .top-row {
-        position: sticky;
-        top: 0;
-        z-index: 1;
-    }
-
-        .top-row.auth ::deep a:first-child {
-            flex: 1;
-            text-align: right;
-            width: 0;
-        }
-
-    .top-row, article {
-        padding-left: 0rem !important;
-        padding-right: 0.6rem !important;
-    }
-}
-*/

@@ -1,0 +1,102 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+
+
+@page "/Payments"
+@inject HttpClient _client
+@inject IJSRuntime js
+@attribute [Authorize]
+
+<h3>Payments Index</h3>
+
+
+<a href="/Payments/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New Payments
+</a>
+<br />
+<br />
+
+
+
+
+
+
+
+
+
+<table class="table table-responsive">
+
+    <thead>
+        <tr>
+            <th> Subscription Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var payments in Payments)
+        {
+
+            <tr>
+                <td>@payments.PaymentDescription</td>
+                <td>
+                    <a href="/Payments/view/@payments.Id" class="bth btn-primary">
+                        <span class="oi oi-book"></span>
+                    </a>
+
+                    <a href="/Payments/edit/@payments.Id" class="bth btn-primary">
+                        <span class="oi oi-pencil"></span>
+                    </a>
+
+                    <button class="btn btn-danger" @onclick="@(()=>Delete(payments.Id))">
+                        <span class="oi oi-book"></span>
+                    </button>
+
+                </td>
+            </tr>
+        }
+
+
+
+    </tbody>
+
+</table>
+
+
+
+
+
+
+@code {
+    public List<Payment>? Payments;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Payments = await _client.GetFromJsonAsync<List<Payment>>($"api/Payments");
+    }
+
+    async Task Delete(int paymentsId)
+    {
+        if (Payments != null)
+        {
+            var payment = Payments.First(q => q.Id == paymentsId);
+            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {payment}?");
+
+            if (confirm)
+            {
+                await _client.DeleteAsync($"api/Payments/{paymentsId}");
+                await OnInitializedAsync();
+            }
+
+        }
+    }
+
+
+    int GetPaymentCount()
+    {
+        return Payments?.Count ?? 0;
+    }
+
+}
+
+<p>Total Payments: @GetPaymentCount()</p>

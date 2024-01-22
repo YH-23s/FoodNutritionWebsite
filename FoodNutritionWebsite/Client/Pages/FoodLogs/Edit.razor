@@ -1,0 +1,29 @@
+﻿@page "/FoodLogs/edit/{id:int}"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3>Edit Food Logs page</h3>
+
+
+
+<FormComponent ButtonText="Update" OnValidSubmit="EditFoodLog" foodlog="foodlog" />
+
+
+
+
+@code {
+	[Parameter] public int id { get; set; }
+	FoodLog foodlog = new FoodLog();
+
+	protected async override Task OnParametersSetAsync()
+	{
+		foodlog = await _client.GetFromJsonAsync<FoodLog>($"{$"api/FoodLogs"}/{id}");
+	}
+
+	async Task EditFoodLog()
+	{
+		await _client.PutAsJsonAsync($"{$"api/FoodLogs"}/{id}", foodlog);
+		_navManager.NavigateTo("/FoodLogs/");
+
+	}
+}

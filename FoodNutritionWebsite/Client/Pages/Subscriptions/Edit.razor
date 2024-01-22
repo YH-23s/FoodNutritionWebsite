@@ -1,0 +1,36 @@
+﻿@page "/Subscriptions/edit/{id:int}"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+
+<h3>Edit Subscriptions Page</h3>
+
+<FormComponent ButtonText="Update" OnValidSubmit="EditSubscription" subscription="subscription" />
+
+
+
+@code {
+	[Parameter] public int id { get; set; }
+	Subscription subscription = new Subscription();
+
+	protected async override Task OnParametersSetAsync()
+	{
+		subscription = await _client.GetFromJsonAsync<Subscription>($"{$"api/Subscriptions"}/{id}");
+	}
+
+	async Task EditSubscription()
+	{
+		await _client.PutAsJsonAsync($"{$"api/Subscriptions"}/{id}", subscription);
+		_navManager.NavigateTo("/Subscriptions/");
+
+	}
+}
+
+
+
+
+
+
+
+
+

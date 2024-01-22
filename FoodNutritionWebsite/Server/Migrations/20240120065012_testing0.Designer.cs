@@ -12,15 +12,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodNutritionWebsite.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240117024123_newdb")]
-    partial class newdb
+    [Migration("20240120065012_testing0")]
+    partial class testing0
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.14")
+                .HasAnnotation("ProductVersion", "7.0.15")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -244,7 +244,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "22da5e1f-ff14-4a4c-8b45-359d6bc1efc6",
+                            ConcurrencyStamp = "70d301e0-d188-4f4a-b361-bac783ef9400",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -252,9 +252,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAECcKjbxuUYhidrouWBdirKWWKrgG5gg3Fk2OCmBDSy2NgXCN+mgeBOPResNXswhHbQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAENKh8L61V9yB129aPDlisenExlOB4VYSVUmM7LwQb8DeFoyOP84OXvjR+Yyd8NJCEg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f3591c20-effd-4bbe-8993-12570b2cdade",
+                            SecurityStamp = "0e4eb20e-c368-4ae0-a2f7-ea23fe7caaa1",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         });
@@ -550,9 +550,6 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.Property<string>("Gender")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SubscriptionID")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("UserDOB")
                         .HasColumnType("datetime2");
 
@@ -569,8 +566,6 @@ namespace FoodNutritionWebsite.Server.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("SubscriptionID");
 
                     b.ToTable("Usersssss");
                 });
@@ -808,17 +803,6 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.Navigation("MealPlan");
 
                     b.Navigation("Payment");
-                });
-
-            modelBuilder.Entity("FoodNutritionWebsite.Shared.Domain.User", b =>
-                {
-                    b.HasOne("FoodNutritionWebsite.Shared.Domain.Subscription", "Subscription")
-                        .WithMany()
-                        .HasForeignKey("SubscriptionID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Subscription");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

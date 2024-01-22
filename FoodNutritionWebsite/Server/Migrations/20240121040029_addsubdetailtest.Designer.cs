@@ -4,6 +4,7 @@ using FoodNutritionWebsite.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodNutritionWebsite.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240121040029_addsubdetailtest")]
+    partial class addsubdetailtest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -241,7 +244,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "07827aed-e70e-442e-bd77-707de08ab3af",
+                            ConcurrencyStamp = "083a623f-47e3-4dd6-94a8-f58ecc394eb7",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -249,9 +252,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEB5wDXMogoaIgdQeLRduvC5CXhIk/GWH7XE9NBnAI2mcQ9qsfcK9u8SYwJH2MsxA0w==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEH6Lew4HByatoz6ITwwejaAxIXJM2+XcgI5CVXbpxNuu066JOR7QJZEg7ztr7UkJCg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0e51f3e5-3ce6-4cf2-ad59-f6c08d70173e",
+                            SecurityStamp = "a6320aaf-b93c-4d24-ae8d-09163946e631",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         });
@@ -440,7 +443,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UserID")
+                    b.Property<int>("UserID")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -450,15 +453,6 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.HasIndex("UserID");
 
                     b.ToTable("FoodLogs");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            FoodLogDateTime = new DateTime(2024, 1, 21, 12, 16, 7, 9, DateTimeKind.Local).AddTicks(938),
-                            FoodName = "Chicken Rice",
-                            FoodType = "Protein"
-                        });
                 });
 
             modelBuilder.Entity("FoodNutritionWebsite.Shared.Domain.FoodNutrition", b =>
@@ -571,16 +565,6 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.HasIndex("SubscriptionID");
 
                     b.ToTable("Payments");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            EndingDate = new DateTime(2024, 2, 21, 4, 16, 7, 9, DateTimeKind.Utc).AddTicks(1143),
-                            PaymentAmount = 12,
-                            PaymentDescription = "This is the payment detail for the subscription",
-                            StartingDate = new DateTime(2024, 1, 21, 4, 16, 7, 9, DateTimeKind.Utc).AddTicks(1140)
-                        });
                 });
 
             modelBuilder.Entity("FoodNutritionWebsite.Shared.Domain.Staff", b =>
@@ -742,7 +726,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 1, 21, 12, 16, 7, 9, DateTimeKind.Local).AddTicks(446),
+                            DateCreated = new DateTime(2024, 1, 21, 12, 0, 29, 818, DateTimeKind.Local).AddTicks(4916),
                             Gender = "Male",
                             UserDOB = "12/1/2001",
                             UserEmail = "TestingAccount@blazor.com",
@@ -754,7 +738,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 1, 21, 12, 16, 7, 9, DateTimeKind.Local).AddTicks(521),
+                            DateCreated = new DateTime(2024, 1, 21, 12, 0, 29, 818, DateTimeKind.Local).AddTicks(4939),
                             Gender = "Female",
                             UserDOB = "12/1/2005",
                             UserEmail = "TestAccount@blazor.com",
@@ -966,7 +950,9 @@ namespace FoodNutritionWebsite.Server.Migrations
 
                     b.HasOne("FoodNutritionWebsite.Shared.Domain.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserID");
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Food");
 
