@@ -25,6 +25,8 @@ namespace FoodNutritionWebsite.Server.Repository
         private IGenericRepository<Payment> _Payments;
         private IGenericRepository<Subscription> _Subscriptions;
         private IGenericRepository<Food> _Foods;
+        private IGenericRepository<Staff> _Staffs;
+        private IGenericRepository<MealPlan> _MealPlans;
 
 
         private UserManager<ApplicationUser> _userManager;
@@ -52,10 +54,12 @@ namespace FoodNutritionWebsite.Server.Repository
             => _Subscriptions ??= new GenericRepository<Subscription>(_context);
 		public IGenericRepository<Food> Foods
 			=> _Foods ??= new GenericRepository<Food>(_context);
+        public IGenericRepository<Staff> Staffs
+            => _Staffs ??= new GenericRepository<Staff>(_context);
+        public IGenericRepository<MealPlan> MealPlans
+            => _MealPlans ??= new GenericRepository<MealPlan>(_context);
 
-		public IGenericRepository<Staff> Staffs => throw new NotImplementedException();
-
-		public void Dispose()
+        public void Dispose()
         {
             _context.Dispose();
             GC.SuppressFinalize(this);

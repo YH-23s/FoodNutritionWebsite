@@ -18,6 +18,7 @@ namespace FoodNutritionWebsite.Server.IRepository
         IGenericRepository<Subscription> Subscriptions { get; }
         IGenericRepository<Staff> Staffs { get; }
         IGenericRepository<Food> Foods { get; }
+        IGenericRepository<MealPlan> MealPlans { get; }
 
     }
 }

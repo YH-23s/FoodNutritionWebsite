@@ -38,6 +38,8 @@ namespace FoodNutritionWebsite.Server.Data
             builder.ApplyConfiguration(new PaymentSeedConfiguration());
             builder.ApplyConfiguration(new StaffSeedConfiguration());
             builder.ApplyConfiguration(new FoodSeedConfiguration());
+            builder.ApplyConfiguration(new MealPlanSeedConfiguration());
+
         }
     }
 }

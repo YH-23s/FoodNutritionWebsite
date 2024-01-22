@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FoodNutritionWebsite.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class addFood : Migration
+    public partial class MealPlansAndStaffs : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -515,26 +515,17 @@ namespace FoodNutritionWebsite.Server.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecondName", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "1e7b0023-98bd-4336-91ea-b0ce5a4e523c", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEKnZIY8Xa6MLlHUmyCLoLUVclGJbiXktLsZ+c8FAAskMSaFEpxs+pxWf6aMJhb4i6w==", null, false, null, "db96c641-71d3-4320-b5f2-573eb2397e99", false, "admin@localhost.com" });
+                values: new object[] { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "ff649b6e-75bb-404d-8ab2-85d20a58bff3", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEGwOesOXdhtZOkzwA8zdh+BZPE2zhBTfeVickGN7jViMqQCCIxL2T/eNLHCy2hFNZA==", null, false, null, "09f73765-b6b0-4d47-aa1f-4b9653911d9f", false, "admin@localhost.com" });
 
             migrationBuilder.InsertData(
                 table: "FoodLogs",
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "FoodID", "FoodLogDateTime", "FoodName", "FoodType", "UpdatedBy", "UserID" },
-                values: new object[] { 1, null, null, null, null, new DateTime(2024, 1, 22, 16, 39, 24, 958, DateTimeKind.Local).AddTicks(5611), "Chicken Rice", "Protein", null, null });
-
-            migrationBuilder.InsertData(
-                table: "Foods",
-                columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "FoodCalory", "FoodCategory", "FoodDescription", "FoodName", "FoodPicture", "UpdatedBy" },
-                values: new object[,]
-                {
-                    { 1, null, null, null, "2.1kcal", "Meat", "Taste what it feels like to be SPEED", "Horse meatball", "Placeholder for now", null },
-                    { 2, null, null, null, "0.2kcal", "Fruit", "Boomerang yellow fruit", "Banana", "Placeholder for now", null }
-                });
+                values: new object[] { 1, null, null, null, null, new DateTime(2024, 1, 23, 1, 43, 19, 60, DateTimeKind.Local).AddTicks(686), "Chicken Rice", "Protein", null, null });
 
             migrationBuilder.InsertData(
                 table: "Payments",
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "EndingDate", "PaymentAmount", "PaymentDescription", "StartingDate", "SubscriptionID", "UpdatedBy" },
-                values: new object[] { 1, null, null, null, new DateTime(2024, 2, 22, 8, 39, 24, 958, DateTimeKind.Utc).AddTicks(5798), 12, "This is the payment detail for the subscription", new DateTime(2024, 1, 22, 8, 39, 24, 958, DateTimeKind.Utc).AddTicks(5798), null, null });
+                values: new object[] { 1, null, null, null, new DateTime(2024, 2, 22, 17, 43, 19, 60, DateTimeKind.Utc).AddTicks(987), 12, "This is the payment detail for the subscription", new DateTime(2024, 1, 22, 17, 43, 19, 60, DateTimeKind.Utc).AddTicks(984), null, null });
 
             migrationBuilder.InsertData(
                 table: "Staffs",
@@ -543,7 +534,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                 {
                     { 1, "123 Rivervale", "98765432", null, new DateTime(1980, 1, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "Darrell", "Male", "Tan", "abc@gmail.com", "Manager", new DateTime(2020, 1, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "abcd@officialweb.com" },
                     { 2, "485 Sengkang Streets", "91827364", null, new DateTime(1990, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "Elgin", "Male", "Chng", "abcde@gmail.com", "Manager", new DateTime(2021, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "abcdef@officialweb.com" },
-                    { 3, "485 Lost Woods Streets", "15429857", null, new DateTime(1930, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "Li", "Female", "Wen", "wen@gmail.com", "HR Representative", new DateTime(2019, 9, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "wen1@officialweb.com" }
+                    { 3, "654 Lost Woods Streets", "15429857", null, new DateTime(1930, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "Li", "Female", "Wen", "wen@gmail.com", "HR Representative", new DateTime(2019, 9, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "wen1@officialweb.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -556,8 +547,8 @@ namespace FoodNutritionWebsite.Server.Migrations
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "Gender", "SubscriptionID", "UpdatedBy", "UserDOB", "UserEmail", "UserName", "UserPassword", "UserPhoneNum" },
                 values: new object[,]
                 {
-                    { 1, "seed-script", new DateTime(2024, 1, 22, 16, 39, 24, 958, DateTimeKind.Local).AddTicks(5193), null, "Male", null, null, "12/1/2001", "TestingAccount@blazor.com", "TestingAccount", "TestingAccount_password123", "9012 0791" },
-                    { 2, "seed-script", new DateTime(2024, 1, 22, 16, 39, 24, 958, DateTimeKind.Local).AddTicks(5207), null, "Female", null, null, "12/1/2005", "TestAccount@blazor.com", "TestAccount@blazor.com", "TestAccount_password123", "9072 0791" }
+                    { 1, "seed-script", new DateTime(2024, 1, 23, 1, 43, 19, 59, DateTimeKind.Local).AddTicks(9640), null, "Male", null, null, "12/1/2001", "TestingAccount@blazor.com", "TestingAccount", "TestingAccount_password123", "9012 0791" },
+                    { 2, "seed-script", new DateTime(2024, 1, 23, 1, 43, 19, 59, DateTimeKind.Local).AddTicks(9671), null, "Female", null, null, "12/1/2005", "TestAccount@blazor.com", "TestAccount@blazor.com", "TestAccount_password123", "9072 0791" }
                 });
 
             migrationBuilder.CreateIndex(

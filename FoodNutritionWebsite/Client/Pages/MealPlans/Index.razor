@@ -1,0 +1,96 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+
+
+@page "/MealPlans"
+@inject HttpClient _client
+@inject IJSRuntime js
+@attribute [Authorize]
+
+<h3>MealPlan Index</h3>
+
+
+<a href="/MealPlan/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New MealPlan
+</a>
+<br />
+<br />
+
+
+
+
+<table class="table table-responsive">
+
+    <thead>
+        <tr>
+            <th>Meal Plan Name</th>
+            <th>Category</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var mealplans in MealPlan)
+        {
+
+            <tr>
+                <td>@mealplans.MealPlanName</td>
+                <td>@mealplans.MealPlanCategory</td>
+                
+                <td>
+                    <a href="/MealPlan/view/@mealplans.Id" class="bth btn-primary">
+                        <span class="oi oi-book"></span>
+                    </a>
+
+                    <a href="/MealPlan/edit/@mealplans.Id" class="bth btn-primary">
+                        <span class="oi oi-pencil"></span>
+                    </a>
+
+                    <button class="btn btn-danger" @onclick="@(()=>Delete(mealplans.Id))">
+                        <span class="oi oi-book"></span>
+                    </button>
+
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+
+
+@code {
+    public List<MealPlan>? MealPlan;
+
+    protected async override Task OnInitializedAsync()
+    {
+        MealPlan = await _client.GetFromJsonAsync<List<MealPlan>>($"api/mealplans");
+    }
+
+    async Task Delete(int mealplansId)
+    {
+        if (MealPlan != null)
+        {
+            var mealplans = MealPlan.First(q => q.Id == mealplansId);
+            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {mealplans}?");
+
+            if (confirm)
+            {
+                await _client.DeleteAsync($"api/mealplans/{mealplansId}");
+                await OnInitializedAsync();
+            }
+
+        }
+    }
+
+
+    int GetMealPlanCount()
+    {
+        return MealPlan?.Count ?? 0;
+    }
+
+}
+
+<p>Total MealPlan: @GetMealPlanCount()</p>
+
+

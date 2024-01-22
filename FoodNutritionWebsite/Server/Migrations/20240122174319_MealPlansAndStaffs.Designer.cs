@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodNutritionWebsite.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240122083925_addFood")]
-    partial class addFood
+    [Migration("20240122174319_MealPlansAndStaffs")]
+    partial class MealPlansAndStaffs
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -244,7 +244,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1e7b0023-98bd-4336-91ea-b0ce5a4e523c",
+                            ConcurrencyStamp = "ff649b6e-75bb-404d-8ab2-85d20a58bff3",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -252,9 +252,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKnZIY8Xa6MLlHUmyCLoLUVclGJbiXktLsZ+c8FAAskMSaFEpxs+pxWf6aMJhb4i6w==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGwOesOXdhtZOkzwA8zdh+BZPE2zhBTfeVickGN7jViMqQCCIxL2T/eNLHCy2hFNZA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "db96c641-71d3-4320-b5f2-573eb2397e99",
+                            SecurityStamp = "09f73765-b6b0-4d47-aa1f-4b9653911d9f",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         });
@@ -336,26 +336,6 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Foods");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            FoodCalory = "2.1kcal",
-                            FoodCategory = "Meat",
-                            FoodDescription = "Taste what it feels like to be SPEED",
-                            FoodName = "Horse meatball",
-                            FoodPicture = "Placeholder for now"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            FoodCalory = "0.2kcal",
-                            FoodCategory = "Fruit",
-                            FoodDescription = "Boomerang yellow fruit",
-                            FoodName = "Banana",
-                            FoodPicture = "Placeholder for now"
-                        });
                 });
 
             modelBuilder.Entity("FoodNutritionWebsite.Shared.Domain.FoodAddedL", b =>
@@ -478,7 +458,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         new
                         {
                             Id = 1,
-                            FoodLogDateTime = new DateTime(2024, 1, 22, 16, 39, 24, 958, DateTimeKind.Local).AddTicks(5611),
+                            FoodLogDateTime = new DateTime(2024, 1, 23, 1, 43, 19, 60, DateTimeKind.Local).AddTicks(686),
                             FoodName = "Chicken Rice",
                             FoodType = "Protein"
                         });
@@ -599,10 +579,10 @@ namespace FoodNutritionWebsite.Server.Migrations
                         new
                         {
                             Id = 1,
-                            EndingDate = new DateTime(2024, 2, 22, 8, 39, 24, 958, DateTimeKind.Utc).AddTicks(5798),
+                            EndingDate = new DateTime(2024, 2, 22, 17, 43, 19, 60, DateTimeKind.Utc).AddTicks(987),
                             PaymentAmount = 12,
                             PaymentDescription = "This is the payment detail for the subscription",
-                            StartingDate = new DateTime(2024, 1, 22, 8, 39, 24, 958, DateTimeKind.Utc).AddTicks(5798)
+                            StartingDate = new DateTime(2024, 1, 22, 17, 43, 19, 60, DateTimeKind.Utc).AddTicks(984)
                         });
                 });
 
@@ -692,7 +672,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         new
                         {
                             Id = 3,
-                            Address = "485 Lost Woods Streets",
+                            Address = "654 Lost Woods Streets",
                             ContactNumber = "15429857",
                             DOB = new DateTime(1930, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Li",
@@ -809,7 +789,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 1, 22, 16, 39, 24, 958, DateTimeKind.Local).AddTicks(5193),
+                            DateCreated = new DateTime(2024, 1, 23, 1, 43, 19, 59, DateTimeKind.Local).AddTicks(9640),
                             Gender = "Male",
                             UserDOB = "12/1/2001",
                             UserEmail = "TestingAccount@blazor.com",
@@ -821,7 +801,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 1, 22, 16, 39, 24, 958, DateTimeKind.Local).AddTicks(5207),
+                            DateCreated = new DateTime(2024, 1, 23, 1, 43, 19, 59, DateTimeKind.Local).AddTicks(9671),
                             Gender = "Female",
                             UserDOB = "12/1/2005",
                             UserEmail = "TestAccount@blazor.com",

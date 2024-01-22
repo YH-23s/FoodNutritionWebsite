@@ -19,7 +19,6 @@ namespace FoodNutritionWebsite.Server.Configurations.Entities
                     FoodType = "Protein",
                     FoodName = "Chicken Rice"
                 }
-
                 );
 
         }

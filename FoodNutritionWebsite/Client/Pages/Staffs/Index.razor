@@ -1,0 +1,102 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+
+
+@page "/Staffs"
+@inject HttpClient _client
+@inject IJSRuntime js
+@attribute [Authorize]
+
+<h3>Staff Index</h3>
+
+
+<a href="/Staff/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New Staff
+</a>
+<br />
+<br />
+
+
+
+
+<table class="table table-responsive">
+
+    <thead>
+        <tr>
+            <th>Staff First Name</th>
+            <th>Staff Work Email</th>
+            <th>Staff Role</th>
+            <th>Staff Start Date</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var staffs in Staff)
+        {
+
+            <tr>
+                <td>@staffs.FirstName</td>
+                <td>@staffs.WorkEmail</td>
+                <td>@staffs.Role</td>
+                <td>@staffs.StartDate</td>
+                
+                <td>
+                    <a href="/Staff/view/@staffs.Id" class="bth btn-primary">
+                        <span class="oi oi-book"></span>
+                    </a>
+
+                    <a href="/Staff/edit/@staffs.Id" class="bth btn-primary">
+                        <span class="oi oi-pencil"></span>
+                    </a>
+
+                    <button class="btn btn-danger" @onclick="@(()=>Delete(staffs.Id))">
+                        <span class="oi oi-book"></span>
+                    </button>
+
+                </td>
+            </tr>
+        }
+
+
+
+    </tbody>
+
+</table>
+
+
+@code {
+    public List<Staff>? Staff;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Staff = await _client.GetFromJsonAsync<List<Staff>>($"api/staffs");
+    }
+
+    async Task Delete(int staffsId)
+    {
+        if (Staff != null)
+        {
+            var staffs = Staff.First(q => q.Id == staffsId);
+            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {staffs}?");
+
+            if (confirm)
+            {
+                await _client.DeleteAsync($"api/staffs/{staffsId}");
+                await OnInitializedAsync();
+            }
+
+        }
+    }
+
+
+    int GetStaffCount()
+    {
+        return Staff?.Count ?? 0;
+    }
+
+}
+
+<p>Total Staff: @GetStaffCount()</p>
+
+
