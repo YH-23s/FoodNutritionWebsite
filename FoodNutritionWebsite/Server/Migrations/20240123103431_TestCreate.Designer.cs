@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodNutritionWebsite.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240122174319_MealPlansAndStaffs")]
-    partial class MealPlansAndStaffs
+    [Migration("20240123103431_TestCreate")]
+    partial class TestCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -244,7 +244,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ff649b6e-75bb-404d-8ab2-85d20a58bff3",
+                            ConcurrencyStamp = "c6509faf-f0d6-469b-8167-f20af39a93e1",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -252,9 +252,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGwOesOXdhtZOkzwA8zdh+BZPE2zhBTfeVickGN7jViMqQCCIxL2T/eNLHCy2hFNZA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAENZdkx8lnkBCF/0TJN9tBbywBfDwAIq2Ags2TdZ6rzZkUH87OtwoBRtjyUc0IlF6LQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "09f73765-b6b0-4d47-aa1f-4b9653911d9f",
+                            SecurityStamp = "6c2d036a-5cee-42c9-a233-023a8b843f47",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         });
@@ -336,6 +336,26 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Foods");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            FoodCalory = "2.1kcal",
+                            FoodCategory = "Meat",
+                            FoodDescription = "Taste what it feels like to be SPEED",
+                            FoodName = "Horse meatball",
+                            FoodPicture = "Placeholder for now"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            FoodCalory = "0.2kcal",
+                            FoodCategory = "Fruit",
+                            FoodDescription = "Boomerang yellow fruit",
+                            FoodName = "Banana",
+                            FoodPicture = "Placeholder for now"
+                        });
                 });
 
             modelBuilder.Entity("FoodNutritionWebsite.Shared.Domain.FoodAddedL", b =>
@@ -458,7 +478,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         new
                         {
                             Id = 1,
-                            FoodLogDateTime = new DateTime(2024, 1, 23, 1, 43, 19, 60, DateTimeKind.Local).AddTicks(686),
+                            FoodLogDateTime = new DateTime(2024, 1, 23, 18, 34, 31, 139, DateTimeKind.Local).AddTicks(2862),
                             FoodName = "Chicken Rice",
                             FoodType = "Protein"
                         });
@@ -532,6 +552,29 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.HasIndex("StaffID");
 
                     b.ToTable("MealPlans");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            MealPlanCategory = "Carnivore",
+                            MealPlanName = "Steak and fries",
+                            StaffID = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            MealPlanCategory = "Vegetable",
+                            MealPlanName = "Grass and vegetable",
+                            StaffID = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            MealPlanCategory = "Omnivore",
+                            MealPlanName = "Grass and Meat",
+                            StaffID = 3
+                        });
                 });
 
             modelBuilder.Entity("FoodNutritionWebsite.Shared.Domain.Payment", b =>
@@ -579,10 +622,10 @@ namespace FoodNutritionWebsite.Server.Migrations
                         new
                         {
                             Id = 1,
-                            EndingDate = new DateTime(2024, 2, 22, 17, 43, 19, 60, DateTimeKind.Utc).AddTicks(987),
+                            EndingDate = new DateTime(2024, 2, 23, 10, 34, 31, 139, DateTimeKind.Utc).AddTicks(3052),
                             PaymentAmount = 12,
                             PaymentDescription = "This is the payment detail for the subscription",
-                            StartingDate = new DateTime(2024, 1, 22, 17, 43, 19, 60, DateTimeKind.Utc).AddTicks(984)
+                            StartingDate = new DateTime(2024, 1, 23, 10, 34, 31, 139, DateTimeKind.Utc).AddTicks(3051)
                         });
                 });
 
@@ -603,7 +646,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DOB")
+                    b.Property<DateTime?>("DOB")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DateCreated")
@@ -627,7 +670,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.Property<string>("Role")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("StartDate")
+                    b.Property<DateTime?>("StartDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UpdatedBy")
@@ -789,7 +832,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 1, 23, 1, 43, 19, 59, DateTimeKind.Local).AddTicks(9640),
+                            DateCreated = new DateTime(2024, 1, 23, 18, 34, 31, 139, DateTimeKind.Local).AddTicks(2424),
                             Gender = "Male",
                             UserDOB = "12/1/2001",
                             UserEmail = "TestingAccount@blazor.com",
@@ -801,7 +844,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 1, 23, 1, 43, 19, 59, DateTimeKind.Local).AddTicks(9671),
+                            DateCreated = new DateTime(2024, 1, 23, 18, 34, 31, 139, DateTimeKind.Local).AddTicks(2444),
                             Gender = "Female",
                             UserDOB = "12/1/2005",
                             UserEmail = "TestAccount@blazor.com",

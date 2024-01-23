@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodNutritionWebsite.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240122174437_MealPlansAndStaffsController")]
-    partial class MealPlansAndStaffsController
+    [Migration("20240123074403_fixingDateTimeStaff")]
+    partial class fixingDateTimeStaff
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -244,7 +244,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b586f5c0-f758-4eb0-a1ea-e809ff4ca963",
+                            ConcurrencyStamp = "1aa62f84-14f9-4e53-820a-2bf6cf12318e",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -252,9 +252,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOOUP5wtvaB1mvgDkpaXgl10uo0V+0a0ZIYm/QYQWTTAr3TwSMQ6BjuAWnHQylWSFQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMt/dV0S0JYjjKN3ml85D+76i1D4lGT0bLexsYo45lkXHTVsAtWLL9cLypDWw4Isxw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "fd635846-1f3b-4102-a87e-ece774a0a39a",
+                            SecurityStamp = "1fb6022d-1b3b-41ab-8ff5-2de2e9be0f84",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         });
@@ -478,7 +478,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         new
                         {
                             Id = 1,
-                            FoodLogDateTime = new DateTime(2024, 1, 23, 1, 44, 37, 408, DateTimeKind.Local).AddTicks(6172),
+                            FoodLogDateTime = new DateTime(2024, 1, 23, 15, 44, 3, 108, DateTimeKind.Local).AddTicks(3587),
                             FoodName = "Chicken Rice",
                             FoodType = "Protein"
                         });
@@ -559,21 +559,21 @@ namespace FoodNutritionWebsite.Server.Migrations
                             Id = 1,
                             MealPlanCategory = "Carnivore",
                             MealPlanName = "Steak and fries",
-                            StaffID = 0
+                            StaffID = 1
                         },
                         new
                         {
                             Id = 2,
                             MealPlanCategory = "Vegetable",
                             MealPlanName = "Grass and vegetable",
-                            StaffID = 0
+                            StaffID = 2
                         },
                         new
                         {
                             Id = 3,
                             MealPlanCategory = "Omnivore",
                             MealPlanName = "Grass and Meat",
-                            StaffID = 0
+                            StaffID = 3
                         });
                 });
 
@@ -622,10 +622,10 @@ namespace FoodNutritionWebsite.Server.Migrations
                         new
                         {
                             Id = 1,
-                            EndingDate = new DateTime(2024, 2, 22, 17, 44, 37, 408, DateTimeKind.Utc).AddTicks(6423),
+                            EndingDate = new DateTime(2024, 2, 23, 7, 44, 3, 108, DateTimeKind.Utc).AddTicks(3765),
                             PaymentAmount = 12,
                             PaymentDescription = "This is the payment detail for the subscription",
-                            StartingDate = new DateTime(2024, 1, 22, 17, 44, 37, 408, DateTimeKind.Utc).AddTicks(6422)
+                            StartingDate = new DateTime(2024, 1, 23, 7, 44, 3, 108, DateTimeKind.Utc).AddTicks(3764)
                         });
                 });
 
@@ -646,7 +646,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DOB")
+                    b.Property<DateTime?>("DOB")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DateCreated")
@@ -670,7 +670,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.Property<string>("Role")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("StartDate")
+                    b.Property<DateTime?>("StartDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UpdatedBy")
@@ -832,7 +832,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 1, 23, 1, 44, 37, 408, DateTimeKind.Local).AddTicks(5574),
+                            DateCreated = new DateTime(2024, 1, 23, 15, 44, 3, 108, DateTimeKind.Local).AddTicks(3171),
                             Gender = "Male",
                             UserDOB = "12/1/2001",
                             UserEmail = "TestingAccount@blazor.com",
@@ -844,7 +844,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 1, 23, 1, 44, 37, 408, DateTimeKind.Local).AddTicks(5592),
+                            DateCreated = new DateTime(2024, 1, 23, 15, 44, 3, 108, DateTimeKind.Local).AddTicks(3185),
                             Gender = "Female",
                             UserDOB = "12/1/2005",
                             UserEmail = "TestAccount@blazor.com",

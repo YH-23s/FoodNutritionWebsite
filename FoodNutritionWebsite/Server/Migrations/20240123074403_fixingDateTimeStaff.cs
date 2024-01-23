@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FoodNutritionWebsite.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class MealPlansAndStaffs : Migration
+    public partial class fixingDateTimeStaff : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -160,14 +160,14 @@ namespace FoodNutritionWebsite.Server.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DOB = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DOB = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ContactNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PersonalEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     WorkEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Role = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -515,17 +515,26 @@ namespace FoodNutritionWebsite.Server.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecondName", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "ff649b6e-75bb-404d-8ab2-85d20a58bff3", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEGwOesOXdhtZOkzwA8zdh+BZPE2zhBTfeVickGN7jViMqQCCIxL2T/eNLHCy2hFNZA==", null, false, null, "09f73765-b6b0-4d47-aa1f-4b9653911d9f", false, "admin@localhost.com" });
+                values: new object[] { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "1aa62f84-14f9-4e53-820a-2bf6cf12318e", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEMt/dV0S0JYjjKN3ml85D+76i1D4lGT0bLexsYo45lkXHTVsAtWLL9cLypDWw4Isxw==", null, false, null, "1fb6022d-1b3b-41ab-8ff5-2de2e9be0f84", false, "admin@localhost.com" });
 
             migrationBuilder.InsertData(
                 table: "FoodLogs",
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "FoodID", "FoodLogDateTime", "FoodName", "FoodType", "UpdatedBy", "UserID" },
-                values: new object[] { 1, null, null, null, null, new DateTime(2024, 1, 23, 1, 43, 19, 60, DateTimeKind.Local).AddTicks(686), "Chicken Rice", "Protein", null, null });
+                values: new object[] { 1, null, null, null, null, new DateTime(2024, 1, 23, 15, 44, 3, 108, DateTimeKind.Local).AddTicks(3587), "Chicken Rice", "Protein", null, null });
+
+            migrationBuilder.InsertData(
+                table: "Foods",
+                columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "FoodCalory", "FoodCategory", "FoodDescription", "FoodName", "FoodPicture", "UpdatedBy" },
+                values: new object[,]
+                {
+                    { 1, null, null, null, "2.1kcal", "Meat", "Taste what it feels like to be SPEED", "Horse meatball", "Placeholder for now", null },
+                    { 2, null, null, null, "0.2kcal", "Fruit", "Boomerang yellow fruit", "Banana", "Placeholder for now", null }
+                });
 
             migrationBuilder.InsertData(
                 table: "Payments",
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "EndingDate", "PaymentAmount", "PaymentDescription", "StartingDate", "SubscriptionID", "UpdatedBy" },
-                values: new object[] { 1, null, null, null, new DateTime(2024, 2, 22, 17, 43, 19, 60, DateTimeKind.Utc).AddTicks(987), 12, "This is the payment detail for the subscription", new DateTime(2024, 1, 22, 17, 43, 19, 60, DateTimeKind.Utc).AddTicks(984), null, null });
+                values: new object[] { 1, null, null, null, new DateTime(2024, 2, 23, 7, 44, 3, 108, DateTimeKind.Utc).AddTicks(3765), 12, "This is the payment detail for the subscription", new DateTime(2024, 1, 23, 7, 44, 3, 108, DateTimeKind.Utc).AddTicks(3764), null, null });
 
             migrationBuilder.InsertData(
                 table: "Staffs",
@@ -547,8 +556,18 @@ namespace FoodNutritionWebsite.Server.Migrations
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "Gender", "SubscriptionID", "UpdatedBy", "UserDOB", "UserEmail", "UserName", "UserPassword", "UserPhoneNum" },
                 values: new object[,]
                 {
-                    { 1, "seed-script", new DateTime(2024, 1, 23, 1, 43, 19, 59, DateTimeKind.Local).AddTicks(9640), null, "Male", null, null, "12/1/2001", "TestingAccount@blazor.com", "TestingAccount", "TestingAccount_password123", "9012 0791" },
-                    { 2, "seed-script", new DateTime(2024, 1, 23, 1, 43, 19, 59, DateTimeKind.Local).AddTicks(9671), null, "Female", null, null, "12/1/2005", "TestAccount@blazor.com", "TestAccount@blazor.com", "TestAccount_password123", "9072 0791" }
+                    { 1, "seed-script", new DateTime(2024, 1, 23, 15, 44, 3, 108, DateTimeKind.Local).AddTicks(3171), null, "Male", null, null, "12/1/2001", "TestingAccount@blazor.com", "TestingAccount", "TestingAccount_password123", "9012 0791" },
+                    { 2, "seed-script", new DateTime(2024, 1, 23, 15, 44, 3, 108, DateTimeKind.Local).AddTicks(3185), null, "Female", null, null, "12/1/2005", "TestAccount@blazor.com", "TestAccount@blazor.com", "TestAccount_password123", "9072 0791" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "MealPlans",
+                columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "MealPlanCategory", "MealPlanName", "StaffID", "UpdatedBy" },
+                values: new object[,]
+                {
+                    { 1, null, null, null, "Carnivore", "Steak and fries", 1, null },
+                    { 2, null, null, null, "Vegetable", "Grass and vegetable", 2, null },
+                    { 3, null, null, null, "Omnivore", "Grass and Meat", 3, null }
                 });
 
             migrationBuilder.CreateIndex(

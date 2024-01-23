@@ -241,7 +241,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b586f5c0-f758-4eb0-a1ea-e809ff4ca963",
+                            ConcurrencyStamp = "c6509faf-f0d6-469b-8167-f20af39a93e1",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -249,9 +249,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOOUP5wtvaB1mvgDkpaXgl10uo0V+0a0ZIYm/QYQWTTAr3TwSMQ6BjuAWnHQylWSFQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAENZdkx8lnkBCF/0TJN9tBbywBfDwAIq2Ags2TdZ6rzZkUH87OtwoBRtjyUc0IlF6LQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "fd635846-1f3b-4102-a87e-ece774a0a39a",
+                            SecurityStamp = "6c2d036a-5cee-42c9-a233-023a8b843f47",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         });
@@ -475,7 +475,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         new
                         {
                             Id = 1,
-                            FoodLogDateTime = new DateTime(2024, 1, 23, 1, 44, 37, 408, DateTimeKind.Local).AddTicks(6172),
+                            FoodLogDateTime = new DateTime(2024, 1, 23, 18, 34, 31, 139, DateTimeKind.Local).AddTicks(2862),
                             FoodName = "Chicken Rice",
                             FoodType = "Protein"
                         });
@@ -556,21 +556,21 @@ namespace FoodNutritionWebsite.Server.Migrations
                             Id = 1,
                             MealPlanCategory = "Carnivore",
                             MealPlanName = "Steak and fries",
-                            StaffID = 0
+                            StaffID = 1
                         },
                         new
                         {
                             Id = 2,
                             MealPlanCategory = "Vegetable",
                             MealPlanName = "Grass and vegetable",
-                            StaffID = 0
+                            StaffID = 2
                         },
                         new
                         {
                             Id = 3,
                             MealPlanCategory = "Omnivore",
                             MealPlanName = "Grass and Meat",
-                            StaffID = 0
+                            StaffID = 3
                         });
                 });
 
@@ -619,10 +619,10 @@ namespace FoodNutritionWebsite.Server.Migrations
                         new
                         {
                             Id = 1,
-                            EndingDate = new DateTime(2024, 2, 22, 17, 44, 37, 408, DateTimeKind.Utc).AddTicks(6423),
+                            EndingDate = new DateTime(2024, 2, 23, 10, 34, 31, 139, DateTimeKind.Utc).AddTicks(3052),
                             PaymentAmount = 12,
                             PaymentDescription = "This is the payment detail for the subscription",
-                            StartingDate = new DateTime(2024, 1, 22, 17, 44, 37, 408, DateTimeKind.Utc).AddTicks(6422)
+                            StartingDate = new DateTime(2024, 1, 23, 10, 34, 31, 139, DateTimeKind.Utc).AddTicks(3051)
                         });
                 });
 
@@ -643,7 +643,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DOB")
+                    b.Property<DateTime?>("DOB")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DateCreated")
@@ -667,7 +667,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.Property<string>("Role")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("StartDate")
+                    b.Property<DateTime?>("StartDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UpdatedBy")
@@ -829,7 +829,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 1, 23, 1, 44, 37, 408, DateTimeKind.Local).AddTicks(5574),
+                            DateCreated = new DateTime(2024, 1, 23, 18, 34, 31, 139, DateTimeKind.Local).AddTicks(2424),
                             Gender = "Male",
                             UserDOB = "12/1/2001",
                             UserEmail = "TestingAccount@blazor.com",
@@ -841,7 +841,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 1, 23, 1, 44, 37, 408, DateTimeKind.Local).AddTicks(5592),
+                            DateCreated = new DateTime(2024, 1, 23, 18, 34, 31, 139, DateTimeKind.Local).AddTicks(2444),
                             Gender = "Female",
                             UserDOB = "12/1/2005",
                             UserEmail = "TestAccount@blazor.com",

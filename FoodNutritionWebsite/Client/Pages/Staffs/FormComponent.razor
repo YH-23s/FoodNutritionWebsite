@@ -1,0 +1,96 @@
+﻿@inject HttpClient _client
+
+
+<EditForm Model="@staff" OnValidSubmit="@OnValidSubmit">
+	<DataAnnotationsValidator />
+	<ValidationSummary />
+	<fieldset disabled="@Disabled">
+		<div class="form-group">
+			<label>First Name: </label>
+			<div>
+				<InputText @bind-Value="@staff.FirstName" class="form-control" />
+				<ValidationMessage For="@(() => staff.FirstName)" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label>Last Name: </label>
+			<div>
+				<InputText @bind-Value="@staff.LastName" class="form-control" />
+				<ValidationMessage For="@(() => staff.LastName)" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label>Date Of Birth: </label>
+			<div>
+				<InputDate @bind-Value="@staff.DOB" class="form-control" />
+				<ValidationMessage For="@(() => staff.DOB)" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label>Gender: </label>
+			<div>
+				<InputText @bind-Value="@staff.Gender" class="form-control" />
+				<ValidationMessage For="@(() => staff.Gender)" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label>Contact Number: </label>
+			<div>
+				<InputText @bind-Value="@staff.ContactNumber" class="form-control" />
+				<ValidationMessage For="@(() => staff.ContactNumber)" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label>Personal Email: </label>
+			<div>
+				<InputText @bind-Value="@staff.PersonalEmail" class="form-control" />
+				<ValidationMessage For="@(() => staff.PersonalEmail)" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label>Work Email: </label>
+			<div>
+				<InputText @bind-Value="@staff.WorkEmail" class="form-control" />
+				<ValidationMessage For="@(() => staff.WorkEmail)" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label>Address: </label>
+			<div>
+				<InputText @bind-Value="@staff.Address" class="form-control" />
+				<ValidationMessage For="@(() => staff.Address)" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label>Role: </label>
+			<div>
+				<InputText @bind-Value="@staff.Role" class="form-control" />
+				<ValidationMessage For="@(() => staff.Role)" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label>Start Date: </label>
+			<div>
+				<InputDate @bind-Value="@staff.StartDate" class="form-control" />
+				<ValidationMessage For="@(() => staff.StartDate)" />
+			</div>
+		</div>
+	</fieldset>
+
+	@if (!Disabled)
+	{
+		<button type="submit" class="btn btn-success btn-block">
+			@ButtonText
+		</button>
+	}
+</EditForm>
+
+
+
+
+@code {
+    [Parameter] public Staff? staff { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+	[Parameter] public bool Disabled { get; set; } = false;
+}

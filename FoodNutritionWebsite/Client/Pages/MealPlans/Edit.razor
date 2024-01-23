@@ -1,0 +1,24 @@
+﻿@page "/MealPlans/edit/{id:int}"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3>Edit Meal Plan page</h3>
+
+<FormComponent ButtonText="Update" OnValidSubmit="EditMealPlan" mealplan="mealplan" />
+
+@code {
+	[Parameter] public int id { get; set; }
+	MealPlan? mealplan = new MealPlan();
+
+	protected async override Task OnParametersSetAsync()	
+	{
+		mealplan = await _client.GetFromJsonAsync<MealPlan>($"{"api/mealplans"}/{id}");
+	}
+
+	async Task EditMealPlan()
+	{
+		await _client.PutAsJsonAsync($"{"api/mealplans"}/{id}", mealplan);
+		_navManager.NavigateTo("/MealPlans/");
+
+	}
+}
