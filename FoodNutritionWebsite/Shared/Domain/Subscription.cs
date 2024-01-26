@@ -12,6 +12,7 @@ namespace FoodNutritionWebsite.Shared.Domain
         public string? SubscriptionName { get; set; }
         public string? SubscriptionDescription { get; set; }
         public string? PaymentDescription { get; set; }
+        public string? MealPlanName { get; set; }
         public int? MealPlanID { get; set; }
         public virtual MealPlan? MealPlan { get; set; }
 

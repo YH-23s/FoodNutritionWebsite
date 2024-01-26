@@ -3,42 +3,14 @@
 @inject NavigationManager _navManager
 
 
-
 <h3 class="card-title">Create Payment Page</h3>
 <hr />
 <br />
 
 
 <EditForm Model="@payment" OnValidSubmit="CreatePayment">
-	<DataAnnotationsValidator />
-	<ValidationSummary />
-
-    <div class="form-group">
-        <label>Payment Description: </label>
-        <div>
-            <InputText @bind-Value="payment.PaymentDescription" class="form-control" />
-            <ValidationMessage For="@(() => payment.PaymentDescription)" />
-
-        </div>
-    </div>
-
-
-    <div class="form-group">
-        <label>Price: </label>
-        <div>
-            <InputNumber @bind-Value="payment.PaymentAmount" class="form-control" />
-            <ValidationMessage For="@(() => payment.PaymentAmount)" />
-
-        </div>
-    </div>
-
-
-
-
-
-
-
-
+    <DataAnnotationsValidator />
+    <ValidationSummary />
 
     <div class="form-group">
         <label>Subscription:</label>
@@ -58,13 +30,38 @@
     </div>
 
 
+
+
+    <div class="form-group">
+        <label>Price: </label>
+        <div>
+            <InputNumber @bind-Value="payment.PaymentAmount" class="form-control" />
+            <ValidationMessage For="@(() => payment.PaymentAmount)" />
+
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <label>Payment Description: </label>
+        <div>
+            <InputText @bind-Value="payment.PaymentDescription" class="form-control" />
+            <ValidationMessage For="@(() => payment.PaymentDescription)" />
+
+        </div>
+    </div>
+
+
+
+
+
     <!-- Other form components go here -->
 
-    <button type="submit" class="btn btn-success btn-block">Create FoodLog</button>
+    <button type="submit" class="btn btn-success btn-block">Create Payment</button>
 
 
 </EditForm>
-
 
 
 
@@ -86,4 +83,24 @@
         _navManager.NavigateTo("/Payments");
 
     }
+
+    /*Delete this code if it is not working*/
+    private decimal selectedSubscriptionPrice;
+
+    private void UpdatePrice(ChangeEventArgs e)
+    {
+        Console.WriteLine("UpdatePrice called"); // Add this line
+
+        var selectedSubscription = subscription.FirstOrDefault(s => s.Id == payment.SubscriptionID);
+
+        if (selectedSubscription != null)
+        {
+            selectedSubscriptionPrice = selectedSubscription.SubscriptionPrice;
+        }
+        else
+        {
+            selectedSubscriptionPrice = 0; // Set a default value if no subscription is selected
+        }
+    }
+
 }

@@ -12,6 +12,7 @@ namespace FoodNutritionWebsite.Shared.Domain
         public DateTime StartingDate { get; set; }
         public DateTime EndingDate { get; set; }
         public string? PaymentDescription { get; set; }
+        public string? SubscriptionPlanName { get; set; }
         public int? SubscriptionID { get; set; }
         public virtual Subscription? Subscription { get; set; }
 

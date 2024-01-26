@@ -10,9 +10,6 @@
 <br />
 
 
-
-
-
 <EditForm Model="@foodlog" OnValidSubmit="CreateFoodLog">
     <DataAnnotationsValidator />
     <ValidationSummary />
@@ -34,14 +31,26 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <label>Food Name: </label>
-        <div>
-            <InputText @bind-Value="foodlog.FoodName" class="form-control" />
-            <ValidationMessage For="@(() => foodlog.FoodName)" />
 
+    <div class="form-group">
+        <label>Food Name:</label>
+        <div>
+            <InputSelect @bind-Value="foodlog.FoodID" class="form-control">
+                <option value="">--Select Food--</option>
+                @if (Foods != null)
+                {
+                    foreach (var foods in Foods)
+                    {
+                        <option value="@foods.Id">@foods.FoodName</option>
+                    }
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => foodlog.FoodName)" />
         </div>
     </div>
+
+
+
 
     <div class="form-group">
         <label>Food Type: </label>
@@ -65,12 +74,14 @@
     FoodLog foodlog = new FoodLog();
 
     private IList<User>? Users;
-    
+    private IList<Food>? Foods;
 
 
-	protected async override Task OnInitializedAsync()
-	{
-		Users = await _client.GetFromJsonAsync<List<User>>($"api/Users");
+
+    protected async override Task OnInitializedAsync()
+    {
+        Users = await _client.GetFromJsonAsync<List<User>>($"api/Users");
+        Foods = await _client.GetFromJsonAsync<List<Food>>($"api/foods/");
 
 	}
 
