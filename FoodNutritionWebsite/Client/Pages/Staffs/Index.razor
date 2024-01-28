@@ -6,6 +6,8 @@
 @inject HttpClient _client
 @inject IJSRuntime js
 @attribute [Authorize]
+@inject HttpInterceptorService _interceptor
+@implements IDisposable
 
 <h3>Staff Index</h3>
 
@@ -70,6 +72,7 @@
 
     protected async override Task OnInitializedAsync()
     {
+        _interceptor.MonitorEvent();
         Staff = await _client.GetFromJsonAsync<List<Staff>>($"api/staffs");
     }
 
@@ -89,6 +92,10 @@
         }
     }
 
+    public void Dispose()
+    {
+        _interceptor.DisposeEvent();
+    }
 
     int GetStaffCount()
     {

@@ -1,10 +1,12 @@
 ﻿@using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-
+@using FoodNutritionWebsite.Client.Services
 
 @page "/MealPlans"
 @inject HttpClient _client
 @inject IJSRuntime js
+@inject HttpInterceptorService _interceptor
+@implements IDisposable
 @attribute [Authorize]
 
 <h3>MealPlan Index</h3>
@@ -16,43 +18,51 @@
 </a>
 <br />
 <br />
-<table class="table table-responsive">
 
-    <thead>
-        <tr>
-            <th>Meal Plan Name</th>
-            <th>Category</th>
-        </tr>
-    </thead>
-    <tbody>
+@if (MealPlan == null)
+{
+    <div class="alert alert-info">Loading Meal Plan...</div>
+}
+else
+{
+    <table class="table table-responsive">
 
-        @foreach (var mealplans in MealPlan)
-        {
-
+        <thead>
             <tr>
-                <td>@mealplans.MealPlanName</td>
-                <td>@mealplans.MealPlanCategory</td>
-                
-                <td>
-                    <a href="/MealPlans/view/@mealplans.Id" class="bth btn-primary">
-                        <span class="oi oi-book"></span>
-                    </a>
-
-                    <a href="/MealPlans/edit/@mealplans.Id" class="bth btn-primary">
-                        <span class="oi oi-pencil"></span>
-                    </a>
-
-                    <button class="btn btn-danger" @onclick="@(()=>Delete(mealplans.Id))">
-                        <span class="oi oi-book"></span>
-                    </button>
-
-                </td>
+                <th>Meal Plan Name</th>
+                <th>Category</th>
             </tr>
-        }
+        </thead>
+        <tbody>
 
-    </tbody>
+            @foreach (var mealplans in MealPlan)
+            {
 
-</table>
+                <tr>
+                    <td>@mealplans.MealPlanName</td>
+                    <td>@mealplans.MealPlanCategory</td>
+                
+                    <td>
+                        <a href="/MealPlans/view/@mealplans.Id" class="bth btn-primary">
+                            <span class="oi oi-book"></span>
+                        </a>
+
+                        <a href="/MealPlans/edit/@mealplans.Id" class="bth btn-primary">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(mealplans.Id))">
+                            <span class="oi oi-book"></span>
+                        </button>
+
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+    }
 
 
 @code {
@@ -60,6 +70,7 @@
 
     protected async override Task OnInitializedAsync()
     {
+        _interceptor.MonitorEvent();
         MealPlan = await _client.GetFromJsonAsync<List<MealPlan>>($"api/mealplans");
     }
 
@@ -77,8 +88,13 @@
             }
 
         }
+        
     }
 
+    public void Dispose()
+    {
+        _interceptor.DisposeEvent();
+    }
 
     int GetMealPlanCount()
     {

@@ -87,8 +87,6 @@ namespace MealPlanNutritionWebsite.Server.Controllers
         [HttpPost]
         public async Task<ActionResult<MealPlan>> PostMealPlan(MealPlan mealplan)
         {
-
-
             await _unitOfWork.MealPlans.Insert(mealplan);
             await _unitOfWork.Save(HttpContext);
 

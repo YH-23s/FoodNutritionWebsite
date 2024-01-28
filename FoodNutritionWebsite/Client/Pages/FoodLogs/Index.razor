@@ -6,6 +6,8 @@
 @inject HttpClient _client
 @inject IJSRuntime js
 @attribute [Authorize]
+@inject HttpInterceptorService _interceptor
+@implements IDisposable
 
 <h3>FoodLogs Index</h3>
 
@@ -72,6 +74,7 @@
 
     protected async override Task OnInitializedAsync()
     {
+        _interceptor.MonitorEvent();
         FoodLogs = await _client.GetFromJsonAsync<List<FoodLog>>($"api/FoodLogs");
     }
 
@@ -91,6 +94,10 @@
         }
     }
 
+    public void Dispose()
+    {
+        _interceptor.DisposeEvent();
+    }
 
     int GetFoodLogsCount()
     {

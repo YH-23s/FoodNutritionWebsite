@@ -6,6 +6,8 @@
 @inject HttpClient _client
 @inject IJSRuntime js
 @attribute [Authorize]
+@inject HttpInterceptorService _interceptor
+@implements IDisposable
 
 <h3>Subscriptions Index</h3>
 
@@ -73,6 +75,7 @@
 
     protected async override Task OnInitializedAsync()
     {
+        _interceptor.MonitorEvent();
         Subscriptions = await _client.GetFromJsonAsync<List<Subscription>>($"api/Subscriptions");
     }
 
@@ -92,6 +95,10 @@
         }
     }
 
+    public void Dispose()
+    {
+        _interceptor.DisposeEvent();
+    }
 
     int GetSubscriptionCount()
     {
