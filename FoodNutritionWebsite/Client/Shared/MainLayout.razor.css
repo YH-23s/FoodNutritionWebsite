@@ -45,3 +45,13 @@
     border-top: 1px solid white;
     color: white;
 }
+
+
+.field-validation-error {
+    color: blue;
+}
+
+/* Optionally, you can style the validation summary as well */
+.validation-summary-errors {
+    color: blue;
+}

@@ -31,7 +31,6 @@
 
 
 
-
     <div class="form-group">
         <label>Price: </label>
         <div>
@@ -40,7 +39,6 @@
 
         </div>
     </div>
-
 
 
     <div class="form-group">
@@ -54,15 +52,14 @@
 
 
 
-
-
     <!-- Other form components go here -->
 
     <button type="submit" class="btn btn-success btn-block">Create Payment</button>
 
 
-</EditForm>
+    <button type="button" class="btn btn-secondary btn-block" @onclick="BackToList">Back to List</button>
 
+</EditForm>
 
 
 @code {
@@ -84,23 +81,11 @@
 
     }
 
-    /*Delete this code if it is not working*/
-    private decimal selectedSubscriptionPrice;
 
-    private void UpdatePrice(ChangeEventArgs e)
+
+    private async Task BackToList()
     {
-        Console.WriteLine("UpdatePrice called"); // Add this line
-
-        var selectedSubscription = subscription.FirstOrDefault(s => s.Id == payment.SubscriptionID);
-
-        if (selectedSubscription != null)
-        {
-            selectedSubscriptionPrice = selectedSubscription.SubscriptionPrice;
-        }
-        else
-        {
-            selectedSubscriptionPrice = 0; // Set a default value if no subscription is selected
-        }
+        _navManager.NavigateTo("/users");
     }
 
 }

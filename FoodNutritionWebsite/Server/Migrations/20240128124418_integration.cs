@@ -99,11 +99,11 @@ namespace FoodNutritionWebsite.Server.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FoodName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FoodDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FoodCategory = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FoodPicture = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FoodCalory = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FoodName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FoodDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FoodCategory = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FoodPicture = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FoodCalory = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -158,16 +158,16 @@ namespace FoodNutritionWebsite.Server.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DOB = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ContactNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PersonalEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    WorkEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Role = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DOB = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ContactNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PersonalEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    WorkEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Role = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -321,8 +321,8 @@ namespace FoodNutritionWebsite.Server.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    MealPlanCategory = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MealPlanName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MealPlanCategory = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MealPlanName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StaffID = table.Column<int>(type: "int", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -517,12 +517,12 @@ namespace FoodNutritionWebsite.Server.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecondName", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "b6a24868-9653-4e6a-92d2-58e21f600d4b", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEMDYGJKEo8fkHgy3u0jm60mjzhF53ZALUO0M3xbRvjAP01pK/hUW8My3Z5F9ci4JUA==", null, false, null, "af8e7c04-138b-4ad6-9a4e-4e5e019cdc29", false, "admin@localhost.com" });
+                values: new object[] { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "5d1a9925-2b4a-4168-9a54-c6ca6804e34d", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEJqC6wlEdnIif/S8/+pT12WRuWhxqfVO4+JdCZD06A4yro1UIPN0MYpWVCeJAQNdCg==", null, false, null, "51fed4a1-fbcb-4102-8773-c5e170128684", false, "admin@localhost.com" });
 
             migrationBuilder.InsertData(
                 table: "FoodLogs",
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "FoodID", "FoodLogDateTime", "FoodName", "FoodType", "UpdatedBy", "UserID" },
-                values: new object[] { 1, null, null, null, null, new DateTime(2024, 1, 26, 20, 53, 4, 772, DateTimeKind.Local).AddTicks(3596), "Chicken Rice", "Protein", null, null });
+                values: new object[] { 1, null, null, null, null, new DateTime(2024, 1, 28, 20, 44, 17, 943, DateTimeKind.Local).AddTicks(491), "Chicken Rice", "Protein", null, null });
 
             migrationBuilder.InsertData(
                 table: "Foods",
@@ -536,7 +536,7 @@ namespace FoodNutritionWebsite.Server.Migrations
             migrationBuilder.InsertData(
                 table: "Payments",
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "EndingDate", "PaymentAmount", "PaymentDescription", "StartingDate", "SubscriptionID", "SubscriptionPlanName", "UpdatedBy" },
-                values: new object[] { 1, null, null, null, new DateTime(2024, 2, 26, 12, 53, 4, 772, DateTimeKind.Utc).AddTicks(3776), 12, "This is the payment detail for the subscription", new DateTime(2024, 1, 26, 12, 53, 4, 772, DateTimeKind.Utc).AddTicks(3775), null, null, null });
+                values: new object[] { 1, null, null, null, new DateTime(2024, 2, 28, 12, 44, 17, 943, DateTimeKind.Utc).AddTicks(680), 12, "This is the payment detail for the subscription", new DateTime(2024, 1, 28, 12, 44, 17, 943, DateTimeKind.Utc).AddTicks(676), null, null, null });
 
             migrationBuilder.InsertData(
                 table: "Staffs",
@@ -558,8 +558,8 @@ namespace FoodNutritionWebsite.Server.Migrations
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "Gender", "SubscriptionID", "UpdatedBy", "UserDOB", "UserEmail", "UserName", "UserPassword", "UserPhoneNum" },
                 values: new object[,]
                 {
-                    { 1, "seed-script", new DateTime(2024, 1, 26, 20, 53, 4, 772, DateTimeKind.Local).AddTicks(3155), null, "Male", null, null, "12/1/2001", "TestingAccount@blazor.com", "TestingAccount", "TestingAccount_password123", "9012 0791" },
-                    { 2, "seed-script", new DateTime(2024, 1, 26, 20, 53, 4, 772, DateTimeKind.Local).AddTicks(3178), null, "Female", null, null, "12/1/2005", "TestAccount@blazor.com", "TestAccount@blazor.com", "TestAccount_password123", "9072 0791" }
+                    { 1, "seed-script", new DateTime(2024, 1, 28, 20, 44, 17, 943, DateTimeKind.Local).AddTicks(10), null, "Male", null, null, "12/1/2001", "TestingAccount@blazor.com", "TestingAccount", "TestingAccount_password123", "9012 0791" },
+                    { 2, "seed-script", new DateTime(2024, 1, 28, 20, 44, 17, 943, DateTimeKind.Local).AddTicks(38), null, "Female", null, null, "12/1/2005", "TestAccount@blazor.com", "TestAccount@blazor.com", "TestAccount_password123", "9072 0791" }
                 });
 
             migrationBuilder.InsertData(

@@ -4,6 +4,7 @@ using FoodNutritionWebsite.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodNutritionWebsite.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240128152514_integration3")]
+    partial class integration3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -241,7 +244,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1e96b7be-f159-415e-b150-2d73a4e93af6",
+                            ConcurrencyStamp = "ae01fda8-bd22-418f-bc76-643bd59e5259",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -249,9 +252,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEI3rjIcVsStvo+lok099NyA5uhK4PdIZL/ilxWJigEZe8irzvI7H8yovxkz56psfKg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFpExPXuoBTg291GTRZbnkh1bGWyk0qtSMQJSHCAyXvEqsmyPG7Z/CCdQeQTnVsvjA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6e1670a2-9482-49af-a204-bd66ccde65a9",
+                            SecurityStamp = "6838bf80-be9e-4a12-b357-910aa9886af5",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         });
@@ -480,7 +483,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         new
                         {
                             Id = 1,
-                            FoodLogDateTime = new DateTime(2024, 1, 28, 23, 34, 37, 201, DateTimeKind.Local).AddTicks(4726),
+                            FoodLogDateTime = new DateTime(2024, 1, 28, 23, 25, 14, 218, DateTimeKind.Local).AddTicks(1881),
                             FoodName = "Chicken Rice",
                             FoodType = "Protein"
                         });
@@ -601,8 +604,8 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.Property<DateTime>("EndingDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("PaymentAmount")
-                        .HasColumnType("float");
+                    b.Property<int>("PaymentAmount")
+                        .HasColumnType("int");
 
                     b.Property<string>("PaymentDescription")
                         .HasColumnType("nvarchar(max)");
@@ -629,10 +632,10 @@ namespace FoodNutritionWebsite.Server.Migrations
                         new
                         {
                             Id = 1,
-                            EndingDate = new DateTime(2024, 2, 28, 15, 34, 37, 201, DateTimeKind.Utc).AddTicks(4957),
-                            PaymentAmount = 12.0,
+                            EndingDate = new DateTime(2024, 2, 28, 15, 25, 14, 218, DateTimeKind.Utc).AddTicks(2108),
+                            PaymentAmount = 12,
                             PaymentDescription = "This is the payment detail for the subscription",
-                            StartingDate = new DateTime(2024, 1, 28, 15, 34, 37, 201, DateTimeKind.Utc).AddTicks(4957)
+                            StartingDate = new DateTime(2024, 1, 28, 15, 25, 14, 218, DateTimeKind.Utc).AddTicks(2105)
                         });
                 });
 
@@ -859,7 +862,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 1, 28, 23, 34, 37, 201, DateTimeKind.Local).AddTicks(4003),
+                            DateCreated = new DateTime(2024, 1, 28, 23, 25, 14, 218, DateTimeKind.Local).AddTicks(1366),
                             Gender = "Male",
                             UserDOB = "12/1/2001",
                             UserEmail = "TestingAccount@blazor.com",
@@ -871,7 +874,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 1, 28, 23, 34, 37, 201, DateTimeKind.Local).AddTicks(4027),
+                            DateCreated = new DateTime(2024, 1, 28, 23, 25, 14, 218, DateTimeKind.Local).AddTicks(1403),
                             Gender = "Female",
                             UserDOB = "12/1/2005",
                             UserEmail = "TestAccount@blazor.com",

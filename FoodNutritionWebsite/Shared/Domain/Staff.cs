@@ -9,10 +9,10 @@ namespace FoodNutritionWebsite.Shared.Domain
 {
     public class Staff : BaseDomainModel
     {
-        [Required(ErrorMessage = "First alphabet must be a capital letter"))]
+        [Required(ErrorMessage = "First alphabet must be a capital letter")]
         public string? FirstName { get; set; }
 
-        [Required(ErrorMessage = "Last Name is required"))]
+        [Required(ErrorMessage = "Last Name is required")]
         public string? LastName { get; set; }
 
         [Required(ErrorMessage = "Date Of Birth is required")]

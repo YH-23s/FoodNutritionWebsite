@@ -4,6 +4,7 @@ using FoodNutritionWebsite.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodNutritionWebsite.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240128133950_integration1")]
+    partial class integration1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -241,7 +244,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1e96b7be-f159-415e-b150-2d73a4e93af6",
+                            ConcurrencyStamp = "1080a06c-cc2d-469e-b1a6-fb336efdc0c5",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -249,9 +252,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEI3rjIcVsStvo+lok099NyA5uhK4PdIZL/ilxWJigEZe8irzvI7H8yovxkz56psfKg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOv8na+m/gkLuxknzVYMTQF+WwUDX0SaZQlFV1AlfL2d1EjbDD/pZGl9QQN7KHkgqg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6e1670a2-9482-49af-a204-bd66ccde65a9",
+                            SecurityStamp = "b841d905-316a-4277-8aee-285cc1a499c1",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         });
@@ -480,7 +483,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         new
                         {
                             Id = 1,
-                            FoodLogDateTime = new DateTime(2024, 1, 28, 23, 34, 37, 201, DateTimeKind.Local).AddTicks(4726),
+                            FoodLogDateTime = new DateTime(2024, 1, 28, 21, 39, 50, 422, DateTimeKind.Local).AddTicks(9885),
                             FoodName = "Chicken Rice",
                             FoodType = "Protein"
                         });
@@ -601,8 +604,8 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.Property<DateTime>("EndingDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("PaymentAmount")
-                        .HasColumnType("float");
+                    b.Property<int>("PaymentAmount")
+                        .HasColumnType("int");
 
                     b.Property<string>("PaymentDescription")
                         .HasColumnType("nvarchar(max)");
@@ -629,10 +632,10 @@ namespace FoodNutritionWebsite.Server.Migrations
                         new
                         {
                             Id = 1,
-                            EndingDate = new DateTime(2024, 2, 28, 15, 34, 37, 201, DateTimeKind.Utc).AddTicks(4957),
-                            PaymentAmount = 12.0,
+                            EndingDate = new DateTime(2024, 2, 28, 13, 39, 50, 423, DateTimeKind.Utc).AddTicks(261),
+                            PaymentAmount = 12,
                             PaymentDescription = "This is the payment detail for the subscription",
-                            StartingDate = new DateTime(2024, 1, 28, 15, 34, 37, 201, DateTimeKind.Utc).AddTicks(4957)
+                            StartingDate = new DateTime(2024, 1, 28, 13, 39, 50, 423, DateTimeKind.Utc).AddTicks(261)
                         });
                 });
 
@@ -772,15 +775,13 @@ namespace FoodNutritionWebsite.Server.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SubscriptionDescription")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SubscriptionName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("SubscriptionPrice")
-                        .HasColumnType("float");
+                    b.Property<int>("SubscriptionPrice")
+                        .HasColumnType("int");
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -798,7 +799,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                             PaymentDescription = " This plan would be valid for a month",
                             SubscriptionDescription = "This subscription plan is used for testing",
                             SubscriptionName = "Test",
-                            SubscriptionPrice = 12.199999999999999
+                            SubscriptionPrice = 12
                         });
                 });
 
@@ -829,7 +830,6 @@ namespace FoodNutritionWebsite.Server.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserDOB")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserEmail")
@@ -837,15 +837,12 @@ namespace FoodNutritionWebsite.Server.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserPassword")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserPhoneNum")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -859,7 +856,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 1, 28, 23, 34, 37, 201, DateTimeKind.Local).AddTicks(4003),
+                            DateCreated = new DateTime(2024, 1, 28, 21, 39, 50, 422, DateTimeKind.Local).AddTicks(9161),
                             Gender = "Male",
                             UserDOB = "12/1/2001",
                             UserEmail = "TestingAccount@blazor.com",
@@ -871,7 +868,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 1, 28, 23, 34, 37, 201, DateTimeKind.Local).AddTicks(4027),
+                            DateCreated = new DateTime(2024, 1, 28, 21, 39, 50, 422, DateTimeKind.Local).AddTicks(9198),
                             Gender = "Female",
                             UserDOB = "12/1/2005",
                             UserEmail = "TestAccount@blazor.com",

@@ -12,7 +12,7 @@ namespace FoodNutritionWebsite.Server.Configurations.Entities
                 new Subscription
                 {
                     Id = 1,
-                    SubscriptionPrice = 12,
+                    SubscriptionPrice = 12.20,
                     SubscriptionName = "Test",
                     SubscriptionDescription = "This subscription plan is used for testing",
                     PaymentDescription =" This plan would be valid for a month",
