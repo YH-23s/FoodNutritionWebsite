@@ -20,49 +20,55 @@
 <br />
 
 
+@if (FoodLogs == null)
+{
+    <div class="alert alert-info">Loading Food Logs...</div>
+}
 
+else
+{
+    <table class="table table-responsive" id="bookingsTable">
 
-<table class="table table-responsive">
-
-    <thead>
-        <tr>
-            <th>Food Name</th>
-            <th>Food Type</th>
-            <th>Date Added</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var foodlogs in FoodLogs)
-        {
-
+        <thead>
             <tr>
-                <td>@foodlogs.FoodName</td>
-                <td>@foodlogs.FoodType</td>
-                <td>@foodlogs.FoodLogDateTime</td>
-                
-                <td>
-                    <a href="/FoodLogs/view/@foodlogs.Id" class="bth btn-primary">
-                        <span class="oi oi-book"></span>
-                    </a>
-
-                    <a href="/FoodLogs/edit/@foodlogs.Id" class="bth btn-primary">
-                        <span class="oi oi-pencil"></span>
-                    </a>
-
-                    <button class="btn btn-danger" @onclick="@(()=>Delete(foodlogs.Id))">
-                        <span class="oi oi-book"></span>
-                    </button>
-
-                </td>
+                <th>Food Name</th>
+                <th>Food Type</th>
+                <th>Date Added</th>
+                <th>Actions</th>
             </tr>
-        }
+        </thead>
+        <tbody>
+            @foreach (var foodlogs in FoodLogs)
+            {
+
+                <tr>
+                    <td>@foodlogs.FoodName</td>
+                    <td>@foodlogs.FoodType</td>
+                    <td>@foodlogs.FoodLogDateTime</td>
+                
+                    <td>
+                        <a href="/FoodLogs/view/@foodlogs.Id" class="bth btn-primary">
+                            <span class="oi oi-book"></span>
+                        </a>
+
+                        <a href="/FoodLogs/edit/@foodlogs.Id" class="bth btn-primary">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(foodlogs.Id))">
+                            <span class="oi oi-book"></span>
+                        </button>
+
+                    </td>
+                </tr>
+            }
 
 
 
-    </tbody>
+        </tbody>
 
-</table>
+    </table>
+}
 
 
 
@@ -94,9 +100,15 @@
         }
     }
 
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        await js.InvokeVoidAsync("AddDataTable", "#bookingsTable");
+    }
+
     public void Dispose()
     {
         _interceptor.DisposeEvent();
+        js.InvokeVoidAsync("DataTablesDispose", "#bookingsTable");
     }
 
     int GetFoodLogsCount()

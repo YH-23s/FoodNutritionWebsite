@@ -22,49 +22,58 @@
 
 
 
-<table class="table table-responsive">
+@if (Staff == null)
+{
+    <div class="alert alert-info">Loading Staff...</div>
+}
 
-    <thead>
-        <tr>
-            <th>Staff First Name</th>
-            <th>Staff Work Email</th>
-            <th>Staff Role</th>
-            <th>Staff Start Date</th>
-        </tr>
-    </thead>
-    <tbody>
+else
+{
+    <table class="table table-responsive" id="bookingsTable">
 
-        @foreach (var staffs in Staff)
-        {
-
+        <thead>
             <tr>
-                <td>@staffs.FirstName</td>
-                <td>@staffs.WorkEmail</td>
-                <td>@staffs.Role</td>
-                <td>@staffs.StartDate</td>
-                
-                <td>
-                    <a href="/Staffs/view/@staffs.Id" class="bth btn-primary">
-                        <span class="oi oi-book"></span>
-                    </a>
-
-                    <a href="/Staffs/edit/@staffs.Id" class="bth btn-primary">
-                        <span class="oi oi-pencil"></span>
-                    </a>
-
-                    <button class="btn btn-danger" @onclick="@(()=>Delete(staffs.Id))">
-                        <span class="oi oi-book"></span>
-                    </button>
-
-                </td>
+                <th>Staff First Name</th>
+                <th>Staff Work Email</th>
+                <th>Staff Role</th>
+                <th>Staff Start Date</th>
+                <th>Actions</th>
             </tr>
-        }
+        </thead>
+        <tbody>
+
+            @foreach (var staffs in Staff)
+            {
+
+                <tr>
+                    <td>@staffs.FirstName</td>
+                    <td>@staffs.WorkEmail</td>
+                    <td>@staffs.Role</td>
+                    <td>@staffs.StartDate</td>
+                
+                    <td>
+                        <a href="/Staffs/view/@staffs.Id" class="bth btn-primary">
+                            <span class="oi oi-book"></span>
+                        </a>
+
+                        <a href="/Staffs/edit/@staffs.Id" class="bth btn-primary">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(staffs.Id))">
+                            <span class="oi oi-book"></span>
+                        </button>
+
+                    </td>
+                </tr>
+            }
 
 
 
-    </tbody>
+        </tbody>
 
-</table>
+    </table>
+}
 
 
 @code {
@@ -92,9 +101,15 @@
         }
     }
 
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        await js.InvokeVoidAsync("AddDataTable", "#bookingsTable");
+    }
+
     public void Dispose()
     {
         _interceptor.DisposeEvent();
+        js.InvokeVoidAsync("DataTablesDispose", "#bookingsTable");
     }
 
     int GetStaffCount()
@@ -104,6 +119,5 @@
 
 }
 
-<p>Total Staff: @GetStaffCount()</p>
 
 

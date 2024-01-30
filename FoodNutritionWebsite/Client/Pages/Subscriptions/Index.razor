@@ -26,44 +26,50 @@
 
 
 
+@if (Subscriptions == null)
+{
+    <div class="alert alert-info">Loading Subscriptions...</div>
+}
 
+else
+{
+    <table class="table table-responsive" id="bookingsTable">
 
-<table class="table table-responsive">
-
-    <thead>
-        <tr>
-            <th> Subscription Name</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var subscription in Subscriptions)
-        {
-
+        <thead>
             <tr>
-                <td>@subscription.SubscriptionName</td>
-                <td>
-                    <a href="/Subscriptions/view/@subscription.Id" class="btn btn-primary">
-                        <span class="oi oi-book"></span>
-                    </a>
-
-                    <a href="/Subscriptions/edit/@subscription.Id" class="btn btn-primary">
-                        <span class="oi oi-pencil"></span>
-                    </a>
-
-                    <button class="btn btn-danger" @onclick="@(()=>Delete(subscription.Id))">
-                        <span class="oi oi-book"></span>
-                    </button>
-
-                </td>
+                <th>Subscription Name</th>
+                <th>Actions</th>
             </tr>
-        }
+        </thead>
+        <tbody>
+            @foreach (var subscription in Subscriptions)
+            {
+
+                <tr>
+                    <td>@subscription.SubscriptionName</td>
+                    <td>
+                        <a href="/Subscriptions/view/@subscription.Id" class="btn btn-primary">
+                            <span class="oi oi-book"></span>
+                        </a>
+
+                        <a href="/Subscriptions/edit/@subscription.Id" class="btn btn-primary">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(subscription.Id))">
+                            <span class="oi oi-book"></span>
+                        </button>
+
+                    </td>
+                </tr>
+            }
 
 
 
-    </tbody>
+        </tbody>
 
-</table>
+    </table>
+}
 
 
 
@@ -95,9 +101,15 @@
         }
     }
 
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        await js.InvokeVoidAsync("AddDataTable", "#bookingsTable");
+    }
+
     public void Dispose()
     {
         _interceptor.DisposeEvent();
+        js.InvokeVoidAsync("DataTablesDispose", "#bookingsTable");
     }
 
     int GetSubscriptionCount()
