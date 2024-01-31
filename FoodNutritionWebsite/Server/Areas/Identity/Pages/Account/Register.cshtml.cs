@@ -151,10 +151,10 @@ namespace FoodNutritionWebsite.Server.Areas.Identity.Pages.Account
                         await _signInManager.SignInAsync(user, isPersistent: false);
                         if (Input.Role == "Administrator")
                         {
-                            return LocalRedirect("~/admin");
+                            return LocalRedirect("~/");
                         } else if (Input.Role == "User")
                         {
-                            return LocalRedirect("~/");
+                            return LocalRedirect("~/user");
                         }
                         return LocalRedirect(returnUrl);
                     }
