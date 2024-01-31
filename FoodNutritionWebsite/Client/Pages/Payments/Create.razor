@@ -30,25 +30,36 @@
     </div>
 
 
-
     <div class="form-group">
-        <label>Price: </label>
+        <label>Payment card: </label>
         <div>
-            <InputNumber @bind-Value="payment.PaymentAmount" class="form-control" />
-            <ValidationMessage For="@(() => payment.PaymentAmount)" />
+            <InputText @bind-Value="payment.CardNum" class="form-control" />
+            <ValidationMessage For="@(() => payment.CardNum)" />
 
         </div>
     </div>
 
 
+    
     <div class="form-group">
-        <label>Payment Description: </label>
+        <label>Card Cvv: </label>
         <div>
-            <InputText @bind-Value="payment.PaymentDescription" class="form-control" />
-            <ValidationMessage For="@(() => payment.PaymentDescription)" />
+            <InputText @bind-Value="payment.Cvv" class="form-control" />
+            <ValidationMessage For="@(() => payment.Cvv)" />
 
         </div>
     </div>
+
+    <div class="form-group">
+        <label>Card Exp: </label>
+        <div>
+            <InputText @bind-Value="payment.CardExp" class="form-control" />
+            <ValidationMessage For="@(() => payment.CardExp)" />
+
+        </div>
+    </div>
+
+
 
 
 

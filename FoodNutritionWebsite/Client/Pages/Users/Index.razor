@@ -28,6 +28,9 @@
     <thead>
         <tr>
             <th>Name</th>
+            <th>Email</th>
+            <th>DOB</th>
+            <th>Password</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -37,6 +40,10 @@
 
             <tr>
                 <td>@user.UserName</td>
+                <td>@user.UserEmail</td>
+                <td>@user.UserDOB</td>
+                <td>@user.UserPassword</td>
+
                 <td>
                     <a href="/users/view/@user.Id" class="bth btn-primary">
                         <span class="oi oi-book"></span>

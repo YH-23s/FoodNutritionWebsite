@@ -11,24 +11,15 @@ namespace FoodNutritionWebsite.Shared.Domain
     {
 
         
-        public double SubscriptionPrice { get; set; }
-
+        public double? SubscriptionPrice { get; set; }
 
         [Required]
-        
         public string? SubscriptionName { get; set; }
 
-
         [Required]
-        
         public string? SubscriptionDescription { get; set; }
 
-
         public string? PaymentDescription { get; set; }
-
-        
-        public string? MealPlanName { get; set; }
-
 
         public int? MealPlanID { get; set; }
         public virtual MealPlan? MealPlan { get; set; }

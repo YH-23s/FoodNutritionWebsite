@@ -1,4 +1,4 @@
-﻿@page "/FoodLogs/create"
+﻿@page "/FoodLogs/create/"
 @inject HttpClient _client
 @inject NavigationManager _navManager
 
@@ -45,21 +45,26 @@
                     }
                 }
             </InputSelect>
-            <ValidationMessage For="@(() => foodlog.FoodName)" />
+            <ValidationMessage For="@(() => foodlog.FoodID)" />
         </div>
     </div>
-
-
 
 
     <div class="form-group">
-        <label>Food Type: </label>
+        <label>Quantity: </label>
         <div>
-            <InputText @bind-Value="foodlog.FoodType" class="form-control" />
-            <ValidationMessage For="@(() => foodlog.FoodType)" />
+            <InputNumber @bind-Value="foodlog.Quantity" class="form-control" />
+            <ValidationMessage For="@(() => foodlog.Quantity)" />
 
         </div>
     </div>
+
+
+
+    
+
+
+    
 
 
     <!-- Other form components go here -->
@@ -98,11 +103,9 @@
 
     private async Task BackToList()
     {
-        _navManager.NavigateTo("/users");
+        _navManager.NavigateTo("/FoodLogs");
     }
 
 
 
 }
-
-

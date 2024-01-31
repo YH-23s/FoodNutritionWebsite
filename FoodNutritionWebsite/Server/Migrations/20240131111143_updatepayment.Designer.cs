@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodNutritionWebsite.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240128152352_integration2")]
-    partial class integration2
+    [Migration("20240131111143_updatepayment")]
+    partial class updatepayment
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -244,7 +244,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5596c03b-888d-4ce6-bcfe-d23d2ad03448",
+                            ConcurrencyStamp = "88583367-6feb-4020-90e6-d1a69fe70372",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -252,9 +252,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKh93uI1SgLLaKhIlmiTQtxIMpJRO0baFeWVgAk0O50MeDAIlKH7dutr2mpM+VqApQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELHDYawXcL1vbdkNS7B3ZzM6ly+LpVSenqtS1B7DWawjN6E+QnOd8m2OH62JAWzfsQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3301c770-741b-403b-b2c5-4e6467dbccc6",
+                            SecurityStamp = "df34882a-5b97-4b61-8ea7-a154196d2cd3",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         });
@@ -456,7 +456,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.Property<int?>("FoodID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("FoodLogDateTime")
+                    b.Property<DateTime?>("FoodLogDateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FoodName")
@@ -464,6 +464,9 @@ namespace FoodNutritionWebsite.Server.Migrations
 
                     b.Property<string>("FoodType")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("Quantity")
+                        .HasColumnType("float");
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -478,15 +481,6 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.HasIndex("UserID");
 
                     b.ToTable("FoodLogs");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            FoodLogDateTime = new DateTime(2024, 1, 28, 23, 23, 52, 64, DateTimeKind.Local).AddTicks(5057),
-                            FoodName = "Chicken Rice",
-                            FoodType = "Protein"
-                        });
                 });
 
             modelBuilder.Entity("FoodNutritionWebsite.Shared.Domain.FoodNutrition", b =>
@@ -592,7 +586,16 @@ namespace FoodNutritionWebsite.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("CardExp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CardNum")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Cvv")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("DateCreated")
@@ -601,16 +604,16 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("EndingDate")
+                    b.Property<DateTime?>("EndingDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("PaymentAmount")
-                        .HasColumnType("int");
+                    b.Property<double?>("PaymentAmount")
+                        .HasColumnType("float");
 
                     b.Property<string>("PaymentDescription")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("StartingDate")
+                    b.Property<DateTime?>("StartingDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("SubscriptionID")
@@ -627,16 +630,6 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.HasIndex("SubscriptionID");
 
                     b.ToTable("Payments");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            EndingDate = new DateTime(2024, 2, 28, 15, 23, 52, 64, DateTimeKind.Utc).AddTicks(5397),
-                            PaymentAmount = 12,
-                            PaymentDescription = "This is the payment detail for the subscription",
-                            StartingDate = new DateTime(2024, 1, 28, 15, 23, 52, 64, DateTimeKind.Utc).AddTicks(5396)
-                        });
                 });
 
             modelBuilder.Entity("FoodNutritionWebsite.Shared.Domain.Staff", b =>
@@ -768,9 +761,6 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.Property<int?>("MealPlanID")
                         .HasColumnType("int");
 
-                    b.Property<string>("MealPlanName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("PaymentDescription")
                         .HasColumnType("nvarchar(max)");
 
@@ -782,8 +772,8 @@ namespace FoodNutritionWebsite.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("SubscriptionPrice")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double?>("SubscriptionPrice")
+                        .HasColumnType("float");
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -793,16 +783,6 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.HasIndex("MealPlanID");
 
                     b.ToTable("Subscriptions");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            PaymentDescription = " This plan would be valid for a month",
-                            SubscriptionDescription = "This subscription plan is used for testing",
-                            SubscriptionName = "Test",
-                            SubscriptionPrice = 12m
-                        });
                 });
 
             modelBuilder.Entity("FoodNutritionWebsite.Shared.Domain.User", b =>
@@ -862,7 +842,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 1, 28, 23, 23, 52, 64, DateTimeKind.Local).AddTicks(4436),
+                            DateCreated = new DateTime(2024, 1, 31, 19, 11, 43, 296, DateTimeKind.Local).AddTicks(815),
                             Gender = "Male",
                             UserDOB = "12/1/2001",
                             UserEmail = "TestingAccount@blazor.com",
@@ -874,7 +854,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 1, 28, 23, 23, 52, 64, DateTimeKind.Local).AddTicks(4474),
+                            DateCreated = new DateTime(2024, 1, 31, 19, 11, 43, 296, DateTimeKind.Local).AddTicks(850),
                             Gender = "Female",
                             UserDOB = "12/1/2005",
                             UserEmail = "TestAccount@blazor.com",

@@ -1,0 +1,21 @@
+﻿@page "/FoodLogs/view/{id:int}"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3>View FoodLogs</h3>
+
+<FormComponent foodlog="foodlog" Disabled="true" />
+
+
+
+@code {
+	[Parameter] public int id { get; set; }
+	FoodLog? foodlog = new FoodLog();
+	protected async override Task OnParametersSetAsync()
+	{
+		foodlog = await
+		_client.GetFromJsonAsync<FoodLog>($"{"api/FoodLogs"}/{id}");
+	}
+
+
+}

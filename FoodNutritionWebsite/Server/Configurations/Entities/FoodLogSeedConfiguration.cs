@@ -17,7 +17,8 @@ namespace FoodNutritionWebsite.Server.Configurations.Entities
                     Id = 1,
                     FoodLogDateTime = DateTime.Now,
                     FoodType = "Protein",
-                    FoodName = "Chicken Rice"
+                    FoodName = "Chicken Rice",
+                    Quantity = 2
                 }
                 );
 

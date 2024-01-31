@@ -28,7 +28,7 @@ namespace FoodNutritionWebsite.Server.Controllers
         [HttpGet]
         public async Task<IActionResult> GetSubscriptions()
         {
-            var subscriptions = await _unitOfWork.Subscriptions.GetAll();
+            var subscriptions = await _unitOfWork.Subscriptions.GetAll(includes: q => q.Include(x => x.MealPlan));
             return Ok(subscriptions);
         }
 
@@ -78,7 +78,7 @@ namespace FoodNutritionWebsite.Server.Controllers
             return NoContent();
         }
 
-       
+
 
 
 
