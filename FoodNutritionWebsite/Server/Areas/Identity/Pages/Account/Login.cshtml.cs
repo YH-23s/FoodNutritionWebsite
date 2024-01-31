@@ -122,11 +122,11 @@ namespace FoodNutritionWebsite.Server.Areas.Identity.Pages.Account
                         var userRole = await _signInManager.UserManager.GetRolesAsync(user);
                         if (userRole.Contains("Administrator"))
                         {
-                            return LocalRedirect("~/admin");
+                            return LocalRedirect("~/");
 
                         } else if (userRole.Contains("User"))
                         {
-                            return LocalRedirect("~/");
+                            return LocalRedirect("~/user");
                         }
                     }
                     
