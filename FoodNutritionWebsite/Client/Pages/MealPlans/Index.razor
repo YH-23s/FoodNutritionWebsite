@@ -25,12 +25,13 @@
 }
 else
 {
-    <table class="table table-responsive">
+    <table class="table table-responsive" id="bookingsTable">
 
         <thead>
             <tr>
                 <th>Meal Plan Name</th>
-                <th>Category</th>
+                <th>Category</th
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -91,9 +92,15 @@ else
         
     }
 
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        await js.InvokeVoidAsync("AddDataTable", "#bookingsTable");
+    }
+
     public void Dispose()
     {
         _interceptor.DisposeEvent();
+        js.InvokeVoidAsync("DataTablesDispose", "#bookingsTable");
     }
 
     int GetMealPlanCount()

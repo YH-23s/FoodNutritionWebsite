@@ -185,6 +185,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Gender")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
@@ -210,9 +213,6 @@ namespace FoodNutritionWebsite.Server.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
-
-                    b.Property<string>("SecondName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -241,7 +241,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "88583367-6feb-4020-90e6-d1a69fe70372",
+                            ConcurrencyStamp = "613764bc-76eb-4273-9473-270fbd5cc0db",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -249,11 +249,29 @@ namespace FoodNutritionWebsite.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAELHDYawXcL1vbdkNS7B3ZzM6ly+LpVSenqtS1B7DWawjN6E+QnOd8m2OH62JAWzfsQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEM7Lsr12ETVKlQwkk5CmIESpzXPTvQ5Y5pCSeFtksdiENxdNNF89c8bo1L7i2l+kHA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "df34882a-5b97-4b61-8ea7-a154196d2cd3",
+                            SecurityStamp = "6983b56f-807a-4749-aa85-753de4b5cdbb",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
+                        },
+                        new
+                        {
+                            Id = "a9ae8ce6-55cb-48f1-8e73-894563807efa",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "c561af76-f8bf-49a1-9f3c-1622451d4b61",
+                            Email = "user@localhost.com",
+                            EmailConfirmed = false,
+                            FirstName = "User",
+                            LastName = "User",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "USER@LOCALHOST.COM",
+                            NormalizedUserName = "USER@LOCALHOST.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHhU/QpFYsP5XoY33+NsJqniTDa6lQPOskfRBpFaod8hBH9rIhyuxyrCUnpmGMkViA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "913d243d-e382-43e7-be21-8f641aed0ea8",
+                            TwoFactorEnabled = false,
+                            UserName = "user@localhost.com"
                         });
                 });
 
@@ -839,7 +857,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 1, 31, 19, 11, 43, 296, DateTimeKind.Local).AddTicks(815),
+                            DateCreated = new DateTime(2024, 1, 31, 19, 42, 39, 981, DateTimeKind.Local).AddTicks(2606),
                             Gender = "Male",
                             UserDOB = "12/1/2001",
                             UserEmail = "TestingAccount@blazor.com",
@@ -851,7 +869,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 1, 31, 19, 11, 43, 296, DateTimeKind.Local).AddTicks(850),
+                            DateCreated = new DateTime(2024, 1, 31, 19, 42, 39, 981, DateTimeKind.Local).AddTicks(2627),
                             Gender = "Female",
                             UserDOB = "12/1/2005",
                             UserEmail = "TestAccount@blazor.com",
@@ -886,6 +904,20 @@ namespace FoodNutritionWebsite.Server.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "ad2bcf0c-20db-474f-8407-5a6b159518ba",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        },
+                        new
+                        {
+                            Id = "bd2bcf0c-20db-474f-8407-5a6b159518bb",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -975,6 +1007,18 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "3781efa7-66dc-47f0-860f-e506d04102e4",
+                            RoleId = "ad2bcf0c-20db-474f-8407-5a6b159518ba"
+                        },
+                        new
+                        {
+                            UserId = "a9ae8ce6-55cb-48f1-8e73-894563807efa",
+                            RoleId = "bd2bcf0c-20db-474f-8407-5a6b159518bb"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
