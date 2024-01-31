@@ -20,8 +20,19 @@ namespace FoodNutritionWebsite.Server.Configurations.Entities
                 UserName = "admin@localhost.com",
                 NormalizedUserName = "ADMIN@LOCALHOST.COM",
                 PasswordHash = hasher.HashPassword(null, "P@ssword1")
-            }
-            );
+            },
+            new ApplicationUser
+            {
+                Id = "a9ae8ce6-55cb-48f1-8e73-894563807efa",
+                Email = "user@localhost.com",
+                NormalizedEmail = "USER@LOCALHOST.COM",
+                FirstName = "User",
+                LastName = "User",
+                UserName = "user@localhost.com",
+                NormalizedUserName = "USER@LOCALHOST.COM",
+                PasswordHash = hasher.HashPassword(null, "P@ssword1")
+            });
+            
         }
     }
 }

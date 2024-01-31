@@ -98,6 +98,8 @@ namespace FoodNutritionWebsite.Server.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            public string Role {  get; set; }
         }
 
 
@@ -121,6 +123,11 @@ namespace FoodNutritionWebsite.Server.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+                    var userIdentity = await _userManager.FindByEmailAsync(Input.Email);
+                    if (userIdentity != null)
+                    {
+                        var userRole = await _userManager.AddToRoleAsync(userIdentity, Input.Role);
+                    }
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
@@ -142,6 +149,13 @@ namespace FoodNutritionWebsite.Server.Areas.Identity.Pages.Account
                     else
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
+                        if (Input.Role == "Administrator")
+                        {
+                            return LocalRedirect("~/admin");
+                        } else if (Input.Role == "User")
+                        {
+                            return LocalRedirect("~/");
+                        }
                         return LocalRedirect(returnUrl);
                     }
                 }
