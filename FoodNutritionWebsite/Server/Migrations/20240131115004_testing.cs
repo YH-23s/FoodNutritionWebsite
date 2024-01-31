@@ -531,8 +531,8 @@ namespace FoodNutritionWebsite.Server.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "Gender", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "613764bc-76eb-4273-9473-270fbd5cc0db", "admin@localhost.com", false, "Admin", null, "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEM7Lsr12ETVKlQwkk5CmIESpzXPTvQ5Y5pCSeFtksdiENxdNNF89c8bo1L7i2l+kHA==", null, false, "6983b56f-807a-4749-aa85-753de4b5cdbb", false, "admin@localhost.com" },
-                    { "a9ae8ce6-55cb-48f1-8e73-894563807efa", 0, "c561af76-f8bf-49a1-9f3c-1622451d4b61", "user@localhost.com", false, "User", null, "User", false, null, "USER@LOCALHOST.COM", "USER@LOCALHOST.COM", "AQAAAAIAAYagAAAAEHhU/QpFYsP5XoY33+NsJqniTDa6lQPOskfRBpFaod8hBH9rIhyuxyrCUnpmGMkViA==", null, false, "913d243d-e382-43e7-be21-8f641aed0ea8", false, "user@localhost.com" }
+                    { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "0b55538d-62e0-4cc1-9e5b-1ba645c5c00e", "admin@localhost.com", false, "Admin", null, "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEFsjIasKP4w9xriEazA14XWzaMkEhUqjK0JsBt44wrYe4BzyNM0rDJK9a+waUrBuLw==", null, false, "b9252922-2b62-40d8-b2ab-ffb27a7279df", false, "admin@localhost.com" },
+                    { "a9ae8ce6-55cb-48f1-8e73-894563807efa", 0, "d96b3ec4-35ac-4632-a8e6-919846590072", "user@localhost.com", false, "User", null, "User", false, null, "USER@LOCALHOST.COM", "USER@LOCALHOST.COM", "AQAAAAIAAYagAAAAECO4B8Ua4yutoQOydeg6E0P3Ph/bOWDEVlOozPbnkL7pp7rIRd/vXwMQGcqhLyTShg==", null, false, "c864feb5-6d92-45f4-b6ab-c6081f9ec9ad", false, "user@localhost.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -559,8 +559,8 @@ namespace FoodNutritionWebsite.Server.Migrations
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "Gender", "SubscriptionID", "UpdatedBy", "UserDOB", "UserEmail", "UserName", "UserPassword", "UserPhoneNum" },
                 values: new object[,]
                 {
-                    { 1, "seed-script", new DateTime(2024, 1, 31, 19, 42, 39, 981, DateTimeKind.Local).AddTicks(2606), null, "Male", null, null, "12/1/2001", "TestingAccount@blazor.com", "TestingAccount", "TestingAccount_password123", "9012 0791" },
-                    { 2, "seed-script", new DateTime(2024, 1, 31, 19, 42, 39, 981, DateTimeKind.Local).AddTicks(2627), null, "Female", null, null, "12/1/2005", "TestAccount@blazor.com", "TestAccount@blazor.com", "TestAccount_password123", "9072 0791" }
+                    { 1, "seed-script", new DateTime(2024, 1, 31, 19, 50, 4, 588, DateTimeKind.Local).AddTicks(8581), null, "Male", null, null, "12/1/2001", "TestingAccount@blazor.com", "TestingAccount", "TestingAccount_password123", "9012 0791" },
+                    { 2, "seed-script", new DateTime(2024, 1, 31, 19, 50, 4, 588, DateTimeKind.Local).AddTicks(8605), null, "Female", null, null, "12/1/2005", "TestAccount@blazor.com", "TestAccount@blazor.com", "TestAccount_password123", "9072 0791" }
                 });
 
             migrationBuilder.InsertData(

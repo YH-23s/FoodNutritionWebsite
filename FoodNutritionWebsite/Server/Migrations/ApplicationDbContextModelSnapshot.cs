@@ -241,7 +241,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "613764bc-76eb-4273-9473-270fbd5cc0db",
+                            ConcurrencyStamp = "0b55538d-62e0-4cc1-9e5b-1ba645c5c00e",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -249,9 +249,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEM7Lsr12ETVKlQwkk5CmIESpzXPTvQ5Y5pCSeFtksdiENxdNNF89c8bo1L7i2l+kHA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFsjIasKP4w9xriEazA14XWzaMkEhUqjK0JsBt44wrYe4BzyNM0rDJK9a+waUrBuLw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6983b56f-807a-4749-aa85-753de4b5cdbb",
+                            SecurityStamp = "b9252922-2b62-40d8-b2ab-ffb27a7279df",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -259,7 +259,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = "a9ae8ce6-55cb-48f1-8e73-894563807efa",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c561af76-f8bf-49a1-9f3c-1622451d4b61",
+                            ConcurrencyStamp = "d96b3ec4-35ac-4632-a8e6-919846590072",
                             Email = "user@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "User",
@@ -267,9 +267,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@LOCALHOST.COM",
                             NormalizedUserName = "USER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHhU/QpFYsP5XoY33+NsJqniTDa6lQPOskfRBpFaod8hBH9rIhyuxyrCUnpmGMkViA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAECO4B8Ua4yutoQOydeg6E0P3Ph/bOWDEVlOozPbnkL7pp7rIRd/vXwMQGcqhLyTShg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "913d243d-e382-43e7-be21-8f641aed0ea8",
+                            SecurityStamp = "c864feb5-6d92-45f4-b6ab-c6081f9ec9ad",
                             TwoFactorEnabled = false,
                             UserName = "user@localhost.com"
                         });
@@ -857,7 +857,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 1, 31, 19, 42, 39, 981, DateTimeKind.Local).AddTicks(2606),
+                            DateCreated = new DateTime(2024, 1, 31, 19, 50, 4, 588, DateTimeKind.Local).AddTicks(8581),
                             Gender = "Male",
                             UserDOB = "12/1/2001",
                             UserEmail = "TestingAccount@blazor.com",
@@ -869,7 +869,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 1, 31, 19, 42, 39, 981, DateTimeKind.Local).AddTicks(2627),
+                            DateCreated = new DateTime(2024, 1, 31, 19, 50, 4, 588, DateTimeKind.Local).AddTicks(8605),
                             Gender = "Female",
                             UserDOB = "12/1/2005",
                             UserEmail = "TestAccount@blazor.com",
