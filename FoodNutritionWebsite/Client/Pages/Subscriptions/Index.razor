@@ -1,4 +1,4 @@
-﻿@using Microsoft.AspNetCore.Authorization
+﻿﻿@using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
 
@@ -38,6 +38,9 @@ else
         <thead>
             <tr>
                 <th>Subscription Name</th>
+                <th>Meal Plan</th>
+                <th>Price</th>
+                <th>Date Added</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -47,6 +50,9 @@ else
 
                 <tr>
                     <td>@subscription.SubscriptionName</td>
+                    <td>@subscription.MealPlan.MealPlanName</td>
+                    <td>@subscription.SubscriptionPrice</td>
+                    <td>@subscription.DateUpdated</td>
                     <td>
                         <a href="/Subscriptions/view/@subscription.Id" class="btn btn-primary">
                             <span class="oi oi-book"></span>
@@ -119,4 +125,4 @@ else
 
 }
 
-<p>Total Subscriptions: @GetSubscriptionCount()</p>
+<p>Total Subscriptions: @GetSubscriptionCount()</p>>

@@ -1,6 +1,7 @@
 ﻿using FoodNutritionWebsite.Shared.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace FoodNutritionWebsite.Server.Configurations.Entities
 {

@@ -1,4 +1,6 @@
-﻿@inject HttpClient _client
+﻿@inject NavigationManager _navManager
+@inject HttpClient _client
+
 
 <EditForm Model="@user" OnValidSubmit="OnValidSubmit">
     <DataAnnotationsValidator />
@@ -6,85 +8,104 @@
 
     <!-- Other form components go here -->
 
-    <div class="form-group">
-        <label>User Name: </label>
-        <div>
-            <InputText @bind-Value="user.UserName" class="form-control" />
-            <ValidationMessage For="@(() => user.UserName)" />
+ 
+    <fieldset disabled = "@Disabled">
 
+        <div class="form-group">
+            <label>User Name: </label>
+            <div>
+                <InputText @bind-Value="user.UserName" class="form-control" />
+                <ValidationMessage For="@(() => user.UserName)" />
+
+            </div>
         </div>
-    </div>
 
 
-    <div class="form-group">
-        <label>User DOB: </label>
-        <div>
-            <InputText @bind-Value="user.UserDOB" class="form-control" />
-            <ValidationMessage For="@(() => user.UserDOB)" />
+        <div class="form-group">
+            <label>User DOB: </label>
+            <div>
+                <InputText @bind-Value="user.UserDOB" class="form-control" />
+                <ValidationMessage For="@(() => user.UserDOB)" />
 
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label>User Gender: </label>
-        <div>
-            <InputText @bind-Value="user.Gender" class="form-control" />
-            <ValidationMessage For="@(() => user.Gender)" />
+        <div class="form-group">
+            <label>User Gender: </label>
+            <div>
+                <InputText @bind-Value="user.Gender" class="form-control" />
+                <ValidationMessage For="@(() => user.Gender)" />
 
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label>User UserPhoneNum: </label>
-        <div>
-            <InputText @bind-Value="user.UserPhoneNum" class="form-control" />
-            <ValidationMessage For="@(() => user.UserPhoneNum)" />
+        <div class="form-group">
+            <label>User UserPhoneNum: </label>
+            <div>
+                <InputText @bind-Value="user.UserPhoneNum" class="form-control" />
+                <ValidationMessage For="@(() => user.UserPhoneNum)" />
 
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label>User UserEmail: </label>
-        <div>
-            <InputText @bind-Value="user.UserEmail" class="form-control" />
-            <ValidationMessage For="@(() => user.UserEmail)" />
+        <div class="form-group">
+            <label>User UserEmail: </label>
+            <div>
+                <InputText @bind-Value="user.UserEmail" class="form-control" />
+                <ValidationMessage For="@(() => user.UserEmail)" />
 
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label>User UserPassword: </label>
-        <div>
-            <InputText @bind-Value="user.UserPassword" class="form-control" />
-            <ValidationMessage For="@(() => user.UserPassword)" />
+        <div class="form-group">
+            <label>User UserPassword: </label>
+            <div>
+                <InputText @bind-Value="user.UserPassword" class="form-control" />
+                <ValidationMessage For="@(() => user.UserPassword)" />
 
+            </div>
         </div>
-    </div>
 
 
-    <div class="form-group">
-        <label>Subscription:</label>
-        <div>
-            <InputSelect @bind-Value="user.SubscriptionID" class="form-control">
-                <option value="">--Select Subscription--</option>
-                @if (subscription != null)
-                {
-                    foreach (var subscrip in subscription)
+        <div class="form-group">
+            <label>Subscription:</label>
+            <div>
+                <InputSelect @bind-Value="user.SubscriptionID" class="form-control">
+                    <option value="">--Select Subscription--</option>
+                    @if (subscription != null)
                     {
-                        <option value="@subscrip.Id">@subscrip.SubscriptionName</option>
+                        foreach (var subscrip in subscription)
+                        {
+                            <option value="@subscrip.Id">@subscrip.SubscriptionName</option>
+                        }
                     }
-                }
-            </InputSelect>
-            <ValidationMessage For="@(() => user.SubscriptionID)" />
+                </InputSelect>
+                <ValidationMessage For="@(() => user.SubscriptionID)" />
+            </div>
         </div>
-    </div>
 
-    <button type="submit" class="btn btn-success btn-block">
-        @ButtonText
-    </button>
+
+    </fieldset>
+
+
+    @if (!Disabled)
+    {
+        <button type="submit" class="btn btn-success btn-block">
+            @ButtonText
+        </button>
+    }
+
+    <button type="button" class="btn btn-secondary btn-block" @onclick="BackToList">Back to List</button>
+
 </EditForm>
 
+
+
+
+
+
 @code {
+    [Parameter] public bool Disabled {get; set;} = false;
     [Parameter] public User? user { get; set; }
     /*[Parameter] public List<Subscription>? subscription { get; set; }*/
     [Parameter] public string ButtonText { get; set; } = "Save";
@@ -96,5 +117,10 @@
     {
         subscription = await _client.GetFromJsonAsync<List<Subscription>>($"{"api/Subscriptions/"}");
 
+    }
+
+    private async Task BackToList()
+    {
+        _navManager.NavigateTo("/users");
     }
 }

@@ -1,4 +1,4 @@
-﻿@using Microsoft.AspNetCore.Authorization
+﻿﻿@using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
 
@@ -31,8 +31,9 @@ else
 
         <thead>
             <tr>
+                <th>User</th>
                 <th>Food Name</th>
-                <th>Food Type</th>
+                <th>Quantity</th>
                 <th>Date Added</th>
                 <th>Actions</th>
             </tr>
@@ -42,10 +43,11 @@ else
             {
 
                 <tr>
-                    <td>@foodlogs.FoodName</td>
-                    <td>@foodlogs.FoodType</td>
-                    <td>@foodlogs.FoodLogDateTime</td>
-                
+                    <td>@foodlogs.User.UserName</td>
+                    <td>@foodlogs.Food.FoodName</td
+                    <td>@foodlogs.Quantity</td>
+                    <td>@foodlogs.DateUpdated</td>
+
                     <td>
                         <a href="/FoodLogs/view/@foodlogs.Id" class="bth btn-primary">
                             <span class="oi oi-book"></span>
@@ -82,6 +84,7 @@ else
     {
         _interceptor.MonitorEvent();
         FoodLogs = await _client.GetFromJsonAsync<List<FoodLog>>($"api/FoodLogs");
+
     }
 
     async Task Delete(int foodlogsId)

@@ -1,4 +1,4 @@
-﻿@using Microsoft.AspNetCore.Authorization
+﻿﻿@using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
 
@@ -35,6 +35,9 @@ else
         <thead>
             <tr>
                 <th> Subscription Name</th>
+                <th> Credit Card Num</th>
+                <th> Credit Card Cvv</th>
+                <th> Credit Card Exp</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -43,7 +46,10 @@ else
             {
 
                 <tr>
-                    <td>@payments.PaymentDescription</td>
+                    <td>@payments.Subscription.SubscriptionName</td
+                    <td>@payments.CardNum</td>
+                    <td>@payments.Cvv</td>
+                    <td>@payments.CardExp</td>
                     <td>
                         <a href="/Payments/view/@payments.Id" class="bth btn-primary">
                             <span class="oi oi-book"></span>

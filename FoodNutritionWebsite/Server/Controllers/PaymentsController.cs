@@ -27,7 +27,7 @@ namespace FoodNutritionWebsite.Server.Controllers
         [HttpGet]
         public async Task<IActionResult> GetPayments()
         {
-            var payments = await _unitOfWork.Payments.GetAll();
+            var payments = await _unitOfWork.Payments.GetAll(includes: q => q.Include(x => x.Subscription));
             return Ok(payments);
         }
 

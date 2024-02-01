@@ -35,9 +35,9 @@ namespace FoodNutritionWebsite.Server.Data
             builder.ApplyConfiguration(new UserRoleSeedConfiguration());
             builder.ApplyConfiguration(new RoleSeedConfiguration());
             builder.ApplyConfiguration(new User_defSeedConfiguration());
-            builder.ApplyConfiguration(new SubscriptionSeedConfiguration());
-            builder.ApplyConfiguration(new FoodLogSeedConfiguration());
-            builder.ApplyConfiguration(new PaymentSeedConfiguration());
+            //builder.ApplyConfiguration(new SubscriptionSeedConfiguration());
+            //builder.ApplyConfiguration(new FoodLogSeedConfiguration());
+            //builder.ApplyConfiguration(new PaymentSeedConfiguration());
             builder.ApplyConfiguration(new StaffSeedConfiguration());
             builder.ApplyConfiguration(new FoodSeedConfiguration());
             builder.ApplyConfiguration(new MealPlanSeedConfiguration());

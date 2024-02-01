@@ -11,23 +11,29 @@ namespace FoodNutritionWebsite.Shared.Domain
 {
     public class Payment : BaseDomainModel
     {
-   
-        public double PaymentAmount { get; set; }
 
-        public DateTime StartingDate { get; set; }
+        public string? Cvv { get; set; }
+        public string? CardExp { get; set; }
+        public string? CardNum { get; set; }
 
+       
 
-        public DateTime EndingDate { get; set; }
+        public double? PaymentAmount { get; set; }
 
+        
+        public DateTime? StartingDate { get; set; }
+
+        public DateTime? EndingDate { get; set; }
 
         public string? PaymentDescription { get; set; }
-
 
         public string? SubscriptionPlanName { get; set; }
 
         
         public int? SubscriptionID { get; set; }
         public virtual Subscription? Subscription { get; set; }
+
+      
 
     }
 }

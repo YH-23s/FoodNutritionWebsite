@@ -5,9 +5,13 @@
 @page "/users"
 @inject HttpClient _client
 @inject IJSRuntime js
+<<<<<<< HEAD
 @attribute [Authorize(Roles = "Administrator")]
 @inject HttpInterceptorService _interceptor
 @implements IDisposable
+=======
+@attribute [Authorize]
+>>>>>>> eb6c7f42f47042c1a73d33986dfb8ed698c08555
 
 <h3>Users Index</h3>
 
@@ -18,50 +22,56 @@
 <br />
 <br />
 
-@if (Users == null)
-{
-    <div class="alert alert-info">Loading Users...</div>
-}
 
-else
-{
-    <table class="table table-responsive" id="bookingsTable">
 
-        <thead>
+
+
+
+
+
+<table class="table table-responsive">
+
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>DOB</th>
+            <th>Password</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Users)
+        {
+
             <tr>
-                <th>Name</th>
-                <th>Actions</th>
+                <td>@user.UserName</td>
+                <td>@user.UserEmail</td>
+                <td>@user.UserDOB</td>
+                <td>@user.UserPassword</td>
+
+                <td>
+                    <a href="/users/view/@user.Id" class="bth btn-primary">
+                        <span class="oi oi-book"></span>
+                    </a>
+
+                    <a href="/users/edit/@user.Id" class="bth btn-primary">
+                        <span class="oi oi-pencil"></span>
+                    </a>
+
+                    <button class="btn btn-danger" @onclick="@(()=>Delete(user.Id))">
+                        <span class="oi oi-book"></span>
+                    </button>
+
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var user in Users)
-            {
-
-                <tr>
-                    <td>@user.UserName</td>
-                    <td>
-                        <a href="/users/view/@user.Id" class="bth btn-primary">
-                            <span class="oi oi-book"></span>
-                        </a>
-
-                        <a href="/users/edit/@user.Id" class="bth btn-primary">
-                            <span class="oi oi-pencil"></span>
-                        </a>
-
-                        <button class="btn btn-danger" @onclick="@(()=>Delete(user.Id))">
-                            <span class="oi oi-book"></span>
-                        </button>
-
-                    </td>
-                </tr>
-            }
+        }
 
 
 
-        </tbody>
+    </tbody>
 
-    </table>
-}
+</table>
 
 
 
@@ -92,16 +102,6 @@ else
         }
     }
 
-    protected async override Task OnAfterRenderAsync(bool firstRender)
-    {
-        await js.InvokeVoidAsync("AddDataTable", "#bookingsTable");
-    }
-
-    public void Dispose()
-    {
-        _interceptor.DisposeEvent();
-        js.InvokeVoidAsync("DataTablesDispose", "#bookingsTable");
-    }
 
     int GetUserCount()
     {
