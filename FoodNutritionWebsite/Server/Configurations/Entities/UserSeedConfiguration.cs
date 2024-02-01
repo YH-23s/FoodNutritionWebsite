@@ -1,7 +1,7 @@
 ﻿using FoodNutritionWebsite.Server.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.AspNetCore.Identity;
 namespace FoodNutritionWebsite.Server.Configurations.Entities    
 {
     public class UserSeedConfiguration : IEntityTypeConfiguration<ApplicationUser>

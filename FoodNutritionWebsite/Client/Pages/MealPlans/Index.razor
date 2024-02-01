@@ -7,7 +7,7 @@
 @inject IJSRuntime js
 @inject HttpInterceptorService _interceptor
 @implements IDisposable
-@attribute [Authorize]
+@attribute [Authorize(Roles = "Administrator")]
 
 <h3>MealPlan Index</h3>
 

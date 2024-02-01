@@ -5,7 +5,7 @@
 @page "/Staffs"
 @inject HttpClient _client
 @inject IJSRuntime js
-@attribute [Authorize]
+@attribute [Authorize(Roles = "Administrator")]
 @inject HttpInterceptorService _interceptor
 @implements IDisposable
 

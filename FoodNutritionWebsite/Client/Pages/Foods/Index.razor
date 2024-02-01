@@ -5,7 +5,8 @@
 @page "/Food"
 @inject HttpClient _client
 @inject IJSRuntime js
-@attribute [Authorize]
+@using System.Security.Claims
+@attribute [Authorize(Roles = "Administrator")]
 @inject HttpInterceptorService _interceptor
 @implements IDisposable
 @inject AuthenticationStateProvider AuthenticationStateProvider

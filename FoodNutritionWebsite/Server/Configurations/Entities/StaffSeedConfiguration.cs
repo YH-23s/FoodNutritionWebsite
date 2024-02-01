@@ -25,7 +25,7 @@ namespace FoodNutritionWebsite.Server.Configurations.Entities
                 Address = "123 Rivervale",
                 Role = "Manager",
                 StartDate = DateTime.ParseExact("2020-01-24", "yyyy-MM-dd", CultureInfo.InvariantCulture)
-			},
+            },
             new Staff
             {
                 Id = 2,
