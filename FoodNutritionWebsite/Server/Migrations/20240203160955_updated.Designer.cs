@@ -12,13 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodNutritionWebsite.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-<<<<<<<< HEAD:FoodNutritionWebsite/Server/Migrations/20240203064854_Integration.Designer.cs
-    [Migration("20240203064854_Integration")]
-    partial class Integration
-========
-    [Migration("20240203085830_changesmadetoMealPlan")]
-    partial class changesmadetoMealPlan
->>>>>>>> 31e876a7198211c71b75359842afe0d70c9566e3:FoodNutritionWebsite/Server/Migrations/20240203085830_changesmadetoMealPlan.Designer.cs
+    [Migration("20240203160955_updated")]
+    partial class updated
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -249,11 +244,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-<<<<<<<< HEAD:FoodNutritionWebsite/Server/Migrations/20240203064854_Integration.Designer.cs
-                            ConcurrencyStamp = "4eaedd7e-e21c-41cd-8c13-a69b322a9ab1",
-========
-                            ConcurrencyStamp = "9dc4fbee-4303-4227-bd7f-19e404d0a559",
->>>>>>>> 31e876a7198211c71b75359842afe0d70c9566e3:FoodNutritionWebsite/Server/Migrations/20240203085830_changesmadetoMealPlan.Designer.cs
+                            ConcurrencyStamp = "58ea9639-c147-4c7a-9980-a0cc3071cf21",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -261,15 +252,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-<<<<<<<< HEAD:FoodNutritionWebsite/Server/Migrations/20240203064854_Integration.Designer.cs
-                            PasswordHash = "AQAAAAIAAYagAAAAEBz2ey3fQ/oVbUMAl6SE5r0tXzQXpqAuUaholyCXx+7gG6850CmyaCz6BwKrpkRmmA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAMbM/WRPA4UieCJNDFdao/yN/4rONC81h6TGs0Tc5MhUbPvZWb++hphvQUcmniAVg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1d909c6b-3bb5-4c71-98cb-96acbf348dab",
-========
-                            PasswordHash = "AQAAAAIAAYagAAAAELOMRrkBVbsaRjmYtUP0o25DThxtlvTm6nPnpOHTfniyAQ9ytgFmJhI3B7tgNLtbiQ==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "daad9833-90b9-44e4-b6e3-62c7bf0f0fa9",
->>>>>>>> 31e876a7198211c71b75359842afe0d70c9566e3:FoodNutritionWebsite/Server/Migrations/20240203085830_changesmadetoMealPlan.Designer.cs
+                            SecurityStamp = "b2e2d114-e95a-4c81-9511-9207afd9d399",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -277,11 +262,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = "a9ae8ce6-55cb-48f1-8e73-894563807efa",
                             AccessFailedCount = 0,
-<<<<<<<< HEAD:FoodNutritionWebsite/Server/Migrations/20240203064854_Integration.Designer.cs
-                            ConcurrencyStamp = "feb9be89-95ee-47a2-a90d-5d376beca8e7",
-========
-                            ConcurrencyStamp = "669dd36c-67ca-46e1-9553-51a6b37b1d29",
->>>>>>>> 31e876a7198211c71b75359842afe0d70c9566e3:FoodNutritionWebsite/Server/Migrations/20240203085830_changesmadetoMealPlan.Designer.cs
+                            ConcurrencyStamp = "a80168f7-6858-4e9d-b336-97e406cf3935",
                             Email = "user@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "User",
@@ -289,15 +270,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@LOCALHOST.COM",
                             NormalizedUserName = "USER@LOCALHOST.COM",
-<<<<<<<< HEAD:FoodNutritionWebsite/Server/Migrations/20240203064854_Integration.Designer.cs
-                            PasswordHash = "AQAAAAIAAYagAAAAEMaQH/bVSbRnTfDza5N3OTgnwnlwkH+y5XMsjnp5PVLMb0CSzsrt+rZcG53vZWKUww==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEG0r28vOp1PCA/pbA5+LxFLzifPjei0UXAAxmFHAWcSjCuH+3Znol1F0zxr6i9WIVg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f030f266-905c-4397-8111-7716b373bfe6",
-========
-                            PasswordHash = "AQAAAAIAAYagAAAAEP5oXqTGlQvf0lYmjY41I556PYxPNDt5Z+MhD41G3Qv0BeCxsmxOouITRtK2BeX9BQ==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "d0ede173-825b-4f88-a8d5-fd876d4507a8",
->>>>>>>> 31e876a7198211c71b75359842afe0d70c9566e3:FoodNutritionWebsite/Server/Migrations/20240203085830_changesmadetoMealPlan.Designer.cs
+                            SecurityStamp = "7abb11ee-c888-4417-ba15-fd99bda86952",
                             TwoFactorEnabled = false,
                             UserName = "user@localhost.com"
                         });
@@ -893,23 +868,18 @@ namespace FoodNutritionWebsite.Server.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserDOB")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserEmail")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserPassword")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserPhoneNum")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -923,11 +893,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "seed-script",
-<<<<<<<< HEAD:FoodNutritionWebsite/Server/Migrations/20240203064854_Integration.Designer.cs
-                            DateCreated = new DateTime(2024, 2, 3, 14, 48, 53, 790, DateTimeKind.Local).AddTicks(9785),
-========
-                            DateCreated = new DateTime(2024, 2, 3, 16, 58, 30, 441, DateTimeKind.Local).AddTicks(4401),
->>>>>>>> 31e876a7198211c71b75359842afe0d70c9566e3:FoodNutritionWebsite/Server/Migrations/20240203085830_changesmadetoMealPlan.Designer.cs
+                            DateCreated = new DateTime(2024, 2, 4, 0, 9, 55, 303, DateTimeKind.Local).AddTicks(5078),
                             Gender = "Male",
                             UserDOB = "12/1/2001",
                             UserEmail = "TestingAccount@blazor.com",
@@ -939,11 +905,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "seed-script",
-<<<<<<<< HEAD:FoodNutritionWebsite/Server/Migrations/20240203064854_Integration.Designer.cs
-                            DateCreated = new DateTime(2024, 2, 3, 14, 48, 53, 790, DateTimeKind.Local).AddTicks(9826),
-========
-                            DateCreated = new DateTime(2024, 2, 3, 16, 58, 30, 441, DateTimeKind.Local).AddTicks(4421),
->>>>>>>> 31e876a7198211c71b75359842afe0d70c9566e3:FoodNutritionWebsite/Server/Migrations/20240203085830_changesmadetoMealPlan.Designer.cs
+                            DateCreated = new DateTime(2024, 2, 4, 0, 9, 55, 303, DateTimeKind.Local).AddTicks(5129),
                             Gender = "Female",
                             UserDOB = "12/1/2005",
                             UserEmail = "TestAccount@blazor.com",

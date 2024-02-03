@@ -25,10 +25,10 @@ namespace FoodNutritionWebsite.Shared.Domain
 
 
         
-        public string? UserEmail { get; set; }
+        public string UserEmail { get; set; }
 
         
-        public string? UserPassword { get; set; }
+        public string UserPassword { get; set; }
         public int? SubscriptionID { get; set; }
         public virtual Subscription? Subscription { get; set; }
 
