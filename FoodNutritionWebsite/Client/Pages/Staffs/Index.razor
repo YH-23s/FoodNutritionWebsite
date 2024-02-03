@@ -1,8 +1,4 @@
-﻿@using Microsoft.AspNetCore.Authorization
-@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-
-
-@page "/Staffs"
+﻿@page "/Staffs"
 @inject HttpClient _client
 @inject IJSRuntime js
 @attribute [Authorize(Roles = "Administrator")]
@@ -11,70 +7,47 @@
 
 <h3>Staff Index</h3>
 
-
-<a href="/Staffs/create" class="btn btn-secondary">
-    <span class="oi oi-plus"></span>
-    Create New Staff
+<a href="/Staffs/create" class="btn btn-secondary my-2">
+    <span class="oi oi-plus"></span> Create New Staff
 </a>
 <br />
 <br />
 
-
-
-
-@if (Staff == null)
-{
-    <div class="alert alert-info">Loading Staff...</div>
-}
-
-else
-{
-    <table class="table table-responsive" id="bookingsTable">
-
-        <thead>
-            <tr>
-                <th>Staff First Name</th>
-                <th>Staff Work Email</th>
-                <th>Staff Role</th>
-                <th>Staff Start Date</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            @foreach (var staffs in Staff)
+<div class="container-fluid">
+    <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+        @if (Staff == null)
+        {
+            <div class="alert alert-info">Loading Staff...</div>
+        }
+        else
+        {
+            @foreach (var staff in Staff)
             {
-
-                <tr>
-                    <td>@staffs.FirstName</td>
-                    <td>@staffs.WorkEmail</td>
-                    <td>@staffs.Role</td>
-                    <td>@staffs.StartDate</td>
-                
-                    <td>
-                        <a href="/Staffs/view/@staffs.Id" class="bth btn-primary">
-                            <span class="oi oi-book"></span>
-                        </a>
-
-                        <a href="/Staffs/edit/@staffs.Id" class="bth btn-primary">
-                            <span class="oi oi-pencil"></span>
-                        </a>
-
-                        <button class="btn btn-danger" @onclick="@(()=>Delete(staffs.Id))">
-                            <span class="oi oi-book"></span>
-                        </button>
-
-                    </td>
-                </tr>
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">@staff.FirstName</h5>
+                            <p class="card-text">@staff.WorkEmail</p>
+                            <p class="card-text">@staff.Role</p>
+                            <p class="card-text">@staff.StartDate</p>
+                            <div class="d-flex justify-content-center">
+                                <a href="/Staffs/view/@staff.Id" class="btn btn-primary actionbutton">
+                                    <i class="oi oi-eye"></i> View
+                                </a>
+                                <a href="/Staffs/edit/@staff.Id" class="btn btn-warning actionbutton">
+                                    <i class="oi oi-pencil"></i> Edit
+                                </a>
+                                <button class="btn btn-danger actionbutton" @onclick="@(()=>Delete(staff.Id))">
+                                    <i class="oi oi-trash"></i> Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             }
-
-
-
-        </tbody>
-
-    </table>
-}
-
+        }
+    </div>
+</div>
 
 @code {
     public List<Staff>? Staff;
