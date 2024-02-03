@@ -5,7 +5,7 @@ body {
     color: #212529;
     margin: 0;
     padding: 0;
-    min-width:auto;
+    min-width: auto;
 }
 
 /* Navbar and sidebar styles */
@@ -40,14 +40,14 @@ body {
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     }
 
-/* Image styles */
-/* Set a specific height and width for your images */
-.foodcard img.catfoodimage {
-    width: 100%; /* This will make the image responsive to the container width, adjust if necessary */
-    height: 100%; /* Set a fixed height for all images */
-    object-fit: cover; /* This will cover the area of the element with the image without stretching it */
-    object-position: center; /* Adjust the alignment of the image within its container */
-}
+    /* Image styles */
+    /* Set a specific height and width for your images */
+    .foodcard img.catfoodimage {
+        width: 100%; /* This will make the image responsive to the container width, adjust if necessary */
+        height: 100%; /* Set a fixed height for all images */
+        object-fit: cover; /* This will cover the area of the element with the image without stretching it */
+        object-position: center; /* Adjust the alignment of the image within its container */
+    }
 
 /* Card body styles */
 .foodcardbody {

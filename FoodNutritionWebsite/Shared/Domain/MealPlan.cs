@@ -13,6 +13,9 @@ namespace FoodNutritionWebsite.Shared.Domain
         public string? MealPlanCategory { get; set; }
         [Required(ErrorMessage = "Meal Plan Name is required")]
         public string? MealPlanName { get; set; }
+
+        public string? Image {  get; set; }
+
         [Required(ErrorMessage = "Staff is required")]
         public int StaffID { get; set; }
         public virtual Staff? Staff { get; set; }
