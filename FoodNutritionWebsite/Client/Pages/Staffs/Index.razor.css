@@ -1,0 +1,66 @@
+﻿/* Card layout for staff */
+.card {
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+    border-radius: 0.25rem;
+    overflow: hidden;
+    transition: box-shadow 0.2s ease-in-out;
+    margin-bottom: 20px;
+}
+
+    .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+
+/* Card body */
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Card title and text */
+.card-title {
+    font-size: 1.25rem;
+    color: #343a40;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #6c757d;
+    margin-bottom: 1rem;
+}
+
+/* Button styles */
+.actionbutton {
+    margin: 0.5rem 0.25rem;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+/* Button colors */
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Responsive design adjustments */
+@media (min-width: 768px) {
+    .row-cols-md-3 > * {
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+    }
+}
