@@ -1,63 +1,43 @@
 ﻿@inject NavigationManager Navigation
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
-<div class="top-row ps-3 navbar navbar-dark">
+
+
+<AuthorizeView>
+    <div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">Food Nutrition </a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
-</div>
-
-<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
+    </div>
 
 
+    <div class="nav-item px-3">
+        <NavLink class="nav-link" href="authentication/profile" Match="NavLinkMatch.All">
+            <span class="oi oi-person" aria-hidden="true"></span> Hello, @context.User.Identity?.Name!
+        </NavLink>
+    </div>
+
+    <div class="nav-item px-3">
+        <NavLink class="nav-link" href="#" @onclick="BeginLogOut" Match="NavLinkMatch.All">
+            <span aria-hidden="true"></span> log out
+        </NavLink>
+    </div>
+
+    <div class="nav-item px-3">
+        <NavLink class="nav-link" href="authentication/register">
+            <span aria-hidden="true"></span> Register
+        </NavLink>
+    </div>
 
 
-
-    <AuthorizeView>
-        <Authorized>
-
-
-            <div class="nav-item px-3">
-                <NavLink class="nav-link" href="authentication/profile" Match="NavLinkMatch.All">
-                    <span class="oi oi-person" aria-hidden="true"></span> Hello, @context.User.Identity?.Name!
-                </NavLink>
-            </div>
-
-            <div class="nav-item px-3">
-                <NavLink class="nav-link" href="#" @onclick="BeginLogOut" Match="NavLinkMatch.All">
-                    <span aria-hidden="true"></span> log out
-                </NavLink>
-            </div>
-
-
-        </Authorized>
-
-        <NotAuthorized>
-
-            <div class="nav-item px-3">
-                <NavLink class="nav-link" href="authentication/register">
-                    <span aria-hidden="true"></span> Register
-                </NavLink>
-            </div>
-
-
-            <div class="nav-item px-3">
-                <NavLink class="nav-link" href="authentication/login">
-                    <span aria-hidden="true"></span> Log In
-                </NavLink>
-            </div>
-
-
-        </NotAuthorized>
-
-    </AuthorizeView>
-
-
-
-
-
+    <div class="nav-item px-3">
+        <NavLink class="nav-link" href="authentication/login">
+            <span aria-hidden="true"></span> Log In
+        </NavLink>
+    </div>
 
     <div class="nav-item px-3">
         <NavLink class="nav-link" Match="NavLinkMatch.All">
@@ -108,16 +88,51 @@
             <span class="oi oi-list-bread" aria-hidden="true"></span> Staffs
         </NavLink>
     </div>
-    
+
     <div class="nav-item px-3">
         <NavLink class="nav-link" href="MealPlans">
             <span class="oi oi-list-bread" aria-hidden="true"></span> MealPlans
         </NavLink>
     </div>
 
+
+</AuthorizeView>
+
+
+
+
+
+
+<NotAuthorized>
+
+    <div class="nav-item px-3">
+        <NavLink class="nav-link" href="authentication/register">
+            <span aria-hidden="true"></span> Register
+        </NavLink>
+    </div>
+
+
+    <div class="nav-item px-3">
+        <NavLink class="nav-link" href="authentication/login">
+            <span aria-hidden="true"></span> Log In
+        </NavLink>
+    </div>
+
+
+</NotAuthorized>
+
+
+
     
 
-</div>
+
+
+
+
+    
+
+
+
 
 
 
@@ -134,5 +149,4 @@
     {
         Navigation.NavigateToLogout("authentication/logout");
     }
-
-}
+    }

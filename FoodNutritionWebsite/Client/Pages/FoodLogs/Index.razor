@@ -1,11 +1,10 @@
-﻿﻿@using Microsoft.AspNetCore.Authorization
+﻿﻿﻿@using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
 
 @page "/FoodLogs"
 @inject HttpClient _client
 @inject IJSRuntime js
-@attribute [Authorize(Roles = "Administrator")]
 @inject HttpInterceptorService _interceptor
 @implements IDisposable
 
@@ -27,49 +26,100 @@
 
 else
 {
-    <table class="table table-responsive" id="bookingsTable">
+    
+    <AuthorizeView Roles = "Administrator">
+        <Authorized>
 
-        <thead>
-            <tr>
-                <th>User</th>
-                <th>Food Name</th>
-                <th>Quantity</th>
-                <th>Date Added</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var foodlogs in FoodLogs)
-            {
+            <table class="table table-responsive" id="bookingsTable">
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Food Name</th>
+                        <th>Quantity</th>
+                        <th>Date Added</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
 
-                <tr>
-                    <td>@foodlogs.User.UserName</td>
-                    <td>@foodlogs.Food.FoodName</td
-                    <td>@foodlogs.Quantity</td>
-                    <td>@foodlogs.DateUpdated</td>
+                <tbody>
+                    @foreach (var foodlogs in FoodLogs)
+                    {
+                        <tr>
+                            <td>@foodlogs.User.UserName</td>
+                            <td>@foodlogs.Food.FoodName</td
+                            <td>@foodlogs.Quantity</td>
+                            <td>@foodlogs.DateUpdated</td>
 
-                    <td>
-                        <a href="/FoodLogs/view/@foodlogs.Id" class="bth btn-primary">
-                            <span class="oi oi-book"></span>
-                        </a>
+                            <td>
+                                <a href="/FoodLogs/view/@foodlogs.Id" class="bth btn-primary">
+                                    <span class="oi oi-book"></span>
+                                </a>
 
-                        <a href="/FoodLogs/edit/@foodlogs.Id" class="bth btn-primary">
-                            <span class="oi oi-pencil"></span>
-                        </a>
+                                <a href="/FoodLogs/edit/@foodlogs.Id" class="bth btn-primary">
+                                    <span class="oi oi-pencil"></span>
+                                   </a>
 
-                        <button class="btn btn-danger" @onclick="@(()=>Delete(foodlogs.Id))">
-                            <span class="oi oi-book"></span>
-                        </button>
+                                <button class="btn btn-danger" @onclick="@(()=>Delete(foodlogs.Id))">
+                                    <span class="oi oi-book"></span>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
 
-                    </td>
-                </tr>
-            }
+            </table>
+        </Authorized>
+    </AuthorizeView>
 
+    <AuthorizeView Roles = "User">
+        <Authorized>
+            <a href="/FoodLogs/create" class="btn btn-secondary">
+                <span class="oi oi-plus"></span>
+                Create New FoodLogs
+            </a>
+            <br />
+            <br />
+            <table class="table table-responsive" id="bookingsTable">
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Food Name</th>
+                        <th>Quantity</th>
+                        <th>Date Added</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
 
+                <tbody>
+                    @foreach (var foodlogs in FoodLogs)
+                    {
+                        <tr>
+                            <td>@foodlogs.User.UserName</td>
+                            <td>@foodlogs.Food.FoodName</td
+                            <td>@foodlogs.Quantity</td>
+                            <td>@foodlogs.DateUpdated</td>
 
-        </tbody>
+                            <td>
+                                <a href="/FoodLogs/view/@foodlogs.Id" class="bth btn-primary">
+                                    <span class="oi oi-book"></span>
+                                </a>
 
-    </table>
+                                <a href="/FoodLogs/edit/@foodlogs.Id" class="bth btn-primary">
+                                    <span class="oi oi-pencil"></span>
+                                   </a>
+
+                                <button class="btn btn-danger" @onclick="@(()=>Delete(foodlogs.Id))">
+                                    <span class="oi oi-book"></span>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </Authorized>
+    </AuthorizeView>
+
 }
 
 

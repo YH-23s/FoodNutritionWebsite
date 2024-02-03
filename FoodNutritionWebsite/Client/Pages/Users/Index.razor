@@ -5,69 +5,140 @@
 @page "/users"
 @inject HttpClient _client
 @inject IJSRuntime js
-@attribute [Authorize(Roles = "Administrator")]
 @inject HttpInterceptorService _interceptor
 @implements IDisposable
 
 <h3>Users Index</h3>
 
-<a href="/users/create" class="btn btn-secondary">
-    <span class="oi oi-plus"></span>
-    Create New Users
-</a>
-<br />
-<br />
+
+
+@if (Users == null)
+{
+    <div class="alert alert-info">Loading Food Logs...</div>
+}
+
+else
+{
+    <AuthorizeView Roles="Administrator">
+        <Authorized>
+            <a href="/users/create" class="btn btn-secondary">
+                <span class="oi oi-plus"></span>
+                Create New Users
+            </a>
+            <br />
+            <br />
+
+            <h3>Users Index</h3>
+
+            <a href="/users/create" class="btn btn-secondary">
+                <span class="oi oi-plus"></span>
+                Create New Users
+            </a>
+            <br />
+            <br />
+
+
+            <table class="table table-responsive">
+
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>DOB</th>
+                        <th>Password</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Users)
+                    {
+
+                        <tr>
+                            <td>@user.UserName</td>
+                            <td>@user.UserEmail</td>
+                            <td>@user.UserDOB</td>
+                            <td>@user.UserPassword</td>
+
+                            <td>
+                                <a href="/users/view/@user.Id" class="bth btn-primary">
+                                    <span class="oi oi-book"></span>
+                                </a>
+
+                                <a href="/users/edit/@user.Id" class="bth btn-primary">
+                                    <span class="oi oi-pencil"></span>
+                                </a>
+
+                                <button class="btn btn-danger" @onclick="@(()=>Delete(user.Id))">
+                                    <span class="oi oi-book"></span>
+                                </button>
+
+                            </td>
+                        </tr>
+                    }
+
+
+
+                </tbody>
+
+            </table>
+
+        </Authorized>
+
+    </AuthorizeView>
+
+
+
+    <AuthorizeView Roles="User">
+        <Authorized>
+
+            <table class="table table-responsive">
+
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>DOB</th>
+                        <th>Password</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Users)
+                    {
+
+                        <tr>
+                            <td>@user.UserName</td>
+                            <td>@user.UserEmail</td>
+                            <td>@user.UserDOB</td>
+                            <td>@user.UserPassword</td>
+
+                            <td>
+                                <a href="/users/view/@user.Id" class="bth btn-primary">
+                                    <span class="oi oi-book"></span>
+                                </a>
+
+                                <a href="/users/edit/@user.Id" class="bth btn-primary">
+                                    <span class="oi oi-pencil"></span>
+                                </a>
+
+
+                            </td>
+                        </tr>
+                    }
+
+
+
+                </tbody>
+
+            </table>
+
+        </Authorized>
+    </AuthorizeView>
+}
 
 
 
 
-
-
-
-
-<table class="table table-responsive">
-
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>DOB</th>
-            <th>Password</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var user in Users)
-        {
-
-            <tr>
-                <td>@user.UserName</td>
-                <td>@user.UserEmail</td>
-                <td>@user.UserDOB</td>
-                <td>@user.UserPassword</td>
-
-                <td>
-                    <a href="/users/view/@user.Id" class="bth btn-primary">
-                        <span class="oi oi-book"></span>
-                    </a>
-
-                    <a href="/users/edit/@user.Id" class="bth btn-primary">
-                        <span class="oi oi-pencil"></span>
-                    </a>
-
-                    <button class="btn btn-danger" @onclick="@(()=>Delete(user.Id))">
-                        <span class="oi oi-book"></span>
-                    </button>
-
-                </td>
-            </tr>
-        }
-
-
-
-    </tbody>
-
-</table>
 
 
 

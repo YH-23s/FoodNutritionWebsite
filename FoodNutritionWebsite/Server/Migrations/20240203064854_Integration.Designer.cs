@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodNutritionWebsite.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240201221011_newdb")]
-    partial class newdb
+    [Migration("20240203064854_Integration")]
+    partial class Integration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -244,7 +244,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d25cd1b3-6d3c-44ef-92ae-0ce079e1afe3",
+                            ConcurrencyStamp = "4eaedd7e-e21c-41cd-8c13-a69b322a9ab1",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -252,9 +252,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAECyCq4QwrbdAsYTp5FMoUNvv5eg+h/6ko4w6P2zyuQXSHGH0Caub5PT5as3yx5Tpjw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBz2ey3fQ/oVbUMAl6SE5r0tXzQXpqAuUaholyCXx+7gG6850CmyaCz6BwKrpkRmmA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5b4284d7-bdfd-4b44-8fd3-d11b7adea3c3",
+                            SecurityStamp = "1d909c6b-3bb5-4c71-98cb-96acbf348dab",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -262,7 +262,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = "a9ae8ce6-55cb-48f1-8e73-894563807efa",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "02cb1a5f-956a-47bf-ac0f-83e37ee87e1f",
+                            ConcurrencyStamp = "feb9be89-95ee-47a2-a90d-5d376beca8e7",
                             Email = "user@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "User",
@@ -270,9 +270,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@LOCALHOST.COM",
                             NormalizedUserName = "USER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHXUJhiuideLe2Iia6FIIJ4EmGpZSeCaImG35zDRgMbXkszHuTAlLNBpBdge+hhT4Q==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMaQH/bVSbRnTfDza5N3OTgnwnlwkH+y5XMsjnp5PVLMb0CSzsrt+rZcG53vZWKUww==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "730e3931-01f3-40c6-9b96-18d3702f34d5",
+                            SecurityStamp = "f030f266-905c-4397-8111-7716b373bfe6",
                             TwoFactorEnabled = false,
                             UserName = "user@localhost.com"
                         });
@@ -860,7 +860,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 2, 2, 6, 10, 11, 755, DateTimeKind.Local).AddTicks(4562),
+                            DateCreated = new DateTime(2024, 2, 3, 14, 48, 53, 790, DateTimeKind.Local).AddTicks(9785),
                             Gender = "Male",
                             UserDOB = "12/1/2001",
                             UserEmail = "TestingAccount@blazor.com",
@@ -872,7 +872,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 2, 2, 6, 10, 11, 755, DateTimeKind.Local).AddTicks(4587),
+                            DateCreated = new DateTime(2024, 2, 3, 14, 48, 53, 790, DateTimeKind.Local).AddTicks(9826),
                             Gender = "Female",
                             UserDOB = "12/1/2005",
                             UserEmail = "TestAccount@blazor.com",

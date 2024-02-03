@@ -5,22 +5,10 @@
 @page "/Payments"
 @inject HttpClient _client
 @inject IJSRuntime js
-@attribute [Authorize(Roles = "Administrator")]
 @inject HttpInterceptorService _interceptor
 @implements IDisposable
 
 <h3>Payments Index</h3>
-
-
-<a href="/Payments/create" class="btn btn-secondary">
-    <span class="oi oi-plus"></span>
-    Create New Payments
-</a>
-<br />
-<br />
-
-
-
 
 
 @if (Payments == null)
@@ -30,48 +18,112 @@
 
 else
 {
-    <table class="table table-responsive" id="bookingsTable">
 
-        <thead>
-            <tr>
-                <th> Subscription Name</th>
-                <th> Credit Card Num</th>
-                <th> Credit Card Cvv</th>
-                <th> Credit Card Exp</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var payments in Payments)
-            {
+    <AuthorizeView Roles="Administrator">
+        <Authorized>
 
+            <a href="/Payments/create" class="btn btn-secondary">
+                <span class="oi oi-plus"></span>
+                Create New Payments
+            </a>
+            <br />
+            <br />
+
+            <table class="table table-responsive" id="bookingsTable">
+
+            <thead>
                 <tr>
-                    <td>@payments.Subscription.SubscriptionName</td
-                    <td>@payments.CardNum</td>
-                    <td>@payments.Cvv</td>
-                    <td>@payments.CardExp</td>
-                    <td>
-                        <a href="/Payments/view/@payments.Id" class="bth btn-primary">
-                            <span class="oi oi-book"></span>
-                        </a>
-
-                        <a href="/Payments/edit/@payments.Id" class="bth btn-primary">
-                            <span class="oi oi-pencil"></span>
-                        </a>
-
-                        <button class="btn btn-danger" @onclick="@(()=>Delete(payments.Id))">
-                            <span class="oi oi-book"></span>
-                        </button>
-
-                    </td>
+                    <th> Subscription Name</th>
+                    <th> Credit Card Num</th>
+                    <th> Credit Card Cvv</th>
+                    <th> Credit Card Exp</th>
+                    <th>Actions</th>
                 </tr>
-            }
+            </thead>
+            <tbody>
+                @foreach (var payments in Payments)
+                {
+
+                    <tr>
+                        <td>@payments.Subscription.SubscriptionName</td
+                        <td>@payments.CardNum</td>
+                        <td>@payments.Cvv</td>
+                        <td>@payments.CardExp</td>
+                        <td>
+                            <a href="/Payments/view/@payments.Id" class="bth btn-primary">
+                                <span class="oi oi-book"></span>
+                            </a>
+
+                            <a href="/Payments/edit/@payments.Id" class="bth btn-primary">
+                                <span class="oi oi-pencil"></span>
+                            </a>
+
+                            <button class="btn btn-danger" @onclick="@(()=>Delete(payments.Id))">
+                                <span class="oi oi-book"></span>
+                            </button>
+
+                        </td>
+                    </tr>
+                }
 
 
 
-        </tbody>
+            </tbody>
 
-    </table>
+            </table>
+
+        </Authorized>
+    </AuthorizeView>
+
+
+    <AuthorizeView Roles="User">
+        <Authorized>
+            <a href="/Payments/create" class="btn btn-secondary">
+                <span class="oi oi-plus"></span>
+                Create New Payments
+            </a>
+            <br />
+            <br />
+
+            <table class="table table-responsive" id="bookingsTable">
+
+            <thead>
+                <tr>
+                    <th> Subscription Name</th>
+                    <th> Credit Card Num</th>
+                    <th> Credit Card Cvv</th>
+                    <th> Credit Card Exp</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var payments in Payments)
+                {
+
+                    <tr>
+                        <td>@payments.Subscription.SubscriptionName</td
+                        <td>@payments.CardNum</td>
+                        <td>@payments.Cvv</td>
+                        <td>@payments.CardExp</td>
+                        <td>
+                            <a href="/Payments/view/@payments.Id" class="bth btn-primary">
+                                <span class="oi oi-book"></span>
+                            </a>
+
+
+                        </td>
+                    </tr>
+                }
+
+
+
+            </tbody>
+
+            </table>
+
+        </Authorized>
+    </AuthorizeView>
+    
 }
 
 

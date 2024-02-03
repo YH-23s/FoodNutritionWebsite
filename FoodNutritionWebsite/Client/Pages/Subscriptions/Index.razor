@@ -5,23 +5,10 @@
 @page "/Subscriptions"
 @inject HttpClient _client
 @inject IJSRuntime js
-@attribute [Authorize(Roles = "Administrator")]
 @inject HttpInterceptorService _interceptor
 @implements IDisposable
 
 <h3>Subscriptions Index</h3>
-
-
-<a href="/Subscriptions/create" class="btn btn-secondary">
-    <span class="oi oi-plus"></span>
-    Create New Subscriptions Plan
-</a>
-<br />
-<br />
-
-
-
-
 
 
 
@@ -33,48 +20,106 @@
 
 else
 {
-    <table class="table table-responsive" id="bookingsTable">
+    <AuthorizeView Roles="Administrator">
+        <Authorized>
+            <a href="/Subscriptions/create" class="btn btn-secondary">
+                <span class="oi oi-plus"></span>
+                Create New Subscriptions Plan
+            </a>
+            <br />
+            <br />
+            <table class="table table-responsive" id="bookingsTable">
 
-        <thead>
-            <tr>
-                <th>Subscription Name</th>
-                <th>Meal Plan</th>
-                <th>Price</th>
-                <th>Date Added</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var subscription in Subscriptions)
-            {
+                <thead>
+                    <tr>
+                        <th>Subscription Name</th>
+                        <th>Meal Plan</th>
+                        <th>Price</th>
+                        <th>Date Added</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var subscription in Subscriptions)
+                    {
 
-                <tr>
-                    <td>@subscription.SubscriptionName</td>
-                    <td>@subscription.MealPlan.MealPlanName</td>
-                    <td>@subscription.SubscriptionPrice</td>
-                    <td>@subscription.DateUpdated</td>
-                    <td>
-                        <a href="/Subscriptions/view/@subscription.Id" class="btn btn-primary">
-                            <span class="oi oi-book"></span>
-                        </a>
+                        <tr>
+                            <td>@subscription.SubscriptionName</td>
+                            <td>@subscription.MealPlan.MealPlanName</td>
+                            <td>@subscription.SubscriptionPrice</td>
+                            <td>@subscription.DateUpdated</td>
+                            <td>
+                                <a href="/Subscriptions/view/@subscription.Id" class="btn btn-primary">
+                                    <span class="oi oi-book"></span>
+                                </a>
 
-                        <a href="/Subscriptions/edit/@subscription.Id" class="btn btn-primary">
-                            <span class="oi oi-pencil"></span>
-                        </a>
+                                <a href="/Subscriptions/edit/@subscription.Id" class="btn btn-primary">
+                                    <span class="oi oi-pencil"></span>
+                                </a>
 
-                        <button class="btn btn-danger" @onclick="@(()=>Delete(subscription.Id))">
-                            <span class="oi oi-book"></span>
-                        </button>
+                                <button class="btn btn-danger" @onclick="@(()=>Delete(subscription.Id))">
+                                    <span class="oi oi-book"></span>
+                                </button>
 
-                    </td>
-                </tr>
-            }
+                            </td>
+                        </tr>
+                    }
 
 
 
-        </tbody>
+                </tbody>
 
-    </table>
+            </table>
+        </Authorized>
+    </AuthorizeView>
+
+    <AuthorizeView Roles="User">
+        <Authorized>
+            <table class="table table-responsive" id="bookingsTable">
+
+                <thead>
+                    <tr>
+                        <th>Subscription Name</th>
+                        <th>Meal Plan</th>
+                        <th>Price</th>
+                        <th>Date Added</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var subscription in Subscriptions)
+                    {
+
+                        <tr>
+                            <td>@subscription.SubscriptionName</td>
+                            <td>@subscription.MealPlan.MealPlanName</td>
+                            <td>@subscription.SubscriptionPrice</td>
+                            <td>@subscription.DateUpdated</td>
+                            <td>
+                                <a href="/Subscriptions/view/@subscription.Id" class="btn btn-primary">
+                                    <span class="oi oi-book"></span>
+                                </a>
+
+                                
+
+                            </td>
+                        </tr>
+                    }
+
+
+
+                </tbody>
+
+            </table>
+        </Authorized>
+    </AuthorizeView>
+
+
+
+
+
+
+    
 }
 
 
