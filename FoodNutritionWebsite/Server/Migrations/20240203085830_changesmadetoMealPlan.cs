@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FoodNutritionWebsite.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class newdb : Migration
+    public partial class changesmadetoMealPlan : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -323,6 +323,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MealPlanCategory = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MealPlanName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     StaffID = table.Column<int>(type: "int", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -531,8 +532,8 @@ namespace FoodNutritionWebsite.Server.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "Gender", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "67bc5bd9-1361-4092-997a-f8883eb7c943", "admin@localhost.com", false, "Admin", null, "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEJ4zNqoSH61EO4cxlVzblF0I107y1MGnVfXh2RipIMSoqVQN7JVMQVOv5hr7E4VtIw==", null, false, "032e6a45-7afe-448d-93a9-9f6e05c76c68", false, "admin@localhost.com" },
-                    { "a9ae8ce6-55cb-48f1-8e73-894563807efa", 0, "279bacfb-e933-4231-90a9-a5d1f5ee3dd1", "user@localhost.com", false, "User", null, "User", false, null, "USER@LOCALHOST.COM", "USER@LOCALHOST.COM", "AQAAAAIAAYagAAAAEE4WwvtTR/FK0DYiDHxOTakCOWjnd6D3E5GknVfzKy4raROEtLfou8zyqmaSc1Q8aw==", null, false, "3c1a46b3-1bc5-47d3-baef-ba533043068b", false, "user@localhost.com" }
+                    { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "9dc4fbee-4303-4227-bd7f-19e404d0a559", "admin@localhost.com", false, "Admin", null, "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAELOMRrkBVbsaRjmYtUP0o25DThxtlvTm6nPnpOHTfniyAQ9ytgFmJhI3B7tgNLtbiQ==", null, false, "daad9833-90b9-44e4-b6e3-62c7bf0f0fa9", false, "admin@localhost.com" },
+                    { "a9ae8ce6-55cb-48f1-8e73-894563807efa", 0, "669dd36c-67ca-46e1-9553-51a6b37b1d29", "user@localhost.com", false, "User", null, "User", false, null, "USER@LOCALHOST.COM", "USER@LOCALHOST.COM", "AQAAAAIAAYagAAAAEP5oXqTGlQvf0lYmjY41I556PYxPNDt5Z+MhD41G3Qv0BeCxsmxOouITRtK2BeX9BQ==", null, false, "d0ede173-825b-4f88-a8d5-fd876d4507a8", false, "user@localhost.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -542,8 +543,8 @@ namespace FoodNutritionWebsite.Server.Migrations
                 {
                     { 1, null, null, null, "(per meatball) 0.2kcal", "Meat", "Savory ground beef meatballs seasoned with herbs and simmered in a rich tomato sauce", "Meatball", "https://www.budgetbytes.com/wp-content/uploads/2022/01/Easy-Homemade-Meatballs-spoon.jpg", null },
                     { 2, null, null, null, "0.089kcal", "Fruit", "Ripe, sweet banana, high in potassium and perfect as a quick snack or for baking", "Banana", "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Banana-Single.jpg/2324px-Banana-Single.jpg", null },
-                    { 3, null, null, null, "1.8kcal", "Salad", "A classic green salad featuring crisp romaine lettuce, creamy Caesar dressing, and crunchy croutons", "Caesar Salad", "https://upload.wikimedia.org/wikipedia/commons/9/94/Caesar_salad_%282%29.jpg", null },
-                    { 4, null, null, null, "2.5kcal", "Fish", "A succulent piece of salmon fillet grilled to perfection, rich in Omega-3 fatty acids", "Grilled Salmon", "https://upload.wikimedia.org/wikipedia/commons/5/5b/Grilled_Salmon.JPG", null }
+                    { 3, null, null, null, "(No meat) 0.48kcal", "Salad", "A classic green salad featuring crisp romaine lettuce, creamy Caesar dressing, and crunchy croutons", "Caesar Salad", "https://www.seriouseats.com/thmb/Fi_FEyVa3_-_uzfXh6OdLrzal2M=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/the-best-caesar-salad-recipe-06-40e70f549ba2489db09355abd62f79a9.jpg", null },
+                    { 4, null, null, null, "2.5kcal", "Fish", "A succulent piece of salmon fillet grilled to perfection, rich in Omega-3 fatty acids", "Grilled Salmon", "https://www.seriouseats.com/thmb/p5EoDZwxr2hB99YSmQbRCkOwQJA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2019__07__20190620-grilled-salmon-vicky-wasik-8-3f31d8d22d66456189d3a57c9911a710.jpg", null }
                 });
 
             migrationBuilder.InsertData(
@@ -551,9 +552,10 @@ namespace FoodNutritionWebsite.Server.Migrations
                 columns: new[] { "Id", "Address", "ContactNumber", "CreatedBy", "DOB", "DateCreated", "DateUpdated", "FirstName", "Gender", "LastName", "PersonalEmail", "Role", "StartDate", "UpdatedBy", "WorkEmail" },
                 values: new object[,]
                 {
-                    { 1, "123 Rivervale", "98765432", null, new DateTime(1980, 1, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "Darrell", "Male", "Tan", "abc@gmail.com", "Manager", new DateTime(2020, 1, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "abcd@officialweb.com" },
-                    { 2, "485 Sengkang Streets", "91827364", null, new DateTime(1990, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "Elgin", "Male", "Chng", "abcde@gmail.com", "Manager", new DateTime(2021, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "abcdef@officialweb.com" },
-                    { 3, "654 Lost Woods Streets", "15429857", null, new DateTime(1930, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "Li", "Female", "Wen", "wen@gmail.com", "HR Representative", new DateTime(2019, 9, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "wen1@officialweb.com" }
+                    { 1, "123 Rivervale", "98765432", null, new DateTime(1980, 1, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "Darrell", "Male", "Tan", "dtan@gmail.com", "Manager", new DateTime(2020, 1, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "dtan1@officialweb.com" },
+                    { 2, "485 Sengkang Streets", "91827364", null, new DateTime(1990, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "Elgin", "Male", "Chng", "chng@gmail.com", "Manager", new DateTime(2021, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "chng1@officialweb.com" },
+                    { 3, "654 Lost Woods Streets", "15429857", null, new DateTime(1930, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "Li", "Female", "Wen", "wen@gmail.com", "HR Representative", new DateTime(2019, 9, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "wen1@officialweb.com" },
+                    { 4, "654 Lost Woods Streets", "92384761", null, new DateTime(1970, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "Wen", "Female", "Hui", "hui@gmail.com", "HR Representative", new DateTime(2021, 9, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "hui@officialweb.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -561,8 +563,8 @@ namespace FoodNutritionWebsite.Server.Migrations
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "Gender", "SubscriptionID", "UpdatedBy", "UserDOB", "UserEmail", "UserName", "UserPassword", "UserPhoneNum" },
                 values: new object[,]
                 {
-                    { 1, "seed-script", new DateTime(2024, 2, 3, 15, 44, 44, 861, DateTimeKind.Local).AddTicks(4115), null, "Male", null, null, "12/1/2001", "TestingAccount@blazor.com", "TestingAccount", "TestingAccount_password123", "9012 0791" },
-                    { 2, "seed-script", new DateTime(2024, 2, 3, 15, 44, 44, 861, DateTimeKind.Local).AddTicks(4131), null, "Female", null, null, "12/1/2005", "TestAccount@blazor.com", "TestAccount@blazor.com", "TestAccount_password123", "9072 0791" }
+                    { 1, "seed-script", new DateTime(2024, 2, 3, 16, 58, 30, 441, DateTimeKind.Local).AddTicks(4401), null, "Male", null, null, "12/1/2001", "TestingAccount@blazor.com", "TestingAccount", "TestingAccount_password123", "9012 0791" },
+                    { 2, "seed-script", new DateTime(2024, 2, 3, 16, 58, 30, 441, DateTimeKind.Local).AddTicks(4421), null, "Female", null, null, "12/1/2005", "TestAccount@blazor.com", "TestAccount@blazor.com", "TestAccount_password123", "9072 0791" }
                 });
 
             migrationBuilder.InsertData(
@@ -576,12 +578,12 @@ namespace FoodNutritionWebsite.Server.Migrations
 
             migrationBuilder.InsertData(
                 table: "MealPlans",
-                columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "MealPlanCategory", "MealPlanName", "StaffID", "UpdatedBy" },
+                columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "Image", "MealPlanCategory", "MealPlanName", "StaffID", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, null, null, null, "Carnivore", "Steak and fries", 1, null },
-                    { 2, null, null, null, "Vegetable", "Grass and vegetable", 2, null },
-                    { 3, null, null, null, "Omnivore", "Grass and Meat", 3, null }
+                    { 1, null, null, null, "https://images.pexels.com/photos/2377045/pexels-photo-2377045.jpeg?cs=srgb&dl=pexels-total-shape-2377045.jpg&fm=jpg", "Weight Loss", "Low Carb Plan", 1, null },
+                    { 2, null, null, null, "https://hips.hearstapps.com/hmg-prod/images/gettyimages-492573824-1528828970.jpg", "Muscle Gain", "High Protein Plan", 2, null },
+                    { 3, null, null, null, "https://detoxkitchen.co.uk/images/imager/packageimage/active-maintain/6734478/DK_ActiveMaintain_square_2a1087fcf192370ad9a14b014fe7fa80.jpg", "Maintenance", "Balanced Diet Plan", 3, null }
                 });
 
             migrationBuilder.CreateIndex(

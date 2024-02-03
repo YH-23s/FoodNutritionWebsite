@@ -1,1 +1,117 @@
-﻿
+﻿/* General page settings */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #212529;
+    margin: 0;
+    padding: 0;
+    min-width: auto;
+}
+
+/* Navbar and sidebar styles */
+.navbar, .sidebar {
+    background-color: #343a40;
+    color: white;
+}
+
+/* Sidebar adjustments */
+.sidebar {
+    padding: 1rem;
+    min-height: 100vh; /* Full height */
+}
+
+/* Content area styling */
+.content {
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    margin: 2rem;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+}
+
+/* Card styles */
+.foodcard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* This will make the footer stick to the bottom */
+}
+
+    .foodcard:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+
+    /* Image styles */
+    /* Set a specific height and width for your images */
+    .foodcard img.catfoodimage {
+        width: 100%; /* This will make the image responsive to the container width, adjust if necessary */
+        height: 100%; /* Set a fixed height for all images */
+        object-fit: cover; /* This will cover the area of the element with the image without stretching it */
+        object-position: center; /* Adjust the alignment of the image within its container */
+    }
+
+/* Card body styles */
+.foodcardbody {
+    flex: 1; /* This ensures that the card body takes up the remaining space */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Align content inside card body */
+}
+
+/* Text inside the card */
+.foodname {
+    font-size: 1.25rem;
+    color: #343a40;
+    margin-bottom: 0.5rem;
+}
+
+.foodprice {
+    font-size: 1rem;
+    color: #6c757d;
+    margin-bottom: 1rem;
+}
+
+/* Button styles */
+.actionbutton {
+    margin: 0.5rem 0.25rem;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+/* Button colors */
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Utility classes */
+.d-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+/* Responsive design adjustments */
+@media (min-width: 768px) {
+    .row-cols-md-3 > * {
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+    }
+}

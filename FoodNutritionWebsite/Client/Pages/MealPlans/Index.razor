@@ -1,8 +1,4 @@
-﻿@using Microsoft.AspNetCore.Authorization
-@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-@using FoodNutritionWebsite.Client.Services
-
-@page "/MealPlans"
+﻿@page "/MealPlans"
 @inject HttpClient _client
 @inject IJSRuntime js
 @inject HttpInterceptorService _interceptor
@@ -11,60 +7,47 @@
 
 <h3>MealPlan Index</h3>
 
-
-<a href="/MealPlans/create" class="btn btn-secondary">
-    <span class="oi oi-plus"></span>
-    Create New MealPlan
+<a href="/MealPlans/create" class="btn btn-secondary my-2">
+    <span class="oi oi-plus"></span> Create New MealPlan
 </a>
 <br />
 <br />
 
-@if (MealPlan == null)
-{
-    <div class="alert alert-info">Loading Meal Plan...</div>
-}
-else
-{
-    <table class="table table-responsive" id="bookingsTable">
-
-        <thead>
-            <tr>
-                <th>Meal Plan Name</th>
-                <th>Category</th
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            @foreach (var mealplans in MealPlan)
+<div class="container-fluid">
+    <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+        @if (MealPlan == null)
+        {
+            <div class="alert alert-info">Loading Meal Plans...</div>
+        }
+        else
+        {
+            @foreach (var mealplan in MealPlan)
             {
+                <div class="col afood">
+                    <div class="card h-100 foodcard" style="text-decoration: none;">
+                        <img src="@mealplan.Image" class="catfoodimage img-fluid" style="max-width: 100%; max-height: 100%">
 
-                <tr>
-                    <td>@mealplans.MealPlanName</td>
-                    <td>@mealplans.MealPlanCategory</td>
-                
-                    <td>
-                        <a href="/MealPlans/view/@mealplans.Id" class="bth btn-primary">
-                            <span class="oi oi-book"></span>
-                        </a>
-
-                        <a href="/MealPlans/edit/@mealplans.Id" class="bth btn-primary">
-                            <span class="oi oi-pencil"></span>
-                        </a>
-
-                        <button class="btn btn-danger" @onclick="@(()=>Delete(mealplans.Id))">
-                            <span class="oi oi-book"></span>
-                        </button>
-
-                    </td>
-                </tr>
+                        <div class="card-body foodcardbody">
+                            <h3 class="foodname">@mealplan.MealPlanName</h3>
+                            <h5 class="foodprice">@mealplan.MealPlanCategory</h5>
+                            <div class="d-flex justify-content-center">
+                                <a href="/MealPlans/view/@mealplan.Id" class="btn btn-primary actionbutton">
+                                    <i class="oi oi-eye"></i> View
+                                </a>
+                                <a href="/MealPlans/edit/@mealplan.Id" class="btn btn-warning actionbutton">
+                                    <i class="oi oi-pencil"></i> Edit
+                                </a>
+                                <button class="btn btn-danger actionbutton" @onclick="@(()=>Delete(mealplan.Id))">
+                                    <i class="oi oi-trash"></i> Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             }
-
-        </tbody>
-
-    </table>
-    }
-
+        }
+    </div>
+</div>
 
 @code {
     public List<MealPlan>? MealPlan;
@@ -92,24 +75,13 @@ else
         
     }
 
-    protected async override Task OnAfterRenderAsync(bool firstRender)
-    {
-        await js.InvokeVoidAsync("AddDataTable", "#bookingsTable");
-    }
-
     public void Dispose()
     {
         _interceptor.DisposeEvent();
-        js.InvokeVoidAsync("DataTablesDispose", "#bookingsTable");
     }
 
-    int GetMealPlanCount()
-    {
-        return MealPlan?.Count ?? 0;
-    }
 
 }
 
-<p>Total MealPlan: @GetMealPlanCount()</p>
 
 

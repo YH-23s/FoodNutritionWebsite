@@ -11,24 +11,27 @@ namespace FoodNutritionWebsite.Server.Configurations.Entities
            builder.HasData(
             new MealPlan
             {
-              Id = 1,
-              MealPlanCategory = "Weight Loss",
-              MealPlanName = "Low Carb Plan",
-              StaffID = 1
+                Id = 1,
+                MealPlanCategory = "Weight Loss",
+                MealPlanName = "Low Carb Plan",
+                Image = "https://images.pexels.com/photos/2377045/pexels-photo-2377045.jpeg?cs=srgb&dl=pexels-total-shape-2377045.jpg&fm=jpg",
+                StaffID = 1
             },
             new MealPlan
             {
                 Id = 2,
                 MealPlanCategory = "Muscle Gain",
                 MealPlanName = "High Protein Plan",
-				StaffID = 2
+                Image = "https://hips.hearstapps.com/hmg-prod/images/gettyimages-492573824-1528828970.jpg",
+                StaffID = 2
 			},
             new MealPlan
             {
                 Id = 3,
                 MealPlanCategory = "Maintenance",
                 MealPlanName = "Balanced Diet Plan",
-				StaffID = 3
+                Image = "https://detoxkitchen.co.uk/images/imager/packageimage/active-maintain/6734478/DK_ActiveMaintain_square_2a1087fcf192370ad9a14b014fe7fa80.jpg",
+                StaffID = 3
 			}
             );
         }

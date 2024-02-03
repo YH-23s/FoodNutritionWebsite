@@ -241,7 +241,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7b7fc74e-a493-4630-a201-d84529543b57",
+                            ConcurrencyStamp = "9dc4fbee-4303-4227-bd7f-19e404d0a559",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -249,9 +249,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKOXNbQXfVob0HKjgYgpbzwWadFMdVIB1Yt0nHwr+Hsg5gx6c0RQisv02PWAekQW+A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELOMRrkBVbsaRjmYtUP0o25DThxtlvTm6nPnpOHTfniyAQ9ytgFmJhI3B7tgNLtbiQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2358619a-c4b6-4e71-a15b-566abcf03142",
+                            SecurityStamp = "daad9833-90b9-44e4-b6e3-62c7bf0f0fa9",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -259,7 +259,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = "a9ae8ce6-55cb-48f1-8e73-894563807efa",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d07e3531-af07-4370-bc5a-d6c390f7654d",
+                            ConcurrencyStamp = "669dd36c-67ca-46e1-9553-51a6b37b1d29",
                             Email = "user@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "User",
@@ -267,9 +267,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@LOCALHOST.COM",
                             NormalizedUserName = "USER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEL20pZ85FOBp32tLRn69vZOlF7gC5ee3b1sBCvvRfstQ+r3uJ2ZFjJpIHcx7D7wxTQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEP5oXqTGlQvf0lYmjY41I556PYxPNDt5Z+MhD41G3Qv0BeCxsmxOouITRtK2BeX9BQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2bd1aaf6-c766-456f-8f7f-732f5b657283",
+                            SecurityStamp = "d0ede173-825b-4f88-a8d5-fd876d4507a8",
                             TwoFactorEnabled = false,
                             UserName = "user@localhost.com"
                         });
@@ -379,7 +379,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         new
                         {
                             Id = 3,
-                            FoodCalory = "(No meat) 0.481kcal",
+                            FoodCalory = "(No meat) 0.48kcal",
                             FoodCategory = "Salad",
                             FoodDescription = "A classic green salad featuring crisp romaine lettuce, creamy Caesar dressing, and crunchy croutons",
                             FoodName = "Caesar Salad",
@@ -567,6 +567,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("MealPlanCategory")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -591,22 +594,25 @@ namespace FoodNutritionWebsite.Server.Migrations
                         new
                         {
                             Id = 1,
-                            MealPlanCategory = "Carnivore",
-                            MealPlanName = "Steak and fries",
+                            Image = "https://images.pexels.com/photos/2377045/pexels-photo-2377045.jpeg?cs=srgb&dl=pexels-total-shape-2377045.jpg&fm=jpg",
+                            MealPlanCategory = "Weight Loss",
+                            MealPlanName = "Low Carb Plan",
                             StaffID = 1
                         },
                         new
                         {
                             Id = 2,
-                            MealPlanCategory = "Vegetable",
-                            MealPlanName = "Grass and vegetable",
+                            Image = "https://hips.hearstapps.com/hmg-prod/images/gettyimages-492573824-1528828970.jpg",
+                            MealPlanCategory = "Muscle Gain",
+                            MealPlanName = "High Protein Plan",
                             StaffID = 2
                         },
                         new
                         {
                             Id = 3,
-                            MealPlanCategory = "Omnivore",
-                            MealPlanName = "Grass and Meat",
+                            Image = "https://detoxkitchen.co.uk/images/imager/packageimage/active-maintain/6734478/DK_ActiveMaintain_square_2a1087fcf192370ad9a14b014fe7fa80.jpg",
+                            MealPlanCategory = "Maintenance",
+                            MealPlanName = "Balanced Diet Plan",
                             StaffID = 3
                         });
                 });
@@ -739,10 +745,10 @@ namespace FoodNutritionWebsite.Server.Migrations
                             FirstName = "Darrell",
                             Gender = "Male",
                             LastName = "Tan",
-                            PersonalEmail = "abc@gmail.com",
+                            PersonalEmail = "dtan@gmail.com",
                             Role = "Manager",
                             StartDate = new DateTime(2020, 1, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            WorkEmail = "abcd@officialweb.com"
+                            WorkEmail = "dtan1@officialweb.com"
                         },
                         new
                         {
@@ -753,10 +759,10 @@ namespace FoodNutritionWebsite.Server.Migrations
                             FirstName = "Elgin",
                             Gender = "Male",
                             LastName = "Chng",
-                            PersonalEmail = "abcde@gmail.com",
+                            PersonalEmail = "chng@gmail.com",
                             Role = "Manager",
                             StartDate = new DateTime(2021, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            WorkEmail = "abcdef@officialweb.com"
+                            WorkEmail = "chng1@officialweb.com"
                         },
                         new
                         {
@@ -771,6 +777,20 @@ namespace FoodNutritionWebsite.Server.Migrations
                             Role = "HR Representative",
                             StartDate = new DateTime(2019, 9, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             WorkEmail = "wen1@officialweb.com"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Address = "654 Lost Woods Streets",
+                            ContactNumber = "92384761",
+                            DOB = new DateTime(1970, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Wen",
+                            Gender = "Female",
+                            LastName = "Hui",
+                            PersonalEmail = "hui@gmail.com",
+                            Role = "HR Representative",
+                            StartDate = new DateTime(2021, 9, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            WorkEmail = "hui@officialweb.com"
                         });
                 });
 
@@ -875,7 +895,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 2, 3, 15, 55, 8, 369, DateTimeKind.Local).AddTicks(4991),
+                            DateCreated = new DateTime(2024, 2, 3, 16, 58, 30, 441, DateTimeKind.Local).AddTicks(4401),
                             Gender = "Male",
                             UserDOB = "12/1/2001",
                             UserEmail = "TestingAccount@blazor.com",
@@ -887,7 +907,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 2, 3, 15, 55, 8, 369, DateTimeKind.Local).AddTicks(5010),
+                            DateCreated = new DateTime(2024, 2, 3, 16, 58, 30, 441, DateTimeKind.Local).AddTicks(4421),
                             Gender = "Female",
                             UserDOB = "12/1/2005",
                             UserEmail = "TestAccount@blazor.com",
