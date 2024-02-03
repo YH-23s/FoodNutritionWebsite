@@ -98,6 +98,16 @@
         }
     }
 
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        await js.InvokeVoidAsync("AddDataTable", "#bookingsTable");
+    }
+
+    public void Dispose()
+    {
+        _interceptor.DisposeEvent();
+        js.InvokeVoidAsync("DataTablesDispose", "#bookingsTable");
+    }
 
     int GetUserCount()
     {

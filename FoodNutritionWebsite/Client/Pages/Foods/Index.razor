@@ -21,61 +21,44 @@
 <br />
 <br />
 
-
-@if (Food == null)
-{
-    <div class="alert alert-info">Loading Food...</div>
-}
-
-else
-{
-    <table class="table table-responsive" id="bookingsTable">
-
-        <thead>
-            <tr>
-                <th>Food Name</th>
-                <th>Food Type</th>
-                <th>Date Description</th>
-                <th>Food Picture</th>
-                <th>Food Calory</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            @foreach (var foods in Food)
+<div class="container-fluid">
+    <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+        @if (Food == null)
+        {
+            <div class="alert alert-info">Loading Foods...</div>
+        }
+        else
+        {
+            @foreach (var food in Food)
             {
+                <div class="col afood">
 
-                <tr>
-                    <td>@foods.FoodName</td>
-                    <td>@foods.FoodDescription</td>
-                    <td>@foods.FoodCategory</td>
-                    <td>@foods.FoodPicture</td>
-                    <td>@foods.FoodCalory</td>
-                
-                    <td>
-                        <a href="/Food/view/@foods.Id" class="bth btn-primary">
-                            <span class="oi oi-book"></span>
-                        </a>
 
-                        <a href="/Food/edit/@foods.Id" class="bth btn-primary">
-                            <span class="oi oi-pencil"></span>
-                        </a>
+                    <div class="card h-100 foodcard" style="text-decoration: none;">
+                        <img src="@food.FoodPicture" class="catfoodimage img-fluid">
 
-                        <button class="btn btn-danger" @onclick="@(()=>Delete(foods.Id))">
-                            <span class="oi oi-book"></span>
-                        </button>
 
-                    </td>
-                </tr>
+                        <div class="card-body foodcardbody">
+                            <h3 class="foodname">@food.FoodName</h3>
+                            <h5 class="foodprice">@food.FoodCalory</h5>
+                            <div class="d-flex justify-content-center">
+                                <a href="/food/view/@food.Id" class="btn btn-primary actionbutton">
+                                    <i class="bi bi-file-earmark"></i>
+                                </a>
+                                <a href="/food/edit/@food.Id" class="btn btn-warning actionbutton">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                                <button class="btn btn-danger actionbutton" @onclick="@(()=>Delete(@food.Id))">
+                                    <i class="bi bi-x-lg"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             }
-
-
-
-        </tbody>
-
-    </table>
-}
+        }
+    </div>
+</div>
 
 @code {
     public List<Food>? Food;
@@ -102,15 +85,9 @@ else
         }
     }
 
-    protected async override Task OnAfterRenderAsync(bool firstRender)
-    {
-        await js.InvokeVoidAsync("AddDataTable", "#bookingsTable");
-    }
-
     public void Dispose()
     {
         _interceptor.DisposeEvent();
-        js.InvokeVoidAsync("DataTablesDispose", "#bookingsTable");
     }
 
     int GetFoodCount()

@@ -2,7 +2,12 @@
     position: relative;
     display: flex;
     flex-direction: row;
-    background: linear-gradient(to right, #FF706F 60%, hsl(330, 100%, 53.5%))
+    background: linear-gradient(to right, #FF706F 60%, hsl(330, 100%, 53.5%));
+    min-height:100vh;
+}
+
+.main-content {
+    flex-grow: 1;
 }
 
 
@@ -11,8 +16,9 @@
     gap: 130px;
     height: 110px;
 }
-
-
+.sidebar {
+    background: linear-gradient(to right, #FF706F 60%, hsl(330, 100%, 53.5%));
+}
 
 
 .Logo-size {
@@ -25,8 +31,8 @@
 
 .tabs {
     /* When you put position: relative, you would allow the information in this calss to have the access to move around
-        and not be at a fixed place. To change the location, you would use top, bottom, left and right as shown below.
-    */
+        and not be at a fixed place. To change the location, you would use top, bottom, left and right as shown below.*/
+
     position: relative;
     top: 37px;
 }
@@ -39,9 +45,9 @@
 
 
 .content {
-    /* The padding-top is to create a space between the top ans the code you are using this class for. */
+    /*  The padding-top is to create a space between the top ans the code you are using this class for. */
     padding-top: 5px;
-    /* The border-top is used to make a visible color line to show the break and show where the bottom start for the padding-top. */
+    /*The border-top is used to make a visible color line to show the break and show where the bottom start for the padding-top.*/ 
     border-top: 1px solid white;
     color: white;
 }
