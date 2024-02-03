@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodNutritionWebsite.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240201221011_newdb")]
-    partial class newdb
+    [Migration("20240203074934_images2")]
+    partial class images2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -244,7 +244,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d25cd1b3-6d3c-44ef-92ae-0ce079e1afe3",
+                            ConcurrencyStamp = "15725918-aba7-4a4a-b1e6-9f021bcdcd80",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -252,9 +252,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAECyCq4QwrbdAsYTp5FMoUNvv5eg+h/6ko4w6P2zyuQXSHGH0Caub5PT5as3yx5Tpjw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEM1aUqbtX2DmsiFz2rE5dUs1IB8np5oX+W4PY/AI+/tu3G0Z/vnTbjJ8hIdNYhngkg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5b4284d7-bdfd-4b44-8fd3-d11b7adea3c3",
+                            SecurityStamp = "cd7a58c4-b60d-47fa-bdac-16434b3f72eb",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -262,7 +262,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = "a9ae8ce6-55cb-48f1-8e73-894563807efa",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "02cb1a5f-956a-47bf-ac0f-83e37ee87e1f",
+                            ConcurrencyStamp = "101e7f22-be6d-4f68-91d4-a44a12fe3123",
                             Email = "user@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "User",
@@ -270,9 +270,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@LOCALHOST.COM",
                             NormalizedUserName = "USER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHXUJhiuideLe2Iia6FIIJ4EmGpZSeCaImG35zDRgMbXkszHuTAlLNBpBdge+hhT4Q==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGoBZCysUyx5VUoHOz33Fc7ew9DGQib/Wqz7woE7g2Hc1CRgdWuqyj4c3ZNckEYBWA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "730e3931-01f3-40c6-9b96-18d3702f34d5",
+                            SecurityStamp = "943bd0e0-379d-4806-b909-8570ceb8d3a6",
                             TwoFactorEnabled = false,
                             UserName = "user@localhost.com"
                         });
@@ -364,20 +364,38 @@ namespace FoodNutritionWebsite.Server.Migrations
                         new
                         {
                             Id = 1,
-                            FoodCalory = "2.1kcal",
+                            FoodCalory = "(per meatball) 0.2kcal",
                             FoodCategory = "Meat",
-                            FoodDescription = "Taste what it feels like to be SPEED",
-                            FoodName = "Horse meatball",
-                            FoodPicture = "Placeholder for now"
+                            FoodDescription = "Savory ground beef meatballs seasoned with herbs and simmered in a rich tomato sauce",
+                            FoodName = "Meatball",
+                            FoodPicture = "https://www.budgetbytes.com/wp-content/uploads/2022/01/Easy-Homemade-Meatballs-spoon.jpg"
                         },
                         new
                         {
                             Id = 2,
-                            FoodCalory = "0.2kcal",
+                            FoodCalory = "0.089kcal",
                             FoodCategory = "Fruit",
-                            FoodDescription = "Boomerang yellow fruit",
+                            FoodDescription = "Ripe, sweet banana, high in potassium and perfect as a quick snack or for baking",
                             FoodName = "Banana",
-                            FoodPicture = "Placeholder for now"
+                            FoodPicture = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Banana-Single.jpg/2324px-Banana-Single.jpg"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            FoodCalory = "1.8kcal",
+                            FoodCategory = "Salad",
+                            FoodDescription = "A classic green salad featuring crisp romaine lettuce, creamy Caesar dressing, and crunchy croutons",
+                            FoodName = "Caesar Salad",
+                            FoodPicture = "https://www.seriouseats.com/thmb/Fi_FEyVa3_-_uzfXh6OdLrzal2M=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/the-best-caesar-salad-recipe-06-40e70f549ba2489db09355abd62f79a9.jpg"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            FoodCalory = "2.5kcal",
+                            FoodCategory = "Fish",
+                            FoodDescription = "A succulent piece of salmon fillet grilled to perfection, rich in Omega-3 fatty acids",
+                            FoodName = "Grilled Salmon",
+                            FoodPicture = "https://www.seriouseats.com/thmb/p5EoDZwxr2hB99YSmQbRCkOwQJA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2019__07__20190620-grilled-salmon-vicky-wasik-8-3f31d8d22d66456189d3a57c9911a710.jpg"
                         });
                 });
 
@@ -860,7 +878,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 2, 2, 6, 10, 11, 755, DateTimeKind.Local).AddTicks(4562),
+                            DateCreated = new DateTime(2024, 2, 3, 15, 49, 34, 298, DateTimeKind.Local).AddTicks(5500),
                             Gender = "Male",
                             UserDOB = "12/1/2001",
                             UserEmail = "TestingAccount@blazor.com",
@@ -872,7 +890,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 2, 2, 6, 10, 11, 755, DateTimeKind.Local).AddTicks(4587),
+                            DateCreated = new DateTime(2024, 2, 3, 15, 49, 34, 298, DateTimeKind.Local).AddTicks(5593),
                             Gender = "Female",
                             UserDOB = "12/1/2005",
                             UserEmail = "TestAccount@blazor.com",

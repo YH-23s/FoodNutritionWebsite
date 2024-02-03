@@ -531,8 +531,8 @@ namespace FoodNutritionWebsite.Server.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "Gender", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "d25cd1b3-6d3c-44ef-92ae-0ce079e1afe3", "admin@localhost.com", false, "Admin", null, "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAECyCq4QwrbdAsYTp5FMoUNvv5eg+h/6ko4w6P2zyuQXSHGH0Caub5PT5as3yx5Tpjw==", null, false, "5b4284d7-bdfd-4b44-8fd3-d11b7adea3c3", false, "admin@localhost.com" },
-                    { "a9ae8ce6-55cb-48f1-8e73-894563807efa", 0, "02cb1a5f-956a-47bf-ac0f-83e37ee87e1f", "user@localhost.com", false, "User", null, "User", false, null, "USER@LOCALHOST.COM", "USER@LOCALHOST.COM", "AQAAAAIAAYagAAAAEHXUJhiuideLe2Iia6FIIJ4EmGpZSeCaImG35zDRgMbXkszHuTAlLNBpBdge+hhT4Q==", null, false, "730e3931-01f3-40c6-9b96-18d3702f34d5", false, "user@localhost.com" }
+                    { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "67bc5bd9-1361-4092-997a-f8883eb7c943", "admin@localhost.com", false, "Admin", null, "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEJ4zNqoSH61EO4cxlVzblF0I107y1MGnVfXh2RipIMSoqVQN7JVMQVOv5hr7E4VtIw==", null, false, "032e6a45-7afe-448d-93a9-9f6e05c76c68", false, "admin@localhost.com" },
+                    { "a9ae8ce6-55cb-48f1-8e73-894563807efa", 0, "279bacfb-e933-4231-90a9-a5d1f5ee3dd1", "user@localhost.com", false, "User", null, "User", false, null, "USER@LOCALHOST.COM", "USER@LOCALHOST.COM", "AQAAAAIAAYagAAAAEE4WwvtTR/FK0DYiDHxOTakCOWjnd6D3E5GknVfzKy4raROEtLfou8zyqmaSc1Q8aw==", null, false, "3c1a46b3-1bc5-47d3-baef-ba533043068b", false, "user@localhost.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -540,8 +540,10 @@ namespace FoodNutritionWebsite.Server.Migrations
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "FoodCalory", "FoodCategory", "FoodDescription", "FoodName", "FoodPicture", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, null, null, null, "2.1kcal", "Meat", "Taste what it feels like to be SPEED", "Horse meatball", "Placeholder for now", null },
-                    { 2, null, null, null, "0.2kcal", "Fruit", "Boomerang yellow fruit", "Banana", "Placeholder for now", null }
+                    { 1, null, null, null, "(per meatball) 0.2kcal", "Meat", "Savory ground beef meatballs seasoned with herbs and simmered in a rich tomato sauce", "Meatball", "https://www.budgetbytes.com/wp-content/uploads/2022/01/Easy-Homemade-Meatballs-spoon.jpg", null },
+                    { 2, null, null, null, "0.089kcal", "Fruit", "Ripe, sweet banana, high in potassium and perfect as a quick snack or for baking", "Banana", "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Banana-Single.jpg/2324px-Banana-Single.jpg", null },
+                    { 3, null, null, null, "1.8kcal", "Salad", "A classic green salad featuring crisp romaine lettuce, creamy Caesar dressing, and crunchy croutons", "Caesar Salad", "https://upload.wikimedia.org/wikipedia/commons/9/94/Caesar_salad_%282%29.jpg", null },
+                    { 4, null, null, null, "2.5kcal", "Fish", "A succulent piece of salmon fillet grilled to perfection, rich in Omega-3 fatty acids", "Grilled Salmon", "https://upload.wikimedia.org/wikipedia/commons/5/5b/Grilled_Salmon.JPG", null }
                 });
 
             migrationBuilder.InsertData(
@@ -559,8 +561,8 @@ namespace FoodNutritionWebsite.Server.Migrations
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "Gender", "SubscriptionID", "UpdatedBy", "UserDOB", "UserEmail", "UserName", "UserPassword", "UserPhoneNum" },
                 values: new object[,]
                 {
-                    { 1, "seed-script", new DateTime(2024, 2, 2, 6, 10, 11, 755, DateTimeKind.Local).AddTicks(4562), null, "Male", null, null, "12/1/2001", "TestingAccount@blazor.com", "TestingAccount", "TestingAccount_password123", "9012 0791" },
-                    { 2, "seed-script", new DateTime(2024, 2, 2, 6, 10, 11, 755, DateTimeKind.Local).AddTicks(4587), null, "Female", null, null, "12/1/2005", "TestAccount@blazor.com", "TestAccount@blazor.com", "TestAccount_password123", "9072 0791" }
+                    { 1, "seed-script", new DateTime(2024, 2, 3, 15, 44, 44, 861, DateTimeKind.Local).AddTicks(4115), null, "Male", null, null, "12/1/2001", "TestingAccount@blazor.com", "TestingAccount", "TestingAccount_password123", "9012 0791" },
+                    { 2, "seed-script", new DateTime(2024, 2, 3, 15, 44, 44, 861, DateTimeKind.Local).AddTicks(4131), null, "Female", null, null, "12/1/2005", "TestAccount@blazor.com", "TestAccount@blazor.com", "TestAccount_password123", "9072 0791" }
                 });
 
             migrationBuilder.InsertData(

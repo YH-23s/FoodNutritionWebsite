@@ -4,6 +4,7 @@ using FoodNutritionWebsite.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodNutritionWebsite.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240203074445_newdb")]
+    partial class newdb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -241,7 +244,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7b7fc74e-a493-4630-a201-d84529543b57",
+                            ConcurrencyStamp = "67bc5bd9-1361-4092-997a-f8883eb7c943",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -249,9 +252,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKOXNbQXfVob0HKjgYgpbzwWadFMdVIB1Yt0nHwr+Hsg5gx6c0RQisv02PWAekQW+A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJ4zNqoSH61EO4cxlVzblF0I107y1MGnVfXh2RipIMSoqVQN7JVMQVOv5hr7E4VtIw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2358619a-c4b6-4e71-a15b-566abcf03142",
+                            SecurityStamp = "032e6a45-7afe-448d-93a9-9f6e05c76c68",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -259,7 +262,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = "a9ae8ce6-55cb-48f1-8e73-894563807efa",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d07e3531-af07-4370-bc5a-d6c390f7654d",
+                            ConcurrencyStamp = "279bacfb-e933-4231-90a9-a5d1f5ee3dd1",
                             Email = "user@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "User",
@@ -267,9 +270,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@LOCALHOST.COM",
                             NormalizedUserName = "USER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEL20pZ85FOBp32tLRn69vZOlF7gC5ee3b1sBCvvRfstQ+r3uJ2ZFjJpIHcx7D7wxTQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEE4WwvtTR/FK0DYiDHxOTakCOWjnd6D3E5GknVfzKy4raROEtLfou8zyqmaSc1Q8aw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2bd1aaf6-c766-456f-8f7f-732f5b657283",
+                            SecurityStamp = "3c1a46b3-1bc5-47d3-baef-ba533043068b",
                             TwoFactorEnabled = false,
                             UserName = "user@localhost.com"
                         });
@@ -379,11 +382,11 @@ namespace FoodNutritionWebsite.Server.Migrations
                         new
                         {
                             Id = 3,
-                            FoodCalory = "(No meat) 0.481kcal",
+                            FoodCalory = "1.8kcal",
                             FoodCategory = "Salad",
                             FoodDescription = "A classic green salad featuring crisp romaine lettuce, creamy Caesar dressing, and crunchy croutons",
                             FoodName = "Caesar Salad",
-                            FoodPicture = "https://www.seriouseats.com/thmb/Fi_FEyVa3_-_uzfXh6OdLrzal2M=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/the-best-caesar-salad-recipe-06-40e70f549ba2489db09355abd62f79a9.jpg"
+                            FoodPicture = "https://upload.wikimedia.org/wikipedia/commons/9/94/Caesar_salad_%282%29.jpg"
                         },
                         new
                         {
@@ -392,7 +395,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                             FoodCategory = "Fish",
                             FoodDescription = "A succulent piece of salmon fillet grilled to perfection, rich in Omega-3 fatty acids",
                             FoodName = "Grilled Salmon",
-                            FoodPicture = "https://www.seriouseats.com/thmb/p5EoDZwxr2hB99YSmQbRCkOwQJA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2019__07__20190620-grilled-salmon-vicky-wasik-8-3f31d8d22d66456189d3a57c9911a710.jpg"
+                            FoodPicture = "https://upload.wikimedia.org/wikipedia/commons/5/5b/Grilled_Salmon.JPG"
                         });
                 });
 
@@ -875,7 +878,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 2, 3, 15, 55, 8, 369, DateTimeKind.Local).AddTicks(4991),
+                            DateCreated = new DateTime(2024, 2, 3, 15, 44, 44, 861, DateTimeKind.Local).AddTicks(4115),
                             Gender = "Male",
                             UserDOB = "12/1/2001",
                             UserEmail = "TestingAccount@blazor.com",
@@ -887,7 +890,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 2, 3, 15, 55, 8, 369, DateTimeKind.Local).AddTicks(5010),
+                            DateCreated = new DateTime(2024, 2, 3, 15, 44, 44, 861, DateTimeKind.Local).AddTicks(4131),
                             Gender = "Female",
                             UserDOB = "12/1/2005",
                             UserEmail = "TestAccount@blazor.com",

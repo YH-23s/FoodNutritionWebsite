@@ -31,13 +31,9 @@ body {
 
 /* Card styles */
 .foodcard {
-    background-color: #ffffff;
-    border: none;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    margin-bottom: 1rem; /* Space between cards */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* This will make the footer stick to the bottom */
 }
 
     .foodcard:hover {
@@ -45,14 +41,20 @@ body {
     }
 
 /* Image styles */
-.catfoodimage {
-    width: 100%;
-    display: block;
+/* Set a specific height and width for your images */
+.foodcard img.catfoodimage {
+    width: 100%; /* This will make the image responsive to the container width, adjust if necessary */
+    height: 100%; /* Set a fixed height for all images */
+    object-fit: cover; /* This will cover the area of the element with the image without stretching it */
+    object-position: center; /* Adjust the alignment of the image within its container */
 }
 
 /* Card body styles */
 .foodcardbody {
-    padding: 2rem;
+    flex: 1; /* This ensures that the card body takes up the remaining space */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Align content inside card body */
 }
 
 /* Text inside the card */

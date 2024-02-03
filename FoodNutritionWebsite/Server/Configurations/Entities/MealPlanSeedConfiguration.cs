@@ -11,23 +11,23 @@ namespace FoodNutritionWebsite.Server.Configurations.Entities
            builder.HasData(
             new MealPlan
             {
-                Id = 1,
-                MealPlanCategory = "Carnivore",
-                MealPlanName = "Steak and fries",
-				StaffID = 1
-			},
+              Id = 1,
+              MealPlanCategory = "Weight Loss",
+              MealPlanName = "Low Carb Plan",
+              StaffID = 1
+            },
             new MealPlan
             {
                 Id = 2,
-                MealPlanCategory = "Vegetable",
-                MealPlanName = "Grass and vegetable",
+                MealPlanCategory = "Muscle Gain",
+                MealPlanName = "High Protein Plan",
 				StaffID = 2
 			},
             new MealPlan
             {
                 Id = 3,
-                MealPlanCategory = "Omnivore",
-                MealPlanName = "Grass and Meat",
+                MealPlanCategory = "Maintenance",
+                MealPlanName = "Balanced Diet Plan",
 				StaffID = 3
 			}
             );
