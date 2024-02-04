@@ -1,7 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
-
 @page "/users"
 @inject HttpClient _client
 @inject IJSRuntime js
@@ -10,166 +9,71 @@
 
 <h3>Users Index</h3>
 
-
-
 @if (Users == null)
 {
-    <div class="alert alert-info">Loading Food Logs...</div>
+    <div class="alert alert-info">Loading Users...</div>
 }
-
 else
 {
     <AuthorizeView Roles="Administrator">
         <Authorized>
-            <a href="/users/create" class="btn btn-secondary">
-                <span class="oi oi-plus"></span>
-                Create New Users
+            <a href="/users/create" class="btn btn-primary">
+                <span class="oi oi-plus"></span> Create New User
             </a>
-            <br />
-            <br />
+            <br /><br />
 
-            <table class="table table-responsive">
-
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>DOB</th>
-                        <th>Password</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
+            <div class="container-fluid">
+                <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
                     @foreach (var user in Users)
                     {
-
-                        <tr>
-                            <td>@user.UserName</td>
-                            <td>@user.UserEmail</td>
-                            <td>@user.UserDOB</td>
-                            <td>@user.UserPassword</td>
-
-                            <td>
-                                <a href="/users/view/@user.Id" class="bth btn-primary">
-                                    <span class="oi oi-book"></span>
-                                </a>
-
-                                <a href="/users/edit/@user.Id" class="bth btn-primary">
-                                    <span class="oi oi-pencil"></span>
-                                </a>
-
-                                <button class="btn btn-danger" @onclick="@(()=>Delete(user.Id))">
-                                    <span class="oi oi-book"></span>
-                                </button>
-
-                            </td>
-                        </tr>
+                        <div class="col">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="color: black">User Name: @user.UserName</h5>
+                                    <p class="card-text" style="color: black">User Email: @user.UserEmail</p>
+                                    <p class="card-text" style="color: black">User Date Of Birth: @user.UserDOB</p>
+                                    <div class="d-flex justify-content-center">
+                                        <a href="/users/view/@user.Id" class="btn btn-primary actionbutton">
+                                            <i class="oi oi-eye"></i> View
+                                        </a>
+                                        <a href="/users/edit/@user.Id" class="btn btn-warning actionbutton">
+                                            <i class="oi oi-pencil"></i> Edit
+                                        </a>
+                                        <button class="btn btn-danger actionbutton" @onclick="() => Delete(user.Id)">
+                                            <i class="oi oi-trash"></i> Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     }
-
-
-
-                </tbody>
-
-            </table>
-
-        </Authorized>
-
-    </AuthorizeView>
-
-
-
-    <AuthorizeView Roles="User">
-        <Authorized>
-
-            <table class="table table-responsive">
-
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>DOB</th>
-                        <th>Password</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var user in Users)
-                    {
-
-                        <tr>
-                            <td>@user.UserName</td>
-                            <td>@user.UserEmail</td>
-                            <td>@user.UserDOB</td>
-                            <td>@user.UserPassword</td>
-
-                            <td>
-                                <a href="/users/view/@user.Id" class="bth btn-primary">
-                                    <span class="oi oi-book"></span>
-                                </a>
-
-                                <a href="/users/edit/@user.Id" class="bth btn-primary">
-                                    <span class="oi oi-pencil"></span>
-                                </a>
-
-
-                            </td>
-                        </tr>
-                    }
-
-
-
-                </tbody>
-
-            </table>
-
+                </div>
+            </div>
         </Authorized>
     </AuthorizeView>
 }
 
-
-
-
-
 @code {
     private List<User>? Users;
 
-    protected async override Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
-        Users = await _client.GetFromJsonAsync<List<User>>($"api/Users");
+        Users = await _client.GetFromJsonAsync<List<User>>("api/Users");
     }
 
-    async Task Delete(int userId)
+    private async Task Delete(int userId)
     {
-        if (Users != null)
+        if (await js.InvokeAsync<bool>("confirm", $"Do you want to delete this user?"))
         {
-            var user = Users.First(q => q.Id == userId);
-            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {user.UserName}?");
-
-            if (confirm)
-            {
-                await _client.DeleteAsync($"api/Users/{userId}");
-                await OnInitializedAsync();
-            }
-
+            await _client.DeleteAsync($"api/Users/{userId}");
+            Users = await _client.GetFromJsonAsync<List<User>>("api/Users"); // Re-fetch the list after deletion
         }
-    }
-
-    protected async override Task OnAfterRenderAsync(bool firstRender)
-    {
-        await js.InvokeVoidAsync("AddDataTable", "#bookingsTable");
     }
 
     public void Dispose()
     {
         _interceptor.DisposeEvent();
-        js.InvokeVoidAsync("DataTablesDispose", "#bookingsTable");
     }
 
-    int GetUserCount()
-    {
-        return Users?.Count ?? 0;
-    }
-
+   
 }
-
-<p>Total Users: @GetUserCount()</p>

@@ -3,14 +3,14 @@
 @inject NavigationManager _navManager
 
 <div class="create-food-container">
-    <h3 class="create-food-title">Create New Food</h3>
+    <h3 class="create-food-title" style="color: black">Create New Food</h3>
     <hr />
     <EditForm Model="@food" OnValidSubmit="CreateFood">
         <DataAnnotationsValidator />
         <ValidationSummary />
 
         <div class="form-group">
-            <label for="foodName">Name:</label>
+            <label for="foodName" >Name:</label>
             <InputText id="foodName" @bind-Value="@food.FoodName" class="form-control" placeholder="Enter food name" />
             <ValidationMessage For="@(() => food.FoodName)" />
         </div>
