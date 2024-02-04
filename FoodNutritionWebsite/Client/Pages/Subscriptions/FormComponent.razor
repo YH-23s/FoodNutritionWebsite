@@ -12,7 +12,7 @@
                     <div class="card p-4">
 
                         <div class="form-group">
-                            <label>Subscription Name: </label>
+                            <label style="color: black">Subscription Name: </label>
                             <div>
                                 <InputText @bind-Value="subscription.SubscriptionName" class="form-control" />
                                 <ValidationMessage For="@(() => subscription.SubscriptionName)" />
@@ -23,7 +23,7 @@
 
 
                         <div class="form-group">
-                            <label>Meal Plan:</label>
+                            <label style="color: black">Meal Plan:</label>
                             <div>
                                 <InputSelect @bind-Value="subscription.MealPlanID" class="form-control">
                                     <option value="">--Select Subscription--</option>
@@ -41,7 +41,7 @@
 
 
                         <div class="form-group">
-                            <label>Subscription Price: </label>
+                            <label style="color: black">Subscription Price: </label>
                             <div>
                                 <InputNumber @bind-Value="subscription.SubscriptionPrice" class="form-control" step="0.01" />
                                 <ValidationMessage For="@(() => subscription.SubscriptionPrice)" />
@@ -50,7 +50,7 @@
 
 
                         <div class="form-group">
-                            <label>Subscription Description: </label>
+                            <label style="color: black">Subscription Description: </label>
                             <div>
                                 <InputText @bind-Value="subscription.SubscriptionDescription" class="form-control" />
                                 <ValidationMessage For="@(() => subscription.SubscriptionDescription)" />
@@ -59,7 +59,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Payment Description: </label>
+                            <label style="color: black">Payment Description: </label>
                             <div>
                                 <InputText @bind-Value="subscription.PaymentDescription" class="form-control" />
                                 <ValidationMessage For="@(() => subscription.PaymentDescription)" />
@@ -72,6 +72,8 @@
                             <button type="submit" class="btn btn-primary btn-block" style="margin-top: 1.5rem; ">
                                 @ButtonText
                             </button>
+                            <br>
+                            <button type="button" class="btn btn-secondary btn-block" @onclick="BackToList">Back to List</button>
                         }
                     </div>
                 </div>
@@ -79,14 +81,6 @@
         </div>
     </fieldset>
 
-    @if (!Disabled)
-    {
-        <button type="submit" class="btn btn-success btn-block">
-            @ButtonText
-        </button>
-    }
-
-    <button type="button" class="btn btn-secondary btn-block" @onclick="BackToList">Back to List</button>
 
 </EditForm>
 
