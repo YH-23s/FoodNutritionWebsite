@@ -1,0 +1,80 @@
+﻿/* Overall page styling */
+.container {
+    background-color: #fff; /* Change to your preferred background color */
+    max-width: 600px; /* Adjust based on your preference */
+    margin-top: 50px;
+    margin-bottom: 50px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    border-radius: 8px; /* Rounded corners for the container */
+}
+
+/* Header styles */
+h3 {
+    text-align: center;
+    color: #333; /* Dark grey color for the title */
+    padding-top: 20px;
+}
+
+/* Card styling */
+.card {
+    padding: 20px;
+    border: none; /* Removes the default card border */
+    border-radius: 8px; /* Consistent rounded corners */
+}
+
+.form-label {
+    display: block; /* Ensures that label is not hidden */
+    color: #212529; /* Assuming a light background, choose a dark color for visibility */
+    margin-bottom: .5rem;
+}
+
+/* Ensure that the form elements are not overlapping */
+.edit-food-card {
+    position: relative; /* This ensures that z-index can be applied correctly */
+    z-index: 1; /* Bring your card on top of other elements if necessary */
+}
+
+/* Form styling */
+.edit-form {
+    margin-top: 20px;
+}
+
+/* Input field styling */
+.form-group {
+    margin-bottom: 15px; /* Spacing between form groups */
+}
+
+.form-control {
+    font-size: 16px; /* Increased font-size for better readability */
+    padding: 10px; /* More padding for a larger click area */
+    border-radius: 5px; /* Slightly rounded corners on input fields */
+    border: 1px solid #ced4da; /* Bootstrap's default border color */
+}
+
+    .form-control:focus {
+        border-color: #80bdff; /* Highlight color when the input is focused */
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Bootstrap's default focus shadow */
+    }
+
+/* Button styling */
+.btn {
+    width: 100%; /* Full width button */
+    padding: 10px; /* Padding for larger click area */
+    font-size: 18px; /* Larger font size for the button */
+    border-radius: 5px; /* Slightly rounded corners for the button */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Bootstrap primary color */
+    border-color: #007bff;
+}
+
+    .btn-primary:hover {
+        background-color: #0056b3; /* Darker shade on hover */
+        border-color: #0056b3;
+    }
+
+/* Validation message styling */
+.text-danger {
+    color: #dc3545; /* Red color for error messages */
+}

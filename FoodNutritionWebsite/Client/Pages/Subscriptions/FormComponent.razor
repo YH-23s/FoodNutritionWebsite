@@ -1,78 +1,102 @@
-﻿@inject NavigationManager _navManager
+﻿@inject HttpClient _client
 
-<EditForm Model="@subscription" OnValidSubmit="OnValidSubmit">
+
+<EditForm Model="@staff" OnValidSubmit="@OnValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
-
-    
     <fieldset disabled="@Disabled">
-
-        <div class="form-group">
-            <label>Subscription Name: </label>
-            <div>
-                <InputText @bind-Value="subscription.SubscriptionName" class="form-control" />
-                <ValidationMessage For="@(() => subscription.SubscriptionName)" />
-
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card p-4">
+                        <div class="form-group">
+                            <label style="color: black">First Name: </label>
+                            <div>
+                                <InputText @bind-Value="@staff.FirstName" class="form-control" placeholder="Please input First Name" />
+                                <ValidationMessage For="@(() => staff.FirstName)" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label style="color: black">Last Name: </label>
+                            <div>
+                                <InputText @bind-Value="@staff.LastName" class="form-control" placeholder="Please input Last Name" />
+                                <ValidationMessage For="@(() => staff.LastName)" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label style="color: black">Date Of Birth: </label>
+                            <div>
+                                <InputDate @bind-Value="@staff.DOB" class="form-control" placeholder="Please input Date Of Birth" />
+                                <ValidationMessage For="@(() => staff.DOB)" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label style="color: black">Gender: </label>
+                            <div>
+                                <InputText @bind-Value="@staff.Gender" class="form-control" placeholder="Please input Gender" />
+                                <ValidationMessage For="@(() => staff.Gender)" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label style="color: black">Contact Number: </label>
+                            <div>
+                                <InputText @bind-Value="@staff.ContactNumber" class="form-control" placeholder="Please input Contact Number" />
+                                <ValidationMessage For="@(() => staff.ContactNumber)" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label style="color: black">Personal Email: </label>
+                            <div>
+                                <InputText @bind-Value="@staff.PersonalEmail" class="form-control" placeholder="Please input Personal Email" />
+                                <ValidationMessage For="@(() => staff.PersonalEmail)" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label style="color: black">Work Email: </label>
+                            <div>
+                                <InputText @bind-Value="@staff.WorkEmail" class="form-control" placeholder="Please input Work Email" />
+                                <ValidationMessage For="@(() => staff.WorkEmail)" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label style="color: black">Address: </label>
+                            <div>
+                                <InputText @bind-Value="@staff.Address" class="form-control" placeholder="Please input Address" />
+                                <ValidationMessage For="@(() => staff.Address)" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label style="color: black">Role: </label>
+                            <div>
+                                <InputText @bind-Value="@staff.Role" class="form-control" placeholder="Please input Role" />
+                                <ValidationMessage For="@(() => staff.Role)" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label style="color: black">Start Date: </label>
+                            <div>
+                                <InputDate @bind-Value="@staff.StartDate" class="form-control" placeholder="Please input Start Date" />
+                                <ValidationMessage For="@(() => staff.StartDate)" />
+                            </div>
+                        </div>
+                        @if (!Disabled)
+                        {
+                            <button type="submit" class="btn btn-primary btn-block" style="margin-top: 1.5rem; ">
+                                @ButtonText
+                            </button>
+                        }
+                    </div>
+                </div>
             </div>
         </div>
-
-
-
-
-        <div class="form-group">
-            <label>Subscription Price: </label>
-            <div>
-                <InputNumber @bind-Value="subscription.SubscriptionPrice" class="form-control" />
-                <ValidationMessage For="@(() => subscription.SubscriptionPrice)" />
-
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label>Subscription Description: </label>
-            <div>
-                <InputText @bind-Value="subscription.SubscriptionDescription" class="form-control" />
-                <ValidationMessage For="@(() => subscription.SubscriptionDescription)" />
-
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label>Payment Description: </label>
-            <div>
-                <InputText @bind-Value="subscription.PaymentDescription" class="form-control" />
-                <ValidationMessage For="@(() => subscription.PaymentDescription)" />
-
-            </div>
-        </div>
-
     </fieldset>
-
-
-    @if (!Disabled)
-    {
-        <button type="submit" class="btn btn-success btn-block">
-            @ButtonText
-        </button>
-    }
-
-    <button type="button" class="btn btn-secondary btn-block" @onclick="BackToList">Back to List</button>
-
 
 </EditForm>
 
 
-
-
-@code{
-    [Parameter] public bool Disabled { get; set; } = false;
-    [Parameter] public Subscription? subscription { get; set; }
+@code {
+    [Parameter] public Staff? staff { get; set; }
     [Parameter] public string ButtonText { get; set; } = "Save";
     [Parameter] public EventCallback OnValidSubmit { get; set; }
-
-
-    private async Task BackToList()
-    {
-        _navManager.NavigateTo("/users");
-    }
+    [Parameter] public bool Disabled { get; set; } = false;
 }

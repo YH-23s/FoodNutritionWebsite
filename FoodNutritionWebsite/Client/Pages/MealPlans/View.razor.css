@@ -1,0 +1,73 @@
+﻿.mealplan-edit-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.mealplan-edit-title {
+    font-size: 1.75rem;
+    color: #333333;
+    margin-bottom: 1rem;
+    text-align: center; /* Center the title */
+}
+
+.form-group {
+    margin-bottom: 1rem; /* Ensure consistent spacing between form elements */
+}
+
+.form-control, .form-select {
+    display: block;
+    width: 100%; /* Full width of its container */
+    padding: 0.375rem 0.75rem; /* Padding for better text visibility */
+    font-size: 1rem; /* Readable font size */
+    line-height: 1.5;
+    color: #495057; /* Dark grey for text for better readability */
+    background-color: #fff; /* White background */
+    background-clip: padding-box;
+    border: 1px solid #ced4da; /* Light grey border */
+    border-radius: 0.25rem; /* Slightly rounded edges for the input fields */
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; /* Smooth transition for focus */
+}
+
+    .form-control:focus, .form-select:focus {
+        border-color: #80bdff; /* Highlight color when focused */
+        outline: 0; /* Remove default focus outline */
+        box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25); /* Glowing effect on focus */
+    }
+
+.btn-success {
+    color: #fff;
+    background-color: #28a745; /* Green background for the "Save" button */
+    border-color: #28a745;
+}
+
+    .btn-success:hover {
+        background-color: #218838; /* Darker shade on hover */
+        border-color: #1e7e34;
+    }
+
+.btn-secondary {
+    color: #fff;
+    background-color: #6c757d; /* Grey background for the "Cancel" button */
+    border-color: #6c757d;
+}
+
+    .btn-secondary:hover {
+        background-color: #5a6268; /* Darker shade on hover */
+        border-color: #545b62;
+    }
+
+.btn-block {
+    display: block; /* Make the button full width */
+    width: 100%;
+}
+
+/* Additional styles for validation messages */
+.text-danger {
+    color: #dc3545; /* Use Bootstrap's danger color for error messages */
+    font-size: 0.875em; /* Smaller font size for error messages */
+    margin-top: 0.25rem; /* Space between input and its error message */
+}
