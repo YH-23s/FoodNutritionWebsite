@@ -13,11 +13,22 @@ namespace FoodNutritionWebsite.Server.Configurations.Entities
                 new Payment
                 {
                     Id = 1,
-                    PaymentAmount = 12,
-                    StartingDate = DateTime.UtcNow,
-                    EndingDate = DateTime.UtcNow.AddMonths(1),
-                    PaymentDescription = "This is the payment detail for the subscription",
-                    SubscriptionID = null
+                    SubscriptionID = 1,
+                    CardNum = "9010 0102 2910 8219",
+                    Cvv = "010",
+                    CardExp = "12/21"
+
+                },
+
+                new Payment
+                {
+                    Id = 2,
+                    SubscriptionID = 2,
+                    CardNum = "9010 0102 2910 8219",
+                    Cvv = "017",
+                    CardExp = "07/17",
+                    
+                    
 
                 }
                 );

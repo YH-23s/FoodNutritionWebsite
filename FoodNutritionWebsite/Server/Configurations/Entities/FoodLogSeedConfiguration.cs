@@ -15,10 +15,19 @@ namespace FoodNutritionWebsite.Server.Configurations.Entities
                 new FoodLog
                 {
                     Id = 1,
-                    FoodLogDateTime = DateTime.Now,
-                    FoodType = "Protein",
-                    FoodName = "Chicken Rice",
+                    UserID = 1,
+                    FoodID = 2,
+                    DateUpdated = DateTime.Now,
                     Quantity = 2
+                },
+
+                new FoodLog
+                {
+                    Id = 2,
+                    UserID = 2,
+                    FoodID = 3,
+                    DateUpdated = DateTime.Now,
+                    Quantity = 3
                 }
                 );
 

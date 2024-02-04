@@ -9,6 +9,11 @@ using FoodNutritionWebsite.Server.Data;
 using FoodNutritionWebsite.Shared.Domain;
 using FoodNutritionWebsite.Server.IRepository;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.AspNetCore.Identity;
+using FoodNutritionWebsite.Server.Models;
+
+
+
 
 namespace FoodNutritionWebsite.Server.Controllers
 {
@@ -110,5 +115,13 @@ namespace FoodNutritionWebsite.Server.Controllers
             var user = await _unitOfWork.Usersssss.Get(q => q.Id == id);
             return (user != null);
         }
+
+
+        
+
+
+
+
+
     }
 }

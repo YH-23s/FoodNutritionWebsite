@@ -84,6 +84,7 @@ else
                         <th>Price</th>
                         <th>Date Added</th>
                         <th>Actions</th>
+                        <th>Make Purchase</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -99,9 +100,13 @@ else
                                 <a href="/Subscriptions/view/@subscription.Id" class="btn btn-primary">
                                     <span class="oi oi-book"></span>
                                 </a>
+                            </td>
 
-                                
-
+                            <td>
+                                <a href="/Payments/create" class="btn btn-secondary">
+                                    <span class="oi oi-plus"></span>
+                                    Buy
+                                </a>
                             </td>
                         </tr>
                     }
@@ -115,7 +120,7 @@ else
     </AuthorizeView>
 
 
-
+    
 
 
 

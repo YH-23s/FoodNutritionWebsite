@@ -12,11 +12,20 @@ namespace FoodNutritionWebsite.Server.Configurations.Entities
                 new Subscription
                 {
                     Id = 1,
+                    SubscriptionName = "Growing Muscle",
                     SubscriptionPrice = 12.20,
-                    SubscriptionName = "Test",
-                    SubscriptionDescription = "This subscription plan is used for testing",
-                    PaymentDescription =" This plan would be valid for a month",
-                    MealPlanID = null
+                    MealPlanID = 2,
+                    SubscriptionDescription = "This subscription plan is great for growing muscle",
+                    PaymentDescription = " This plan would be valid for a month only.",
+                },
+                new Subscription
+                {
+                    Id = 2,
+                    SubscriptionName = "Losing Weight",
+                    SubscriptionPrice = 15.25,
+                    MealPlanID = 1,
+                    SubscriptionDescription = "This subscription plan is great for losing weight",
+                    PaymentDescription = " This plan would be valid for a month only.",
                 }
                 );
         }
