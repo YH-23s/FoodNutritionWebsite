@@ -1,9 +1,10 @@
-﻿@inject NavigationManager Navigation
+﻿@* @inject NavigationManager Navigation
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
 
 
-<AuthorizeView>
+<AuthorizeView Roles = "Administrator">
+    <Authorized>
     <div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">Food Nutrition </a>
@@ -21,15 +22,20 @@
     </div>
 
     <div class="nav-item px-3">
+        <NavLink class="nav-link" href="authentication/login">
+            <span aria-hidden="true"></span> Log In
+        </NavLink>
+    </div>
+
+    <div class="nav-item px-3">
         <NavLink class="nav-link" href="#" @onclick="BeginLogOut" Match="NavLinkMatch.All">
             <span aria-hidden="true"></span> log out
         </NavLink>
     </div>
 
-    
     <div class="nav-item px-3">
-        <NavLink class="nav-link" href="authentication/login">
-            <span aria-hidden="true"></span> Log In
+        <NavLink class="nav-link" href="authentication/register">
+            <span aria-hidden="true"></span> Register
         </NavLink>
     </div>
 
@@ -89,44 +95,99 @@
         </NavLink>
     </div>
 
-
+     </Authorized>
 </AuthorizeView>
 
 
 
+<AuthorizeView Roles="User, Administrator">
+    <Authorized>
+        <div class="top-row ps-3 navbar navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="">Food Nutrition </a>
+                <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </div>
 
 
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="authentication/profile" Match="NavLinkMatch.All">
+                <span class="oi oi-person" aria-hidden="true"></span> Hello, @context.User.Identity?.Name!
+            </NavLink>
+        </div>
 
-<NotAuthorized>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="authentication/login">
+                <span aria-hidden="true"></span> Log In
+            </NavLink>
+        </div>
 
-    <div class="nav-item px-3">
-        <NavLink class="nav-link" href="authentication/register">
-            <span aria-hidden="true"></span> Register
-        </NavLink>
-    </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="#" @onclick="BeginLogOut" Match="NavLinkMatch.All">
+                <span aria-hidden="true"></span> log out
+            </NavLink>
+        </div>
 
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="authentication/register">
+                <span aria-hidden="true"></span> Register
+            </NavLink>
+        </div>
 
-    <div class="nav-item px-3">
-        <NavLink class="nav-link" href="authentication/login">
-            <span aria-hidden="true"></span> Log In
-        </NavLink>
-    </div>
-
-
-</NotAuthorized>
-
-
-
-    
-
-
-
-
-
-    
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
 
 
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="Food">
+                <span class="oi oi-food" aria-hidden="true"></span> Food
+            </NavLink>
+        </div>
 
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="MealTracker">
+                <span class="oi oi-list-bread" aria-hidden="true"></span> Record Meal
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="users">
+                <span class="oi oi-list-bread" aria-hidden="true"></span> Users
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="Subscriptions">
+                <span class="oi oi-list-bread" aria-hidden="true"></span> Subscriptions
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="Payments">
+                <span class="oi oi-list-bread" aria-hidden="true"></span> Payments
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="FoodLogs">
+                <span class="oi oi-list-bread" aria-hidden="true"></span> FoodLogs
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="MealPlans">
+                <span class="oi oi-list-bread" aria-hidden="true"></span> MealPlans
+            </NavLink>
+        </div>
+
+    </Authorized>
+</AuthorizeView>
 
 
 
@@ -143,4 +204,137 @@
     {
         Navigation.NavigateToLogout("authentication/logout");
     }
+    } *@
+@inject NavigationManager Navigation
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<AuthorizeView>
+    <Authorized>
+        <div class="top-row ps-3 navbar navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="">Food Nutrition</a>
+                <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="authentication/profile" Match="NavLinkMatch.All">
+                <span class="oi oi-person" aria-hidden="true"></span> Hello, @context.User.Identity?.Name!
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="#" @onclick="BeginLogOut" Match="NavLinkMatch.All">
+                <span aria-hidden="true"></span> log out
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+
+        <!-- Add other links that are common to all authorized users -->
+
+        <CascadingAuthenticationState>
+            <AuthorizeView Roles="Administrator">
+                <!-- Add links that are only for administrators -->
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="Staffs">
+                        <span class="oi oi-list-bread" aria-hidden="true"></span> Staffs
+                    </NavLink>
+                </div>
+
+                <!-- Add other admin-only links here -->
+            </AuthorizeView>
+        </CascadingAuthenticationState>
+    </Authorized>
+    <NotAuthorized>
+        <!-- Content for not authorized users -->
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="authentication/register">
+                <span aria-hidden="true"></span> Register
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="authentication/login">
+                <span aria-hidden="true"></span> Log In
+            </NavLink>
+        </div>
+
+         <div class="nav-item px-3">
+            <NavLink class="nav-link" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="Food">
+                <span class="oi oi-food" aria-hidden="true"></span> Food
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="MealPlans">
+                <span class="oi oi-list-bread" aria-hidden="true"></span> MealPlans
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="MealTracker">
+                <span class="oi oi-list-bread" aria-hidden="true"></span> Record Meal
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="users">
+                <span class="oi oi-list-bread" aria-hidden="true"></span> Users
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="Subscriptions">
+                <span class="oi oi-list-bread" aria-hidden="true"></span> Subscriptions
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="Payments">
+                <span class="oi oi-list-bread" aria-hidden="true"></span> Payments
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="FoodLogs">
+                <span class="oi oi-list-bread" aria-hidden="true"></span> FoodLogs
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="MealPlans">
+                <span class="oi oi-list-bread" aria-hidden="true"></span> MealPlans
+            </NavLink>
+        </div>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
     }
+
+    private void BeginLogOut()
+    {
+        Navigation.NavigateTo("authentication/logout");
+    }
+}

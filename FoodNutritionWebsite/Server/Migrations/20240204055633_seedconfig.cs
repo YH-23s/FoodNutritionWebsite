@@ -8,7 +8,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FoodNutritionWebsite.Server.Migrations
 {
     /// <inheritdoc />
+<<<<<<<< HEAD:FoodNutritionWebsite/Server/Migrations/20240204055633_seedconfig.cs
     public partial class seedconfig : Migration
+========
+    public partial class newdb : Migration
+>>>>>>>> 76e91b7a5f02bdfa376f4b8a017985efe29d3868:FoodNutritionWebsite/Server/Migrations/20240203163420_newdb.cs
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -532,8 +536,13 @@ namespace FoodNutritionWebsite.Server.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "Gender", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
+<<<<<<<< HEAD:FoodNutritionWebsite/Server/Migrations/20240204055633_seedconfig.cs
                     { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "d2b1e886-72cf-47fb-9935-48ffbcb221e5", "admin@localhost.com", false, "Admin", null, "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEG1RBbUfv5BHT5s9Jn1vnTVcQFy1PY0C4ebUsega4zVNePaE7dp8lO71Vgxzvo5Lgw==", null, false, "05b0459c-94ce-44e4-93df-12e9acdeda86", false, "admin@localhost.com" },
                     { "a9ae8ce6-55cb-48f1-8e73-894563807efa", 0, "9d27f8ad-bd64-4850-97e6-b92304549c57", "user@localhost.com", false, "User", null, "User", false, null, "USER@LOCALHOST.COM", "USER@LOCALHOST.COM", "AQAAAAIAAYagAAAAEGpX2mCNh50iC108cJfsCJQpu4r1H2df9HWpw333syfQ7hNF56sB3Xzk4kxN9aiUYA==", null, false, "43d3d7e9-6a81-4a7c-8e19-50f54744c44c", false, "user@localhost.com" }
+========
+                    { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "251bb798-1253-424a-a9cd-37ba16739169", "admin@localhost.com", false, "Admin", null, "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEAI/smpswAZ1patcrJMw11QDqdFI5FfbcoOsuunmLc+9XwQJy9Fn5GlO0n9WugMhhQ==", null, false, "3a2198da-c78d-4ee7-a17c-d2d694a2e2e0", false, "admin@localhost.com" },
+                    { "a9ae8ce6-55cb-48f1-8e73-894563807efa", 0, "39904446-0ccc-4d1b-a150-47f4008c209f", "user@localhost.com", false, "User", null, "User", false, null, "USER@LOCALHOST.COM", "USER@LOCALHOST.COM", "AQAAAAIAAYagAAAAEONyLtS/fKN7DG7B/m5479acNf4wnIoml8HziFNP5bL1Y7NdJR2Me4sm3z4x1Lys1w==", null, false, "9a01bffb-18bb-4ee7-9240-1c7d1931cf24", false, "user@localhost.com" }
+>>>>>>>> 76e91b7a5f02bdfa376f4b8a017985efe29d3868:FoodNutritionWebsite/Server/Migrations/20240203163420_newdb.cs
                 });
 
             migrationBuilder.InsertData(
@@ -563,8 +572,13 @@ namespace FoodNutritionWebsite.Server.Migrations
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "Gender", "SubscriptionID", "UpdatedBy", "UserDOB", "UserEmail", "UserName", "UserPassword", "UserPhoneNum" },
                 values: new object[,]
                 {
+<<<<<<<< HEAD:FoodNutritionWebsite/Server/Migrations/20240204055633_seedconfig.cs
                     { 1, "seed-script", new DateTime(2024, 2, 4, 13, 56, 32, 878, DateTimeKind.Local).AddTicks(6417), null, "Male", null, null, "12/1/2001", "TestingAccount@blazor.com", "TestingAccount", "TestingAccount_password123", "9012 0791" },
                     { 2, "seed-script", new DateTime(2024, 2, 4, 13, 56, 32, 878, DateTimeKind.Local).AddTicks(6449), null, "Female", null, null, "12/1/2005", "TestAccount@blazor.com", "TestAccount@blazor.com", "TestAccount_password123", "9072 0791" }
+========
+                    { 1, "seed-script", new DateTime(2024, 2, 4, 0, 34, 20, 611, DateTimeKind.Local).AddTicks(6702), null, "Male", null, null, "12/1/2001", "TestingAccount@blazor.com", "TestingAccount", "TestingAccount_password123", "9012 0791" },
+                    { 2, "seed-script", new DateTime(2024, 2, 4, 0, 34, 20, 611, DateTimeKind.Local).AddTicks(6717), null, "Female", null, null, "12/1/2005", "TestAccount@blazor.com", "TestAccount@blazor.com", "TestAccount_password123", "9072 0791" }
+>>>>>>>> 76e91b7a5f02bdfa376f4b8a017985efe29d3868:FoodNutritionWebsite/Server/Migrations/20240203163420_newdb.cs
                 });
 
             migrationBuilder.InsertData(
