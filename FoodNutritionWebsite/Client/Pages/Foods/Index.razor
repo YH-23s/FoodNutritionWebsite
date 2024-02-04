@@ -6,7 +6,7 @@
 @inject HttpClient _client
 @inject IJSRuntime js
 @using System.Security.Claims
-@attribute [Authorize(Roles)]
+@attribute [Authorize]
 @inject HttpInterceptorService _interceptor
 @implements IDisposable
 @inject AuthenticationStateProvider AuthenticationStateProvider
