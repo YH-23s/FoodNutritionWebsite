@@ -1,178 +1,75 @@
-﻿﻿@using Microsoft.AspNetCore.Authorization
-@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-
-
-@page "/Subscriptions"
+﻿@page "/Subscriptions"
 @inject HttpClient _client
 @inject IJSRuntime js
 @inject HttpInterceptorService _interceptor
 @implements IDisposable
+@attribute [Authorize]
 
 <h3>Subscriptions Index</h3>
 
+<a href="/Subscriptions/create" class="btn btn-primary my-2">
+    <span class="oi oi-plus"></span> Create New Subscription Plan
+</a>
+<br />
+<br />
 
-
-
-@if (Subscriptions == null)
-{
-    <div class="alert alert-info">Loading Subscriptions...</div>
-}
-
-else
-{
-    <AuthorizeView Roles="Administrator">
-        <Authorized>
-            <a href="/Subscriptions/create" class="btn btn-secondary">
-                <span class="oi oi-plus"></span>
-                Create New Subscriptions Plan
-            </a>
-            <br />
-            <br />
-            <table class="table table-responsive" id="bookingsTable">
-
-                <thead>
-                    <tr>
-                        <th>Subscription Name</th>
-                        <th>Meal Plan</th>
-                        <th>Price</th>
-                        <th>Date Added</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var subscription in Subscriptions)
-                    {
-
-                        <tr>
-                            <td>@subscription.SubscriptionName</td>
-                            <td>@subscription.MealPlan.MealPlanName</td>
-                            <td>@subscription.SubscriptionPrice</td>
-                            <td>@subscription.DateUpdated</td>
-                            <td>
-                                <a href="/Subscriptions/view/@subscription.Id" class="btn btn-primary">
-                                    <span class="oi oi-book"></span>
+<div class="container-fluid">
+    <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+        @if (Subscriptions == null)
+        {
+            <div class="alert alert-info">Loading Subscriptions...</div>
+        }
+        else
+        {
+            @foreach (var subscription in Subscriptions)
+            {
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title" style="color: black">@subscription.SubscriptionName</h5>
+                            <p class="card-text" style="color: black">Meal Plan: @subscription.MealPlan.MealPlanName</p>
+                            <p class="card-text" style="color: black">Price: @subscription.SubscriptionPrice</p>
+                            <p class="card-text" style="color: black">Updated: @subscription.DateUpdated</p>
+                            <div class="d-flex justify-content-center">
+                                <a href="/Subscriptions/view/@subscription.Id" class="btn btn-primary actionbutton">
+                                    <i class="oi oi-eye"></i> View
                                 </a>
-
-                                <a href="/Subscriptions/edit/@subscription.Id" class="btn btn-primary">
-                                    <span class="oi oi-pencil"></span>
+                                <a href="/Subscriptions/edit/@subscription.Id" class="btn btn-warning actionbutton">
+                                    <i class="oi oi-pencil"></i> Edit
                                 </a>
-
-                                <button class="btn btn-danger" @onclick="@(()=>Delete(subscription.Id))">
-                                    <span class="oi oi-book"></span>
+                                <button class="btn btn-danger actionbutton" @onclick="@(()=>Delete(subscription.Id))">
+                                    <i class="oi oi-trash"></i> Delete
                                 </button>
-
-                            </td>
-                        </tr>
-                    }
-
-
-
-                </tbody>
-
-            </table>
-        </Authorized>
-    </AuthorizeView>
-
-    <AuthorizeView Roles="User">
-        <Authorized>
-            <table class="table table-responsive" id="bookingsTable">
-
-                <thead>
-                    <tr>
-                        <th>Subscription Name</th>
-                        <th>Meal Plan</th>
-                        <th>Price</th>
-                        <th>Date Added</th>
-                        <th>Actions</th>
-                        <th>Make Purchase</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var subscription in Subscriptions)
-                    {
-
-                        <tr>
-                            <td>@subscription.SubscriptionName</td>
-                            <td>@subscription.MealPlan.MealPlanName</td>
-                            <td>@subscription.SubscriptionPrice</td>
-                            <td>@subscription.DateUpdated</td>
-                            <td>
-                                <a href="/Subscriptions/view/@subscription.Id" class="btn btn-primary">
-                                    <span class="oi oi-book"></span>
-                                </a>
-                            </td>
-
-                            <td>
-                                <a href="/Payments/create" class="btn btn-secondary">
-                                    <span class="oi oi-plus"></span>
-                                    Buy
-                                </a>
-                            </td>
-                        </tr>
-                    }
-
-
-
-                </tbody>
-
-            </table>
-        </Authorized>
-    </AuthorizeView>
-
-
-    
-
-
-
-    
-}
-
-
-
-
-
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
 
 @code {
     public List<Subscription>? Subscriptions;
 
-    protected async override Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
         _interceptor.MonitorEvent();
-        Subscriptions = await _client.GetFromJsonAsync<List<Subscription>>($"api/Subscriptions");
+        Subscriptions = await _client.GetFromJsonAsync<List<Subscription>>("api/Subscriptions");
     }
 
-    async Task Delete(int subscriptionId)
+    private async Task Delete(int subscriptionId)
     {
-        if (Subscriptions != null)
+        var subscription = Subscriptions?.FirstOrDefault(q => q.Id == subscriptionId);
+        if (subscription != null && await js.InvokeAsync<bool>("confirm", $"Do you really want to delete {subscription.SubscriptionName}?"))
         {
-            var subscription = Subscriptions.First(q => q.Id == subscriptionId);
-            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {subscription}?");
-
-            if (confirm)
-            {
-                await _client.DeleteAsync($"api/Subscriptions/{subscriptionId}");
-                await OnInitializedAsync();
-            }
-
+            await _client.DeleteAsync($"api/Subscriptions/{subscriptionId}");
+            Subscriptions.Remove(subscription); // Consider refreshing the list or removing the item client-side
         }
-    }
-
-    protected async override Task OnAfterRenderAsync(bool firstRender)
-    {
-        await js.InvokeVoidAsync("AddDataTable", "#bookingsTable");
     }
 
     public void Dispose()
     {
         _interceptor.DisposeEvent();
-        js.InvokeVoidAsync("DataTablesDispose", "#bookingsTable");
     }
-
-    int GetSubscriptionCount()
-    {
-        return Subscriptions?.Count ?? 0;
-    }
-
 }
-
-<p>Total Subscriptions: @GetSubscriptionCount()</p>

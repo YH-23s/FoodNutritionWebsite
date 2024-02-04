@@ -1,4 +1,4 @@
-﻿.create-user-container {
+﻿.create-subscription-container {
     max-width: 800px;
     margin: 2rem auto;
     background: #ffffff;
@@ -7,11 +7,16 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.create-user-title {
+.create-subscription-title {
     font-size: 1.75rem;
     color: #5D1049;
     margin-bottom: 1rem;
     text-align: center;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: .5rem;
 }
 
 .form-group {
@@ -19,6 +24,7 @@
 }
 
 .form-control {
+    width: 100%;
     font-size: 1rem;
     padding: .375rem .75rem;
     border: 1px solid #ced4da;
@@ -55,5 +61,5 @@
 .form-actions {
     margin-top: 1rem;
     display: flex;
-    justify-content: flex-end; /* Adjusted to right align the buttons, similar to your meal plan page */
+    justify-content: flex-end;
 }

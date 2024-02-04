@@ -2,78 +2,60 @@
 @inject HttpClient _client
 @inject NavigationManager _navManager
 
+<div class="create-user-container">
+    <h3 class="create-user-title">Create New User</h3>
+    <hr />
+    <EditForm Model="@user" OnValidSubmit="CreateUsers">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
 
-
-<h3 class="card-title">Create Users Page</h3>
-<hr />
-<br />
-
-<EditForm Model="@user" OnValidSubmit="CreateUsers">
-	<DataAnnotationsValidator />
-	<ValidationSummary />
-
-
-
-    <div class="form-group">
-        <label>User Name: </label>
-        <div>
-            <InputText @bind-Value="user.UserName" class="form-control" />
+        <!-- User Name field -->
+        <div class="form-group">
+            <label for="userName">User Name:</label>
+            <InputText id="userName" @bind-Value="user.UserName" class="form-control" placeholder="Enter user name" />
             <ValidationMessage For="@(() => user.UserName)" />
-
         </div>
-    </div>
 
-
-    <div class="form-group">
-        <label>User DOB: </label>
-        <div>
-            <InputText @bind-Value="user.UserDOB" class="form-control" />
+        <!-- User DOB field -->
+        <div class="form-group">
+            <label for="userDOB">User DOB:</label>
+            <InputText id="userDOB" @bind-Value="user.UserDOB" class="form-control" placeholder="YYYY-MM-DD" />
             <ValidationMessage For="@(() => user.UserDOB)" />
-
         </div>
-    </div>
 
-    <div class="form-group">
-        <label>User Gender: </label>
-        <div>
-            <InputText @bind-Value="user.Gender" class="form-control" />
+        <!-- User Gender field -->
+        <div class="form-group">
+            <label for="gender">User Gender:</label>
+            <InputText id="gender" @bind-Value="user.Gender" class="form-control" placeholder="Enter user gender" />
             <ValidationMessage For="@(() => user.Gender)" />
-
         </div>
-    </div>
 
-    <div class="form-group">
-        <label>User UserPhoneNum: </label>
-        <div>
-            <InputText @bind-Value="user.UserPhoneNum" class="form-control" />
+        <!-- User Phone Number field -->
+        <div class="form-group">
+            <label for="userPhoneNum">User Phone Number:</label>
+            <InputText id="userPhoneNum" @bind-Value="user.UserPhoneNum" class="form-control" placeholder="Enter user phone number" />
             <ValidationMessage For="@(() => user.UserPhoneNum)" />
-
         </div>
-    </div>
 
-    <div class="form-group">
-        <label>User UserEmail: </label>
-        <div>
-            <InputText @bind-Value="user.UserEmail" class="form-control" />
+        <!-- User Email field -->
+        <div class="form-group">
+            <label for="userEmail">User Email:</label>
+            <InputText id="userEmail" @bind-Value="user.UserEmail" class="form-control" placeholder="Enter user email" />
             <ValidationMessage For="@(() => user.UserEmail)" />
-
         </div>
-    </div>
 
-    <div class="form-group">
-        <label>User UserPassword: </label>
-        <div>
-            <InputText @bind-Value="user.UserPassword" class="form-control" />
+        <!-- User Password field -->
+        <div class="form-group">
+            <label for="userPassword">User Password:</label>
+            <InputText id="userPassword" @bind-Value="user.UserPassword" class="form-control" placeholder="Enter user password" />
             <ValidationMessage For="@(() => user.UserPassword)" />
-
         </div>
-    </div>
 
-    <div class="form-group">
-        <label>Subscription:</label>
-        <div>
-            <InputSelect @bind-Value="user.SubscriptionID" class="form-control">
-                <option value="">--Select Subscription--</option>
+        <!-- Subscription field -->
+        <div class="form-group">
+            <label for="subscriptionID">Subscription:</label>
+            <InputSelect id="subscriptionID" @bind-Value="user.SubscriptionID" class="form-control">
+                <option value="">-- Select Subscription --</option>
                 @if (subscription != null)
                 {
                     foreach (var subscrip in subscription)
@@ -84,44 +66,31 @@
             </InputSelect>
             <ValidationMessage For="@(() => user.SubscriptionID)" />
         </div>
-    </div>
 
-
-    <!-- Other form components go here -->
-
-    <button type="submit" class="btn btn-success btn-block">Create User</button>
-
-    <button type="button" class="btn btn-secondary btn-block" @onclick="BackToList">Back to List</button>
-    
-
-</EditForm>
-
-
-
-
-
+        <!-- Form actions -->
+        <div class="form-actions">
+            <button type="submit" class="btn btn-create">Create User</button>
+            <button type="button" class="btn btn-secondary" @onclick="BackToList">Back to List</button>
+        </div>
+    </EditForm>
+</div>
 
 @code {
     User user = new User();
     private IList<Subscription>? subscription;
 
-
-
-    protected async override Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
-        subscription = await _client.GetFromJsonAsync<List<Subscription>>($"api/Subscriptions");
-
+        subscription = await _client.GetFromJsonAsync<List<Subscription>>("api/Subscriptions");
     }
-
 
     private async Task CreateUsers()
     {
-        await _client.PostAsJsonAsync("api/Users/", user);
+        await _client.PostAsJsonAsync("api/Users", user);
         _navManager.NavigateTo("/users");
-
     }
 
-    private async Task BackToList()
+    private void BackToList()
     {
         _navManager.NavigateTo("/users");
     }
