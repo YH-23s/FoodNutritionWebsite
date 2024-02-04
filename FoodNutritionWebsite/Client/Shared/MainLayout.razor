@@ -1,13 +1,78 @@
 ﻿@inherits LayoutComponentBase
+@inject NavigationManager Navigation
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager _navManager
+@inject HttpClient _client
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
+
+@code {
+    private string AdminCheck;
+    private string UserCheck;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authenticationState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        AdminCheck = authenticationState.User.IsInRole("Administrator") ? "Admin" : "DefaultPage";
+        UserCheck = authenticationState.User.IsInRole("User") ? "User" : "DefaultPage";
+    }
+}
+
+
+
+
+
+@if (AdminCheck == "Admin" || UserCheck == "User")
+{
+    <div class="page">
+        <div class="sidebar">
+            <NavMenu />
+        </div>
+
+        <main class="main-content">
+            <article class="content px-4">
+                @Body
+            </article>
+        </main>
     </div>
+}
 
-    <main class="main-content">
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
-</div>
+
+else if (AdminCheck != "Admin" && UserCheck != "User")
+{
+    <div class="page">
+
+        <main>
+
+            <div class="header">
+
+                <div>
+                    <img class="Logo-size" src="Logo.png">
+                </div>
+
+                <div class="tabs">
+                    <div>
+                        <LoginDisplay />
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+
+
+            @* An article is used to define a self-controlled piece of content that could be used repeatedly*@
+            <article class="content px-4">
+                @* When a body is called, it would call a url with the "/" which is from the index.razor file*@
+                @Body
+            </article>
+
+
+        </main>
+    </div>
+}
+
+
+
+

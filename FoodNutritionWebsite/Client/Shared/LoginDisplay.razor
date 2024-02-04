@@ -1,50 +1,39 @@
 ﻿@inject NavigationManager Navigation
-
-<head>
-    <link rel="stylesheet" href="css/LogDis.css">
-</head>
-
-
-
-<AuthorizeView>
-   @* Authorized shows the information after you have like log in*@
-    <Authorized>
-        <div>
-            <NavLink class="nav-link" href="authentication/profile" Match="NavLinkMatch.All">
-                <span class="oi oi-person" aria-hidden="true"></span> Hello, @context.User.Identity?.Name!
-            </NavLink>
-        </div>
-
-        <div>
-            <NavLink class="nav-link" href="#" @onclick="BeginLogOut" Match="NavLinkMatch.All">
-                <span class="oi oi-account-logout" aria-hidden="true"></span> log out
-            </NavLink>
-        </div>
+@inherits LayoutComponentBase
+@inject NavigationManager Navigation
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager _navManager
+@inject HttpClient _client
 
 
-    </Authorized>
-       
-    @* While not authorized means that you have not log in and the code inside will be shown when you have not log in. *@
-    <NotAuthorized>
+   
+    
+<AuthButtons class="AuthButtons">
+    <div>
+        <NavLink href="authentication/register" Match="NavLinkMatch.All">
+            <span class="oi oi-person" aria-hidden="true"></span> Register
+        </NavLink>
+    </div>
 
-        <div class="arrangement">
-            <NavLink href="authentication/register" Match="NavLinkMatch.All">
-                <span class="oi oi-person" aria-hidden="true"></span> Register
-            </NavLink>
-        </div>
+    <div>
+        <NavLink href="authentication/login" Match="NavLinkMatch.All">
+            <span class="oi oi-account-login" aria-hidden="true"></span> Log In
+        </NavLink>
+    </div>
+</AuthButtons>
 
+@code {
+    private void GoToRegister()
+    {
+    _navManager.NavigateTo("authentication/register");
+    }
 
+    private void GoToLogin()
+    {
+    _navManager.NavigateTo("authentication/login");
+    }
+}
 
-
-
-        <div>
-            <NavLink href="authentication/login" Match="NavLinkMatch.All">
-                <span class="oi oi-account-login" aria-hidden="true"></span> log in
-            </NavLink>
-        </div>
-
-    </NotAuthorized>
-</AuthorizeView>
 
 
 
@@ -61,5 +50,3 @@
         Navigation.NavigateToLogout("authentication/logout");
     }
 }
-
-

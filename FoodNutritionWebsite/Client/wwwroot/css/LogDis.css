@@ -69,3 +69,20 @@
 .turquoise-color {
 	color:turquoise;
 }
+
+
+.AuthButtons {
+	display: flex;
+	justify-content: flex-end;
+	margin-right: 120px; /* Adjust the margin as needed */
+}
+
+	.AuthButtons NavLink {
+		margin-left: 10px; /* Adjust the gap between elements as needed */
+		padding: 10px; /* Adjust the padding for better spacing */
+		font-size: 20px; /* Adjust the font size as needed */
+		text-decoration: none;
+		color: black; /* Change the text color as needed */
+		display: flex;
+		align-items: center;
+	}

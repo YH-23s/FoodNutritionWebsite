@@ -1,5 +1,7 @@
 ﻿@inject NavigationManager Navigation
 @inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager _navManager
+@inject HttpClient _client
 
 
 @code {
@@ -25,13 +27,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
-    </div>
-
-    <div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
-
-
-
-
+    </div>    <div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
 
         <AuthorizeView>
             <Authorized>
@@ -52,33 +48,12 @@
 
             </Authorized>
 
-            <NotAuthorized>
-
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="authentication/register">
-                        <span aria-hidden="true"></span> Register
-                    </NavLink>
-                </div>
-
-
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="authentication/login">
-                        <span aria-hidden="true"></span> Log In
-                    </NavLink>
-                </div>
-
-
-            </NotAuthorized>
-
         </AuthorizeView>
 
 
 
-
-
-
         <div class="nav-item px-3">
-            <NavLink class="nav-link" Match="NavLinkMatch.All">
+            <NavLink class="nav-link" href="/" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Home
             </NavLink>
         </div>
@@ -163,8 +138,34 @@
 
 
 
-else
+else if (AdminCheck != "Admin" && UserCheck != "User")
 {
-    <p>This is content for regular users.</p>
-    <LoginDisplay />
+
+    <div class="button-container">
+        <button @onclick="GoToRegister">
+            <span aria-hidden="true"></span> Register
+        </button>
+
+        <button @onclick="GoToLogin">
+            <span aria-hidden="true"></span> Log In
+        </button>
+    </div>
+
+    @code {
+    private void GoToRegister()
+    {
+        _navManager.NavigateTo("authentication/register");
+
+    }
+
+    private void GoToLogin()
+    {
+        _navManager.NavigateTo("authentication/login");
+    }
+    }
+
+
+
 }
+
+
