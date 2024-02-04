@@ -2,22 +2,16 @@
 @inject HttpClient _client
 @inject NavigationManager _navManager
 
+<div class="create-foodlog-container">
+    <h3 class="create-foodlog-title">Create New Food Log</h3>
+    <hr />
+    <EditForm Model="@foodlog" OnValidSubmit="CreateFoodLog">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
 
-
-
-<h3 class="card-title">Create FoodLog Page</h3>
-<hr />
-<br />
-
-
-<EditForm Model="@foodlog" OnValidSubmit="CreateFoodLog">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-
-    <div class="form-group">
-        <label>User:</label>
-        <div>
-            <InputSelect @bind-Value="foodlog.UserID" class="form-control">
+        <div class="form-group">
+            <label for="userID">User:</label>
+            <InputSelect @bind-Value="foodlog.UserID" id="userID" class="form-control">
                 <option value="">--Select User--</option>
                 @if (Users != null)
                 {
@@ -29,83 +23,60 @@
             </InputSelect>
             <ValidationMessage For="@(() => foodlog.UserID)" />
         </div>
-    </div>
 
-
-    <div class="form-group">
-        <label>Food Name:</label>
-        <div>
-            <InputSelect @bind-Value="foodlog.FoodID" class="form-control">
+        <div class="form-group">
+            <label for="foodID">Food Name:</label>
+            <InputSelect @bind-Value="foodlog.FoodID" id="foodID" class="form-control">
                 <option value="">--Select Food--</option>
                 @if (Foods != null)
                 {
-                    foreach (var foods in Foods)
+                    foreach (var food in Foods)
                     {
-                        <option value="@foods.Id">@foods.FoodName</option>
+                        <option value="@food.Id">@food.FoodName</option>
                     }
                 }
             </InputSelect>
             <ValidationMessage For="@(() => foodlog.FoodID)" />
         </div>
-    </div>
 
-
-    <div class="form-group">
-        <label>Quantity: </label>
-        <div>
-            <InputNumber @bind-Value="foodlog.Quantity" class="form-control" />
+        <div class="form-group">
+            <label for="quantity" style="color: black">Quantity:</label>
+            <InputNumber @bind-Value="foodlog.Quantity" id="quantity" class="form-control" placeholder="Enter Quantity" />
             <ValidationMessage For="@(() => foodlog.Quantity)" />
-
         </div>
-    </div>
 
-
-
-    
-
-
-    
-
-
-    <!-- Other form components go here -->
-
-    <button type="submit" class="btn btn-success btn-block">Create FoodLog</button>
-
-
-    <button type="button" class="btn btn-secondary btn-block" @onclick="BackToList">Back to List</button>
-
-</EditForm>
-
-
-
+        <div class="form-actions">
+            <button type="button" class="btn btn-secondary" @onclick="BackToList">
+                <i class="oi oi-arrow-left" style="margin-right: 2px;"></i>
+                Back
+            </button>
+            <button type="submit" class="btn btn-create " @onclick="CreateFoodLog">
+                <i class="oi oi-circle-check" style="margin-right: 2px;"></i>
+                Create
+            </button>
+        </div>
+    </EditForm>
+</div>
 
 @code {
     FoodLog foodlog = new FoodLog();
-
     private IList<User>? Users;
     private IList<Food>? Foods;
 
-
-
-    protected async override Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
-        Users = await _client.GetFromJsonAsync<List<User>>($"api/Users");
-        Foods = await _client.GetFromJsonAsync<List<Food>>($"api/foods/");
+        Users = await _client.GetFromJsonAsync<List<User>>("api/Users");
+        Foods = await _client.GetFromJsonAsync<List<Food>>("api/Foods");
+    }
 
-	}
-
-	private async Task CreateFoodLog()
-	{
-		await _client.PostAsJsonAsync("api/FoodLogs/", foodlog);
-		_navManager.NavigateTo("/FoodLogs");
-
-	}
-
-    private async Task BackToList()
+    private async Task CreateFoodLog()
     {
+        await _client.PostAsJsonAsync("api/FoodLogs/", foodlog);
         _navManager.NavigateTo("/FoodLogs");
     }
 
-
-
+    private void BackToList()
+    {
+        _navManager.NavigateTo("/FoodLogs");
+    }
 }

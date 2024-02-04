@@ -1,0 +1,42 @@
+﻿.card {
+    margin-bottom: 20px;
+    border-radius: 0.5rem; /* Adds rounded corners to the card */
+}
+
+.card-img-top {
+    width: 100%;
+    max-height:50%; /* Uniform height for all images */
+    object-fit: cover; /* Ensures the image covers the area without stretching */
+    border-top-left-radius: 0.5rem; /* Rounds the top corners to match the card */
+    border-top-right-radius: 0.5rem;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    color: black; /* Ensures all text inside card-body is black */
+}
+
+.card-title {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: black; /* Explicitly setting text color to black for titles */
+}
+
+.card-text {
+    flex-grow: 1;
+    color: black; /* Explicitly setting text color to black for text */
+}
+
+.btn {
+    margin: 5px;
+}
+
+.container-fluid {
+    padding: 20px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
