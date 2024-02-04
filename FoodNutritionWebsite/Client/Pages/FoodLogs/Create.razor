@@ -5,6 +5,7 @@
 <div class="create-foodlog-container">
     <h3 class="create-foodlog-title">Create New Food Log</h3>
     <hr />
+
     <EditForm Model="@foodlog" OnValidSubmit="CreateFoodLog">
         <DataAnnotationsValidator />
         <ValidationSummary />
@@ -45,12 +46,12 @@
             <ValidationMessage For="@(() => foodlog.Quantity)" />
         </div>
 
+
+
+
         <div class="form-actions">
 
-            <button type="submit" class="btn btn-create ">
-                <i class="oi oi-circle-check" style="margin-right: 2px;"></i>
-                Create
-            </button>
+            <button type="submit" class="btn btn-success btn-block">Create Payment</button>
 
             <button type="button" class="btn btn-secondary" @onclick="BackToList">
                 <i class="oi oi-arrow-left" style="margin-right: 2px;"></i>
@@ -65,7 +66,7 @@
     private IList<User>? Users;
     private IList<Food>? Foods;
 
-    protected override async Task OnInitializedAsync()
+    protected async override  Task OnInitializedAsync()
     {
         Users = await _client.GetFromJsonAsync<List<User>>("api/Users");
         Foods = await _client.GetFromJsonAsync<List<Food>>("api/Foods");
@@ -77,7 +78,7 @@
         _navManager.NavigateTo("/FoodLogs");
     }
 
-    private void BackToList()
+    private async Task BackToList()
     {
         _navManager.NavigateTo("/FoodLogs");
     }

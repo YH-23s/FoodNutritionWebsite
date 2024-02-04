@@ -1,4 +1,5 @@
 ﻿@inject HttpClient _client
+@inject NavigationManager _navManager
 
 
 <EditForm Model="@subscription" OnValidSubmit="@OnValidSubmit">
@@ -9,6 +10,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="card p-4">
+
                         <div class="form-group">
                             <label>Subscription Name: </label>
                             <div>
@@ -64,6 +66,7 @@
 
                             </div>
                         </div>
+
                         @if (!Disabled)
                         {
                             <button type="submit" class="btn btn-primary btn-block" style="margin-top: 1.5rem; ">
@@ -75,6 +78,15 @@
             </div>
         </div>
     </fieldset>
+
+    @if (!Disabled)
+    {
+        <button type="submit" class="btn btn-success btn-block">
+            @ButtonText
+        </button>
+    }
+
+    <button type="button" class="btn btn-secondary btn-block" @onclick="BackToList">Back to List</button>
 
 </EditForm>
 
@@ -90,5 +102,10 @@
     protected async override Task OnInitializedAsync()
     {
         mealplan = await _client.GetFromJsonAsync<List<MealPlan>>($"api/mealplans");
+    }
+
+    private async Task BackToList()
+    {
+        _navManager.NavigateTo("/Subscriptions");
     }
 }

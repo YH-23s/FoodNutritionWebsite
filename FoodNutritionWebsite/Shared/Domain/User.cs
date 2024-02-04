@@ -32,10 +32,7 @@ namespace FoodNutritionWebsite.Shared.Domain
         public int? SubscriptionID { get; set; }
         public virtual Subscription? Subscription { get; set; }
 
-        public static object FindFirstValue(object nameIdentifier)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 
 }

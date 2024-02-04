@@ -30,7 +30,7 @@ namespace FoodNutritionWebsite.Server.Controllers
         }
 
 		// GET: api/Users
-		[Authorize]
+		
 		[HttpGet]
         public async Task<IActionResult> GetUsersssss()
         {
