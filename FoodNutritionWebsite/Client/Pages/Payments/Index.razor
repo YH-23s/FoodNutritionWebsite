@@ -1,124 +1,54 @@
-﻿﻿@using Microsoft.AspNetCore.Authorization
-@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-
-
-@page "/Payments"
+﻿@page "/Payments"
 @inject HttpClient _client
 @inject IJSRuntime js
 @inject HttpInterceptorService _interceptor
 @implements IDisposable
+@attribute [Authorize]
 
 <h3>Payments Index</h3>
 
+<a href="/Payments/create" class="btn btn-primary my-2">
+    <span class="oi oi-plus"></span> Create New Payment
+</a>
+<br />
+<br />
 
-@if (Payments == null)
-{
-    <div class="alert alert-info">Loading Payments...</div>
-}
-
-else
-{
-
-    <AuthorizeView Roles="Administrator">
-        <Authorized>
-
-            <a href="/Payments/create" class="btn btn-secondary">
-                <span class="oi oi-plus"></span>
-                Create New Payments
-            </a>
-            <br />
-            <br />
-
-            <table class="table table-responsive" id="bookingsTable">
-
-            <thead>
-                <tr>
-                    <th> Subscription Name</th>
-                    <th> Credit Card Num</th>
-                    <th> Credit Card Cvv</th>
-                    <th> Credit Card Exp</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var payments in Payments)
-                {
-
-                    <tr>
-                        <td>@payments.SubscriptionPlanName</td>
-                        <td>@payments.CardNum</td>
-                        <td>@payments.Cvv</td>
-                        <td>@payments.CardExp</td>
-                        <td>
-                            <a href="/Payments/view/@payments.Id" class="bth btn-primary">
-                                <span class="oi oi-book"></span>
-                            </a>
-
-                            <a href="/Payments/edit/@payments.Id" class="bth btn-primary">
-                                <span class="oi oi-pencil"></span>
-                            </a>
-
-                            <button class="btn btn-danger" @onclick="@(()=>Delete(payments.Id))">
-                                <span class="oi oi-book"></span>
-                            </button>
-
-                        </td>
-                    </tr>
-                }
-
-
-
-            </tbody>
-
-            </table>
-
-        </Authorized>
-    </AuthorizeView>
-
-
-    <AuthorizeView Roles="User">
-        <Authorized>
-            
-            <table class="table table-responsive" id="bookingsTable">
-
-            <thead>
-                <tr>
-                    <th> Subscription Name</th>
-                    <th> Credit Card Num</th>
-                    <th> Credit Card Cvv</th>
-                    <th> Credit Card Exp</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var payments in Payments)
-                {
-
-                    <tr>
-                        <td>@payments.Subscription.SubscriptionName</td
-                        <td>@payments.CardNum</td>
-                        <td>@payments.Cvv</td>
-                        <td>@payments.CardExp</td>
-                        <td>
-                            <a href="/Payments/view/@payments.Id" class="bth btn-primary">
-                                <span class="oi oi-book"></span>
-                            </a>
-
-
-                        </td>
-                    </tr>
-                }
-
-
-
-            </tbody>
-
-            </table>
-
-        </Authorized>
-    </AuthorizeView>
-    
-}
+<div class="container-fluid">
+    <div class="row row-cols-1 row-cols-md-4 g-4 mt-2">
+        @if (Payments == null)
+        {
+            <div class="alert alert-info">Loading Payments...</div>
+        }
+        else
+        {
+            foreach (var payment in Payments)
+            {
+                <div class="col">
+                    <div class="card h-100">
+                            <h5 class="card-title">@payment.SubscriptionPlanName</h5>
+                            <p class="card-text">
+                                Payments: @payment.Subscription.SubscriptionName<br>
+                                Card Number: @payment.CardNum<br>
+                                CVV: @payment.Cvv<br>
+                                Expiry: @payment.CardExp<br>
+                            </p>
+                            <div class="text-center">
+                                <a href="/Payments/view/@payment.Id" class="btn btn-primary m-1">
+                                    <i class="oi oi-eye"></i> View
+                                </a>
+                                <a href="/Payments/edit/@payment.Id" class="btn btn-warning m-1">
+                                    <i class="oi oi-pencil"></i> Edit
+                                </a>
+                                <button class="btn btn-danger m-1" @onclick="@(() => Delete(payment.Id))">
+                                    <i class="oi oi-trash"></i> Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+            }
+        }
+    </div>
+</div>
 
 
 
@@ -126,7 +56,7 @@ else
 
 
 @code {
-    public List<Payment>? Payments;
+    public List<Payment>? Payments; 
 
     protected async override Task OnInitializedAsync()
     {
@@ -150,22 +80,11 @@ else
         }
     }
 
-    protected async override Task OnAfterRenderAsync(bool firstRender)
-    {
-        await js.InvokeVoidAsync("AddDataTable", "#bookingsTable");
-    }
-
     public void Dispose()
     {
         _interceptor.DisposeEvent();
-        js.InvokeVoidAsync("DataTablesDispose", "#bookingsTable");
     }
 
-    int GetPaymentCount()
-    {
-        return Payments?.Count ?? 0;
-    }
 
 }
 
-<p>Total Payments: @GetPaymentCount()</p>

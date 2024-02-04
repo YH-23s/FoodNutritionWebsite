@@ -1,169 +1,84 @@
-﻿﻿﻿@using Microsoft.AspNetCore.Authorization
-@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-
-
-@page "/FoodLogs"
+﻿@page "/FoodLogs"
 @inject HttpClient _client
 @inject IJSRuntime js
 @inject HttpInterceptorService _interceptor
 @implements IDisposable
+@attribute [Authorize]
 
-<h3>FoodLogs Index</h3>
+<h3>Food Log Index</h3>
 
+<a href="/FoodLogs/create" class="btn btn-primary my-2">
+    <span class="oi oi-plus"></span> Create New Food Log
+</a>
+<br />
+<br />
 
-@if (FoodLogs == null)
-{
-    <div class="alert alert-info">Loading Food Logs...</div>
-}
-
-else
-{
-    <a href="/FoodLogs/create" class="btn btn-secondary">
-        <span class="oi oi-plus"></span>
-        Create New FoodLogs
-    </a>
-    <br />
-    <br />
-    
-    <AuthorizeView Roles = "Administrator">
-        <Authorized>
-
-            <table class="table table-responsive" id="bookingsTable">
-                <thead>
-                    <tr>
-                        <th>User</th>
-                        <th>Food Name</th>
-                        <th>Quantity</th>
-                        <th>Calory</th>
-                        <th>Date Added</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    @foreach (var foodlogs in FoodLogs)
-                    {
-                        <tr>
-                            <td>@foodlogs.User.UserName</td>
-                            <td>@foodlogs.Food.FoodName</td
-                            <td>@foodlogs.Quantity</td>
-                            <td>@foodlogs.Food.FoodCalory</td>
-                            <td>@foodlogs.DateUpdated</td>
-
-                            <td>
-                                <a href="/FoodLogs/view/@foodlogs.Id" class="bth btn-primary">
-                                    <span class="oi oi-book"></span>
+<div class="container-fluid">
+    <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+        @if (FoodLogs == null)
+        {
+            <div class="alert alert-info">Loading Food Logs...</div>
+        }
+        else
+        {
+            foreach (var foodLog in FoodLogs)
+            {
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="@foodLog.Food.FoodPicture" class="card-img-top" alt="@foodLog.Food.FoodName">
+                        <div class="card-body">
+                            <h5 class="card-title">@foodLog.Food.FoodName</h5>
+                            <p class="card-text">
+                                Food name: @foodLog.Food.FoodName<br>
+                                Calory: @foodLog.Food.FoodCalory<br>
+                                Quantity: @foodLog.Quantity<br>
+                                Date: @foodLog.DateUpdated<br>
+                                User: @foodLog.User.UserName
+                            </p>
+                            <div class="text-center">
+                                <a href="/FoodLogs/view/@foodLog.Id" class="btn btn-primary m-1">
+                                    <i class="oi oi-eye"></i>
+                                    View
                                 </a>
-
-                                <a href="/FoodLogs/edit/@foodlogs.Id" class="bth btn-primary">
-                                    <span class="oi oi-pencil"></span>
-                                   </a>
-
-                                <button class="btn btn-danger" @onclick="@(()=>Delete(foodlogs.Id))">
-                                    <span class="oi oi-book"></span>
-                                </button>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-
-            </table>
-        </Authorized>
-    </AuthorizeView>
-
-    <AuthorizeView Roles = "User">
-        <Authorized>
-            
-            <table class="table table-responsive" id="bookingsTable">
-                <thead>
-                    <tr>
-                        <th>User</th>
-                        <th>Food Name</th>
-                        <th>Quantity</th>
-                        <th>Date Added</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    @foreach (var foodlogs in FoodLogs)
-                    {
-                        <tr>
-                            <td>@foodlogs.User.UserName</td>
-                            <td>@foodlogs.Food.FoodName</td
-                            <td>@foodlogs.Quantity</td>
-                            <td>@foodlogs.DateUpdated</td>
-
-                            <td>
-                                <a href="/FoodLogs/view/@foodlogs.Id" class="bth btn-primary">
-                                    <span class="oi oi-book"></span>
+                                <a href="/FoodLogs/edit/@foodLog.Id" class="btn btn-warning m-1">
+                                    <i class="oi oi-pencil"></i>
+                                    Edit
                                 </a>
-
-                                <a href="/FoodLogs/edit/@foodlogs.Id" class="bth btn-primary">
-                                    <span class="oi oi-pencil"></span>
-                                   </a>
-
-                                <button class="btn btn-danger" @onclick="@(()=>Delete(foodlogs.Id))">
-                                    <span class="oi oi-book"></span>
+                                <button class="btn btn-danger m-1" @onclick="@(() => Delete(foodLog.Id))">
+                                    <i class="oi oi-trash"></i>
+                                    Delete
                                 </button>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-
-            </table>
-        </Authorized>
-    </AuthorizeView>
-
-}
-
-
-
-
-
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
 
 @code {
     public List<FoodLog>? FoodLogs;
 
-    protected async override Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
         _interceptor.MonitorEvent();
-        FoodLogs = await _client.GetFromJsonAsync<List<FoodLog>>($"api/FoodLogs");
-
+        FoodLogs = await _client.GetFromJsonAsync<List<FoodLog>>("api/FoodLogs");
     }
 
-    async Task Delete(int foodlogsId)
+    async Task Delete(int foodLogId)
     {
-        if (FoodLogs != null)
+        var confirm = await js.InvokeAsync<bool>("confirm", "Do you want to delete this food log?");
+        if (confirm)
         {
-            var foodlogs = FoodLogs.First(q => q.Id == foodlogsId);
-            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {foodlogs}?");
-
-            if (confirm)
-            {
-                await _client.DeleteAsync($"api/FoodLogs/{foodlogsId}");
-                await OnInitializedAsync();
-            }
-
+            await _client.DeleteAsync($"api/FoodLogs/{foodLogId}");
+            FoodLogs = await _client.GetFromJsonAsync<List<FoodLog>>("api/FoodLogs");
+            StateHasChanged();
         }
-    }
-
-    protected async override Task OnAfterRenderAsync(bool firstRender)
-    {
-        await js.InvokeVoidAsync("AddDataTable", "#bookingsTable");
     }
 
     public void Dispose()
     {
         _interceptor.DisposeEvent();
-        js.InvokeVoidAsync("DataTablesDispose", "#bookingsTable");
     }
-
-    int GetFoodLogsCount()
-    {
-        return FoodLogs?.Count ?? 0;
-    }
-
 }
-
-<p>Total FoodLogs: @GetFoodLogsCount()</p>

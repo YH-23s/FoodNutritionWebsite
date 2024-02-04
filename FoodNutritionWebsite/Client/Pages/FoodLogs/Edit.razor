@@ -2,28 +2,92 @@
 @inject HttpClient _client
 @inject NavigationManager _navManager
 
-<h3>Edit Food Logs page</h3>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <h3 class="mb-4 text-center">Edit Food Log</h3>
+            <div class="card p-4">
+                <EditForm Model="@foodlog" OnValidSubmit="@EditFoodLog">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary class="text-danger" />
 
+                    <!-- User Field -->
+                    <div class="form-group mb-3">
+                        <label for="userID" class="form-label">User:</label>
+                        <InputSelect @bind-Value="foodlog.UserID" id="userID" class="form-control">
+                            <option value="">--Select User--</option>
+                            @if (Users != null)
+                            {
+                                foreach (var user in Users)
+                                {
+                                    <option value="@user.Id">@user.UserName</option>
+                                }
+                            }
+                        </InputSelect>
+                        <ValidationMessage For="@(() => foodlog.UserID)" class="text-danger" />
+                    </div>
 
+                    <!-- Food Name Field -->
+                    <div class="form-group mb-3">
+                        <label for="foodID" class="form-label">Food Name:</label>
+                        <InputSelect @bind-Value="foodlog.FoodID" id="foodID" class="form-control">
+                            <option value="">--Select Food--</option>
+                            @if (Foods != null)
+                            {
+                                foreach (var food in Foods)
+                                {
+                                    <option value="@food.Id">@food.FoodName</option>
+                                }
+                            }
+                        </InputSelect>
+                        <ValidationMessage For="@(() => foodlog.FoodID)" class="text-danger" />
+                    </div>
 
-<FormComponent ButtonText="Update" OnValidSubmit="EditFoodLog" foodlog="foodlog" />
+                    <!-- Quantity Field -->
+                    <div class="form-group mb-4">
+                        <label for="quantity" class="form-label">Quantity:</label>
+                        <InputNumber @bind-Value="foodlog.Quantity" id="quantity" class="form-control" placeholder="Enter Quantity" />
+                        <ValidationMessage For="@(() => foodlog.Quantity)" class="text-danger" />
+                    </div>
 
-
-
+                    <!-- Action Buttons -->
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-secondary" @onclick="GoBack">
+                            <i class="oi oi-arrow-left"></i>
+                            Back
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="oi oi-circle-check" style="margin-right: 2px;"></i>
+                            Update
+                        </button>
+                    </div>
+                </EditForm>
+            </div>
+        </div>
+    </div>
+</div>
 
 @code {
-	[Parameter] public int id { get; set; }
-	FoodLog? foodlog = new FoodLog();
+    [Parameter] public int id { get; set; }
+    FoodLog? foodlog = new FoodLog();
+    private IList<User>? Users;
+    private IList<Food>? Foods;
 
-	protected async override Task OnParametersSetAsync()
-	{
-		foodlog = await _client.GetFromJsonAsync<FoodLog>($"{$"api/FoodLogs"}/{id}");
-	}
+    protected async override Task OnInitializedAsync()
+    {
+        foodlog = await _client.GetFromJsonAsync<FoodLog>($"api/FoodLogs/{id}");
+        Users = await _client.GetFromJsonAsync<List<User>>($"api/Users");
+        Foods = await _client.GetFromJsonAsync<List<Food>>($"api/foods");
+    }
 
-	async Task EditFoodLog()
-	{
-		await _client.PutAsJsonAsync($"{$"api/FoodLogs"}/{id}", foodlog);
-		_navManager.NavigateTo("/FoodLogs/");
+    async Task EditFoodLog()
+    {
+        await _client.PutAsJsonAsync($"api/FoodLogs/{id}", foodlog);
+        _navManager.NavigateTo("/FoodLogs/");
+    }
 
-	}
+    void GoBack()
+    {
+        _navManager.NavigateTo("/FoodLogs/");
+    }
 }

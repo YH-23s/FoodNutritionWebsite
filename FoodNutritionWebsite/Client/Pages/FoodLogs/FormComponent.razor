@@ -8,67 +8,60 @@
     <ValidationSummary />
 
     <fieldset disabled="@Disabled">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card p-4">
+                        <div class="form-group">
+                            <label for="userID" style="color: black">User:</label>
+                            <InputSelect @bind-Value="foodlog.UserID" id="userID" class="form-control">
+                                <option value="">--Select User--</option>
+                                @if (Users != null)
+                                {
+                                    foreach (var user in Users)
+                                    {
+                                        <option value="@user.Id">@user.UserName</option>
+                                    }
+                                }
+                            </InputSelect>
+                            <ValidationMessage For="@(() => foodlog.UserID)" />
+                        </div>
 
-        <div class="form-group">
-            <label>User:</label>
-            <div>
-                <InputSelect @bind-Value="foodlog.UserID" class="form-control">
-                    <option value="">--Select User--</option>
-                    @if (Users != null)
-                    {
-                        foreach (var user in Users)
+                        <div class="form-group">
+                            <label for="foodID" style="color: black">Food Name:</label>
+                            <InputSelect @bind-Value="foodlog.FoodID" id="foodID" class="form-control">
+                                <option value="">--Select Food--</option>
+                                @if (Foods != null)
+                                {
+                                    foreach (var food in Foods)
+                                    {
+                                        <option value="@food.Id">@food.FoodName</option>
+                                    }
+                                }
+                            </InputSelect>
+                            <ValidationMessage For="@(() => foodlog.FoodID)" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="quantity" style="color: black">Quantity:</label>
+                            <InputNumber @bind-Value="foodlog.Quantity" id="quantity" class="form-control" placeholder="Enter Quantity" />
+                            <ValidationMessage For="@(() => foodlog.Quantity)" />
+                        </div>
+                        @if (!Disabled)
                         {
-                            <option value="@user.Id">@user.UserName</option>
+                            <button type="submit" class="btn btn-success btn-block">
+                                @ButtonText
+                            </button>
                         }
-                    }
-                </InputSelect>
-                <ValidationMessage For="@(() => foodlog.UserID)" />
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            <label>Food Name:</label>
-            <div>
-                <InputSelect @bind-Value="foodlog.FoodID" class="form-control">
-                    <option value="">--Select Food--</option>
-                    @if (Foods != null)
-                    {
-                        foreach (var foods in Foods)
-                        {
-                            <option value="@foods.Id">@foods.FoodName</option>
-                        }
-                    }
-                </InputSelect>
-                <ValidationMessage For="@(() => foodlog.FoodID)" />
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            <label>Quantity: </label>
-            <div>
-                <InputNumber @bind-Value="foodlog.Quantity" class="form-control" />
-                <ValidationMessage For="@(() => foodlog.Quantity)" />
-
+                        
+                    </div>
+                </div>
             </div>
         </div>
         
 
     </fieldset>
-
-    @if (!Disabled)
-    {
-        <button type="submit" class="btn btn-success btn-block">
-            @ButtonText
-        </button>
-    }
-
-    <button type="button" class="btn btn-secondary btn-block" @onclick="BackToList">Back to List</button>
-
 </EditForm>
-
-
 
 
 @code {
