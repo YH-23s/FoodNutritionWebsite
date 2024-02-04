@@ -241,7 +241,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "728e2ac9-0aea-4392-90dd-cd2a60695d6e",
+                            ConcurrencyStamp = "2f2a1b7d-4a4e-4df9-bf78-7b5359767673",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -249,9 +249,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAELz/KgJIvD1OzR7abS4/HNyKvn8soBdJ0rPVgQInhP7RId9xmoHyaEC1LBaEZ53nCQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAECqqnJ/JFDeYkXO9cBHUZIy7p3FSVpE4nFW5WO1GMaQQHdop7yXsEGDyyx0pNhlvxw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1aac325b-1157-4135-8045-cd0741317493",
+                            SecurityStamp = "dd557c56-3cd2-4075-96a5-05128fb3afcb",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -259,7 +259,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = "a9ae8ce6-55cb-48f1-8e73-894563807efa",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "98240430-b30b-4207-8e34-a0d022d06077",
+                            ConcurrencyStamp = "3dbab305-6c65-4890-ab27-3a8c7208a46a",
                             Email = "user@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "User",
@@ -267,9 +267,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@LOCALHOST.COM",
                             NormalizedUserName = "USER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDX9tshYXAkX7/lmG2J40jgKxKg548tVxlTNpZ7lZbOmedznEJ3ktg9N49ugcNn7cw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAECuzx5tBD6mhyUBVl3nFiIP9bZtXyaddHJ3/h4EWfoiKlKj8+60EI/C2ebBRxuv3CQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e9aff74d-4e87-43c1-b330-c644dba34e2b",
+                            SecurityStamp = "89cb5be8-582c-4bee-b417-df07a5809f67",
                             TwoFactorEnabled = false,
                             UserName = "user@localhost.com"
                         });
@@ -498,7 +498,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                     b.Property<string>("FoodType")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Quantity")
+                    b.Property<double?>("Quantity")
                         .HasColumnType("float");
 
                     b.Property<string>("UpdatedBy")
@@ -519,7 +519,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         new
                         {
                             Id = 1,
-                            DateUpdated = new DateTime(2024, 2, 4, 19, 45, 34, 566, DateTimeKind.Local).AddTicks(4612),
+                            DateUpdated = new DateTime(2024, 2, 4, 15, 18, 24, 159, DateTimeKind.Local).AddTicks(1920),
                             FoodID = 2,
                             Quantity = 2.0,
                             UserID = 1
@@ -527,7 +527,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         new
                         {
                             Id = 2,
-                            DateUpdated = new DateTime(2024, 2, 4, 19, 45, 34, 566, DateTimeKind.Local).AddTicks(4616),
+                            DateUpdated = new DateTime(2024, 2, 4, 15, 18, 24, 159, DateTimeKind.Local).AddTicks(1927),
                             FoodID = 3,
                             Quantity = 3.0,
                             UserID = 2
@@ -612,7 +612,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         new
                         {
                             Id = 1,
-                            Image = "https://www.shape.com/thmb/Nti_HBKTZCavOIQkCKRJS2sx9W8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/shutterstock_1069332170-2000-364c5bccbb1e4e2a83a0e4cfdc15723a.jpg",
+                            Image = "https://images.pexels.com/photos/2377045/pexels-photo-2377045.jpeg?cs=srgb&dl=pexels-total-shape-2377045.jpg&fm=jpg",
                             MealPlanCategory = "Weight Loss",
                             MealPlanName = "Low Carb Plan",
                             StaffID = 1
@@ -620,7 +620,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         new
                         {
                             Id = 2,
-                            Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUlSYLFD6CaQAweZSOwkmeGQI5ooZZOgdVFoAbsnH0XA&s",
+                            Image = "https://hips.hearstapps.com/hmg-prod/images/gettyimages-492573824-1528828970.jpg",
                             MealPlanCategory = "Muscle Gain",
                             MealPlanName = "High Protein Plan",
                             StaffID = 2
@@ -632,14 +632,6 @@ namespace FoodNutritionWebsite.Server.Migrations
                             MealPlanCategory = "Maintenance",
                             MealPlanName = "Balanced Diet Plan",
                             StaffID = 3
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Image = "https://images.immediate.co.uk/production/volatile/sites/30/2023/05/cropGettyImages-1457478408-77eb943.jpg?quality=90&resize=556,505",
-                            MealPlanCategory = "Eco-Friendly",
-                            MealPlanName = "Balanced Diet Plan",
-                            StaffID = 4
                         });
                 });
 
@@ -956,7 +948,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 2, 4, 19, 45, 34, 566, DateTimeKind.Local).AddTicks(3749),
+                            DateCreated = new DateTime(2024, 2, 4, 15, 18, 24, 159, DateTimeKind.Local).AddTicks(1320),
                             Gender = "Male",
                             UserDOB = "12/1/2001",
                             UserEmail = "TestingAccount@blazor.com",
@@ -968,7 +960,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 2, 4, 19, 45, 34, 566, DateTimeKind.Local).AddTicks(3773),
+                            DateCreated = new DateTime(2024, 2, 4, 15, 18, 24, 159, DateTimeKind.Local).AddTicks(1355),
                             Gender = "Female",
                             UserDOB = "12/1/2005",
                             UserEmail = "TestAccount@blazor.com",
