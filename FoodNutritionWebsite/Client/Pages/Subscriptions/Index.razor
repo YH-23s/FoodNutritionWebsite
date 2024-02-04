@@ -7,11 +7,18 @@
 
 <h3>Subscriptions Index</h3>
 
-<a href="/Subscriptions/create" class="btn btn-primary my-2">
-    <span class="oi oi-plus"></span> Create New Subscription Plan
-</a>
-<br />
-<br />
+<AuthorizeView Roles="Administrator">
+    <Authorized>
+        <a href="/Subscriptions/create" class="btn btn-primary my-2">
+            <span class="oi oi-plus"></span> Create New Subscription Plan
+        </a>
+        <br />
+        <br />
+    </Authorized>
+</AuthorizeView>
+
+
+
 
 <div class="container-fluid">
     <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
@@ -23,6 +30,8 @@
         {
             @foreach (var subscription in Subscriptions)
             {
+
+
                 <div class="col">
                     <div class="card h-100">
                         <div class="card-body">
@@ -34,12 +43,25 @@
                                 <a href="/Subscriptions/view/@subscription.Id" class="btn btn-primary actionbutton">
                                     <i class="oi oi-eye"></i> View
                                 </a>
-                                <a href="/Subscriptions/edit/@subscription.Id" class="btn btn-warning actionbutton">
-                                    <i class="oi oi-pencil"></i> Edit
+                                <a href="/Payments/create" class="btn btn-primary my-2">
+                                    <span class="oi oi-plus"></span> Buy Plan
                                 </a>
-                                <button class="btn btn-danger actionbutton" @onclick="@(()=>Delete(subscription.Id))">
-                                    <i class="oi oi-trash"></i> Delete
-                                </button>
+                                <br />
+                                <br />
+
+
+                                <AuthorizeView Roles="Administrator">
+                                    <Authorized>
+                                        <a href="/Subscriptions/edit/@subscription.Id" class="btn btn-warning actionbutton">
+                                            <i class="oi oi-pencil"></i> Edit
+                                        </a>
+                                        <button class="btn btn-danger actionbutton" @onclick="@(()=>Delete(subscription.Id))">
+                                            <i class="oi oi-trash"></i> Delete
+                                        </button>
+                                    </Authorized>
+                                </AuthorizeView>>
+
+                                
                             </div>
                         </div>
                     </div>

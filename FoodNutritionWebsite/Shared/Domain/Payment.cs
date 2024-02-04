@@ -11,13 +11,19 @@ namespace FoodNutritionWebsite.Shared.Domain
 {
     public class Payment : BaseDomainModel
     {
-
+        [Required(ErrorMessage = "CVV is required")]
         public string? Cvv { get; set; }
+
+        [Required(ErrorMessage = "Card expiration date is required")]
+        [RegularExpression(@"^(0[1-9]|1[0-2])\/\d{2}$", ErrorMessage = "Invalid card expiration date")]
         public string? CardExp { get; set; }
+
+        [Required(ErrorMessage = "Card number is required")]
+        [CreditCard(ErrorMessage = "Invalid credit card number")]
         public string? CardNum { get; set; }
 
-       
 
+        
         public double? PaymentAmount { get; set; }
 
         

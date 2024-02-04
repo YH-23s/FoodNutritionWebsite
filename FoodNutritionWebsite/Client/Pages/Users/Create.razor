@@ -19,7 +19,7 @@
         <!-- User DOB field -->
         <div class="form-group">
             <label for="userDOB">User DOB:</label>
-            <InputText id="userDOB" @bind-Value="user.UserDOB" class="form-control" placeholder="YYYY-MM-DD" />
+            <InputText id="userDOB" @bind-Value="user.UserDOB" class="form-control" placeholder="DD-MM-YYYY" />
             <ValidationMessage For="@(() => user.UserDOB)" />
         </div>
 
