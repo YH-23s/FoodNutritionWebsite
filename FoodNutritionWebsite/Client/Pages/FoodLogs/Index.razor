@@ -61,83 +61,41 @@ else
 </div>
         </Authorized>
     </AuthorizeView>
-   @*  <div class="container-fluid">
-    <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
-        @if (Staff == null)
-        {
-            <div class="alert alert-info">Loading Food Logs...</div>
-        }
-        else
-        {
-            @foreach (var foodlogs in FoodLogs)
-            {
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">@foodlogs.User.UserName</h5>
-                            <p class="card-text">@foodlogs.Food.FoodName</p>
-                            <p class="card-text">@foodlogs.Quantity</p>
-                            <p class="card-text">@foodlogs.Food.FoodCalory</p>
-                            <p class="card-text">@foodlogs.DateUpdated</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="/Staffs/view/@staff.Id" class="btn btn-primary actionbutton">
-                                    <i class="oi oi-eye"></i> View
-                                </a>
-                                <a href="/Staffs/edit/@staff.Id" class="btn btn-warning actionbutton">
-                                    <i class="oi oi-pencil"></i> Edit
-                                </a>
-                                <button class="btn btn-danger actionbutton" @onclick="@(()=>Delete(staff.Id))">
-                                    <i class="oi oi-trash"></i> Delete
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
-        }
-    </div>
-</div> *@
+   
     <AuthorizeView Roles = "User">
         <Authorized>
-            
-            <table class="table table-responsive" id="bookingsTable">
-                <thead>
-                    <tr>
-                        <th>User</th>
-                        <th>Food Name</th>
-                        <th>Quantity</th>
-                        <th>Date Added</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
 
-                <tbody>
+            <div class="container-fluid">
+                <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+
                     @foreach (var foodlogs in FoodLogs)
                     {
-                        <tr>
-                            <td>@foodlogs.User.UserName</td>
-                            <td>@foodlogs.Food.FoodName</td
-                            <td>@foodlogs.Quantity</td>
-                            <td>@foodlogs.DateUpdated</td>
-
-                            <td>
-                                <a href="/FoodLogs/view/@foodlogs.Id" class="bth btn-primary">
-                                    <span class="oi oi-book"></span>
-                                </a>
-
-                                <a href="/FoodLogs/edit/@foodlogs.Id" class="bth btn-primary">
-                                    <span class="oi oi-pencil"></span>
-                                   </a>
-
-                                <button class="btn btn-danger" @onclick="@(()=>Delete(foodlogs.Id))">
-                                    <span class="oi oi-book"></span>
-                                </button>
-                            </td>
-                        </tr>
+                        <div class="col">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">User Name: @foodlogs.User.UserName</h5>
+                                    <p class="card-text">Food Name: @foodlogs.Food.FoodName</p>
+                                    <p class="card-text">Quantity: @foodlogs.Quantity</p>
+                                    <p class="card-text">Food Calory: @foodlogs.Food.FoodCalory</p>
+                                    <p class="card-text">Date updated: @foodlogs.DateUpdated</p>
+                                    <div class="d-flex justify-content-center">
+                                        <a href="/FoodLogs/view/@foodlogs.Id" class="btn btn-primary actionbutton">
+                                            <i class="oi oi-eye"></i> View
+                                        </a>
+                                        <a href="/FoodLogs/edit/@foodlogs.Id" class="btn btn-warning actionbutton">
+                                            <i class="oi oi-pencil"></i> Edit
+                                        </a>
+                                        <button class="btn btn-danger actionbutton" @onclick="@(()=>Delete(foodlogs.Id))">
+                                            <i class="oi oi-trash"></i> Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     }
-                </tbody>
 
-            </table>
+                </div>
+            </div>
         </Authorized>
     </AuthorizeView>
 

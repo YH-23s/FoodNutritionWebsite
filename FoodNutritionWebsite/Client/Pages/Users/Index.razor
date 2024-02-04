@@ -51,6 +51,40 @@ else
             </div>
         </Authorized>
     </AuthorizeView>
+
+    <AuthorizeView Roles="User">
+        <Authorized>
+            <a href="/users/create" class="btn btn-primary">
+                <span class="oi oi-plus"></span> Create New User
+            </a>
+            <br /><br />
+
+            <div class="container-fluid">
+                <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+                    @foreach (var user in Users)
+                    {
+                        <div class="col">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="color: black">User Name: @user.UserName</h5>
+                                    <p class="card-text" style="color: black">User Email: @user.UserEmail</p>
+                                    <p class="card-text" style="color: black">User Date Of Birth: @user.UserDOB</p>
+                                    <div class="d-flex justify-content-center">
+                                        <a href="/users/view/@user.Id" class="btn btn-primary actionbutton">
+                                            <i class="oi oi-eye"></i> View
+                                        </a>
+                                        <a href="/users/edit/@user.Id" class="btn btn-warning actionbutton">
+                                            <i class="oi oi-pencil"></i> Edit
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </Authorized>
+    </AuthorizeView>
 }
 
 @code {
