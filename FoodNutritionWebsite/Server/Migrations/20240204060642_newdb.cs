@@ -437,8 +437,8 @@ namespace FoodNutritionWebsite.Server.Migrations
                     UserDOB = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserPhoneNum = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserPassword = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserPassword = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SubscriptionID = table.Column<int>(type: "int", nullable: true),
                     DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -532,8 +532,8 @@ namespace FoodNutritionWebsite.Server.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "Gender", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "1d5d3ca2-714f-404f-8bab-ceab2289330d", "admin@localhost.com", false, "Admin", null, "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEJvGrbvDuA4P0I7LkV/slf8RlIjOlJ1Z3ZDbrvW18M7ugTmLKWnuW56wcEuvs3Yk/w==", null, false, "c044d0b9-b91c-4ba0-aca1-3943efb57019", false, "admin@localhost.com" },
-                    { "a9ae8ce6-55cb-48f1-8e73-894563807efa", 0, "e6c6abfe-ed98-4195-bcc0-9cc0bee052f6", "user@localhost.com", false, "User", null, "User", false, null, "USER@LOCALHOST.COM", "USER@LOCALHOST.COM", "AQAAAAIAAYagAAAAELPzPFs1wINX8G8sSXNDR3+ToAuxEmtwnIHJHtgcZBWB6giHluTUhDsN5U4fgSD+KQ==", null, false, "18c34ded-d2e9-4142-b629-dfe626f10ad7", false, "user@localhost.com" }
+                    { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "e3e5fc6a-11a0-4d62-b4e0-f481f79b1f0b", "admin@localhost.com", false, "Admin", null, "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEDqtyFbsvMKiErv48QMIx0AnpVX6KQAPE3cfiui4GYHM8pJPJyJvqzK4n81Tfz2RLg==", null, false, "2fddebd6-6976-4d9c-b3a6-c3e14ac4b6fc", false, "admin@localhost.com" },
+                    { "a9ae8ce6-55cb-48f1-8e73-894563807efa", 0, "6c46ab30-a9a9-45b9-bb4d-3df5dc702f7c", "user@localhost.com", false, "User", null, "User", false, null, "USER@LOCALHOST.COM", "USER@LOCALHOST.COM", "AQAAAAIAAYagAAAAEMfaa8T+/8aFJva8Tokt9xDDErJzI/gPoEUmEfae51I6FmrPt5u+pPn8z5bUL4vlQA==", null, false, "cbe573e3-1861-4739-b8d1-8344a8116953", false, "user@localhost.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -563,8 +563,8 @@ namespace FoodNutritionWebsite.Server.Migrations
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "Gender", "SubscriptionID", "UpdatedBy", "UserDOB", "UserEmail", "UserName", "UserPassword", "UserPhoneNum" },
                 values: new object[,]
                 {
-                    { 1, "seed-script", new DateTime(2024, 2, 4, 0, 28, 55, 346, DateTimeKind.Local).AddTicks(5667), null, "Male", null, null, "12/1/2001", "TestingAccount@blazor.com", "TestingAccount", "TestingAccount_password123", "9012 0791" },
-                    { 2, "seed-script", new DateTime(2024, 2, 4, 0, 28, 55, 346, DateTimeKind.Local).AddTicks(5692), null, "Female", null, null, "12/1/2005", "TestAccount@blazor.com", "TestAccount@blazor.com", "TestAccount_password123", "9072 0791" }
+                    { 1, "seed-script", new DateTime(2024, 2, 4, 14, 6, 42, 115, DateTimeKind.Local).AddTicks(9469), null, "Male", null, null, "12/1/2001", "TestingAccount@blazor.com", "TestingAccount", "TestingAccount_password123", "9012 0791" },
+                    { 2, "seed-script", new DateTime(2024, 2, 4, 14, 6, 42, 115, DateTimeKind.Local).AddTicks(9488), null, "Female", null, null, "12/1/2005", "TestAccount@blazor.com", "TestAccount@blazor.com", "TestAccount_password123", "9072 0791" }
                 });
 
             migrationBuilder.InsertData(
@@ -577,6 +577,15 @@ namespace FoodNutritionWebsite.Server.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "FoodLogs",
+                columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "FoodID", "FoodLogDateTime", "FoodName", "FoodType", "Quantity", "UpdatedBy", "UserID" },
+                values: new object[,]
+                {
+                    { 1, null, null, new DateTime(2024, 2, 4, 14, 6, 42, 116, DateTimeKind.Local).AddTicks(675), 2, null, null, null, 2.0, null, 1 },
+                    { 2, null, null, new DateTime(2024, 2, 4, 14, 6, 42, 116, DateTimeKind.Local).AddTicks(680), 3, null, null, null, 3.0, null, 2 }
+                });
+
+            migrationBuilder.InsertData(
                 table: "MealPlans",
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "Image", "MealPlanCategory", "MealPlanName", "StaffID", "UpdatedBy" },
                 values: new object[,]
@@ -584,6 +593,24 @@ namespace FoodNutritionWebsite.Server.Migrations
                     { 1, null, null, null, "https://images.pexels.com/photos/2377045/pexels-photo-2377045.jpeg?cs=srgb&dl=pexels-total-shape-2377045.jpg&fm=jpg", "Weight Loss", "Low Carb Plan", 1, null },
                     { 2, null, null, null, "https://hips.hearstapps.com/hmg-prod/images/gettyimages-492573824-1528828970.jpg", "Muscle Gain", "High Protein Plan", 2, null },
                     { 3, null, null, null, "https://detoxkitchen.co.uk/images/imager/packageimage/active-maintain/6734478/DK_ActiveMaintain_square_2a1087fcf192370ad9a14b014fe7fa80.jpg", "Maintenance", "Balanced Diet Plan", 3, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Subscriptions",
+                columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "MealPlanID", "PaymentDescription", "SubscriptionDescription", "SubscriptionName", "SubscriptionPrice", "UpdatedBy" },
+                values: new object[,]
+                {
+                    { 1, null, null, null, 2, " This plan would be valid for a month only.", "This subscription plan is great for growing muscle", "Growing Muscle", 12.199999999999999, null },
+                    { 2, null, null, null, 1, " This plan would be valid for a month only.", "This subscription plan is great for losing weight", "Losing Weight", 15.25, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Payments",
+                columns: new[] { "Id", "CardExp", "CardNum", "CreatedBy", "Cvv", "DateCreated", "DateUpdated", "EndingDate", "PaymentAmount", "PaymentDescription", "StartingDate", "SubscriptionID", "SubscriptionPlanName", "UpdatedBy" },
+                values: new object[,]
+                {
+                    { 1, "12/21", "9010 0102 2910 8219", null, "010", null, null, null, null, null, null, 1, null, null },
+                    { 2, "07/17", "9010 0102 2910 8219", null, "017", null, null, null, null, null, null, 2, null, null }
                 });
 
             migrationBuilder.CreateIndex(

@@ -11,14 +11,6 @@
 <h3>FoodLogs Index</h3>
 
 
-<a href="/FoodLogs/create" class="btn btn-secondary">
-    <span class="oi oi-plus"></span>
-    Create New FoodLogs
-</a>
-<br />
-<br />
-
-
 @if (FoodLogs == null)
 {
     <div class="alert alert-info">Loading Food Logs...</div>
@@ -26,6 +18,12 @@
 
 else
 {
+    <a href="/FoodLogs/create" class="btn btn-secondary">
+        <span class="oi oi-plus"></span>
+        Create New FoodLogs
+    </a>
+    <br />
+    <br />
     
     <AuthorizeView Roles = "Administrator">
         <Authorized>
@@ -36,6 +34,7 @@ else
                         <th>User</th>
                         <th>Food Name</th>
                         <th>Quantity</th>
+                        <th>Calory</th>
                         <th>Date Added</th>
                         <th>Actions</th>
                     </tr>
@@ -48,6 +47,7 @@ else
                             <td>@foodlogs.User.UserName</td>
                             <td>@foodlogs.Food.FoodName</td
                             <td>@foodlogs.Quantity</td>
+                            <td>@foodlogs.Food.FoodCalory</td>
                             <td>@foodlogs.DateUpdated</td>
 
                             <td>
@@ -73,12 +73,7 @@ else
 
     <AuthorizeView Roles = "User">
         <Authorized>
-            <a href="/FoodLogs/create" class="btn btn-secondary">
-                <span class="oi oi-plus"></span>
-                Create New FoodLogs
-            </a>
-            <br />
-            <br />
+            
             <table class="table table-responsive" id="bookingsTable">
                 <thead>
                     <tr>
