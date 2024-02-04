@@ -2,49 +2,49 @@
 @inject HttpClient _client
 @inject NavigationManager _navManager
 
-<div class="create-mealplan-container">
-    <h3 class="create-mealplan-title">Create New Meal Plan</h3>
-    <hr />
-    <EditForm Model="@mealplan" OnValidSubmit="CreateMealPlan">
-        <DataAnnotationsValidator />
-        <ValidationSummary />
+<h3 class="card-title">Create New Meal Plan</h3>
+<hr />
+<br />
 
-        <!-- Name field -->
-        <div class="form-group">
-            <label for="mealPlanName">Name:</label>
-            <InputText id="mealPlanName" @bind-Value="@mealplan.MealPlanName" class="form-control" placeholder="Enter meal plan name" />
-            <ValidationMessage For="@(() => mealplan.MealPlanName)" />
-        </div>
+<EditForm Model="@mealplan" OnValidSubmit="CreateMealPlan">
+	<DataAnnotationsValidator />
+	<ValidationSummary />
 
-        <!-- Category field -->
-        <div class="form-group">
-            <label for="mealPlanCategory">Category:</label>
-            <InputText id="mealPlanCategory" @bind-Value="@mealplan.MealPlanCategory" class="form-control" placeholder="Enter meal plan category" />
-            <ValidationMessage For="@(() => mealplan.MealPlanCategory)" />
-        </div>
-
-        <!-- Staff field -->
-        <div class="form-group">
-            <label for="staffID">Staff:</label>
-            <InputSelect id="staffID" @bind-Value="@mealplan.StaffID" class="form-control">
-                <option value="">-- Select Staff --</option>
-                @if (Staffs != null)
-                {
-                    foreach (var staff in Staffs)
-                    {
-                        <option value="@staff.Id">@staff.FirstName @staff.LastName</option>
-                    }
-                }
-            </InputSelect>
-            <ValidationMessage For="@(() => mealplan.StaffID)" />
-        </div>
-
-        <!-- Form actions -->
-        <div class="form-actions">
-            <button type="submit" class="btn btn-create">Create Meal Plan</button>
-        </div>
-    </EditForm>
-</div>
+	<div class="form-group">
+		<label>Name: </label>
+		<div>
+			<InputText @bind-Value="@mealplan.MealPlanName" class="form-control" />
+			<ValidationMessage For="@(() => mealplan.MealPlanName)" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label>Category: </label>
+		<div>
+			<InputText @bind-Value="@mealplan.MealPlanCategory" class="form-control" />
+			<ValidationMessage For="@(() => mealplan.MealPlanCategory)" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label>Staff: </label>
+		<div>
+			<InputSelect @bind-Value="mealplan.StaffID" class="form-control">
+				<option value"">-- Select Staff --</option>
+				@if (Staffs != null)
+				{
+					foreach (var staff in Staffs)
+					{
+						<option value="@staff.Id">@staff.FirstName</option>
+					}
+				}
+			</InputSelect>
+			<ValidationMessage For="@(() => mealplan.StaffID)" />
+		</div>
+	</div>
+	
+	<button type="submit" class="btn btn-success btn-block">
+		Create MealPlan
+	</button>
+</EditForm>
 
 @code {
 	MealPlan mealplan = new MealPlan();

@@ -2,51 +2,61 @@
 @inject HttpClient _client
 @inject NavigationManager _navManager
 
-<div class="create-food-container">
-    <h3 class="create-food-title">Create New Food</h3>
-    <hr />
-    <EditForm Model="@food" OnValidSubmit="CreateFood">
-        <DataAnnotationsValidator />
-        <ValidationSummary />
+<h3 class="card-title">Create New Food</h3>
+<hr />
+<br />
 
-        <div class="form-group">
-            <label for="foodName">Name:</label>
-            <InputText id="foodName" @bind-Value="@food.FoodName" class="form-control" placeholder="Enter food name" />
-            <ValidationMessage For="@(() => food.FoodName)" />
-        </div>
-        <div class="form-group">
-            <label for="foodDescription">Description:</label>
-            <InputTextArea id="foodDescription" @bind-Value="@food.FoodDescription" class="form-control" placeholder="Enter food description" />
-            <ValidationMessage For="@(() => food.FoodDescription)" />
-        </div>
-        <div class="form-group">
-            <label for="foodCategory">Category:</label>
-            <InputText id="foodCategory" @bind-Value="@food.FoodCategory" class="form-control" placeholder="Enter food category" />
-            <ValidationMessage For="@(() => food.FoodCategory)" />
-        </div>
-        <div class="form-group">
-            <label for="foodPicture">Picture:</label>
-            <InputText id="foodPicture" @bind-Value="@food.FoodPicture" class="form-control" placeholder="Enter image URL" />
-            <ValidationMessage For="@(() => food.FoodPicture)" />
-        </div>
-        <div class="form-group">
-            <label for="foodCalory">Calory:</label>
-            <InputText id="foodCalory" @bind-Value="@food.FoodCalory" class="form-control" placeholder="Enter calorie count" />
-            <ValidationMessage For="@(() => food.FoodCalory)" />
-        </div>
+<EditForm Model="@food" OnValidSubmit="CreateFood">
+	<DataAnnotationsValidator />
+	<ValidationSummary />
 
-        <div class="form-actions">
-            <button type="submit" class="btn btn-create">Create Food</button>
-        </div>
-    </EditForm>
-</div>
+	<div class="form-group">
+		<label>Name: </label>
+		<div>
+			<InputText @bind-Value="@food.FoodName" class="form-control" />
+			<ValidationMessage For="@(() => food.FoodName)" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label>Description: </label>
+		<div>
+			<InputText @bind-Value="@food.FoodDescription" class="form-control" />
+			<ValidationMessage For="@(() => food.FoodDescription)" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label>Category: </label>
+		<div>
+			<InputText @bind-Value="@food.FoodCategory" class="form-control" />
+			<ValidationMessage For="@(() => food.FoodCategory)" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label>Picture: </label>
+		<div>
+			<InputText @bind-Value="@food.FoodPicture" class="form-control" />
+			<ValidationMessage For="@(() => food.FoodPicture)" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label>Calory: </label>
+		<div>
+			<InputText @bind-Value="@food.FoodCalory" class="form-control" />
+			<ValidationMessage For="@(() => food.FoodCalory)" />
+		</div>
+	</div>
+
+	<button type="submit" class="btn btn-success btn-block">
+		Create Food
+	</button>
+</EditForm>
 
 @code {
     Food food = new Food();
 
-    private async Task CreateFood()
-    {
-        await _client.PostAsJsonAsync("api/foods/", food);
-        _navManager.NavigateTo("/Food/");
-    }
+	private async Task CreateFood()
+	{
+		await _client.PostAsJsonAsync("api/foods/", food);
+		_navManager.NavigateTo("/Food/");
+	}
 }

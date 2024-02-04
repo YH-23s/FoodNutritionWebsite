@@ -437,8 +437,8 @@ namespace FoodNutritionWebsite.Server.Migrations
                     UserDOB = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserPhoneNum = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserPassword = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserPassword = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SubscriptionID = table.Column<int>(type: "int", nullable: true),
                     DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -532,8 +532,8 @@ namespace FoodNutritionWebsite.Server.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "Gender", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "251bb798-1253-424a-a9cd-37ba16739169", "admin@localhost.com", false, "Admin", null, "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEAI/smpswAZ1patcrJMw11QDqdFI5FfbcoOsuunmLc+9XwQJy9Fn5GlO0n9WugMhhQ==", null, false, "3a2198da-c78d-4ee7-a17c-d2d694a2e2e0", false, "admin@localhost.com" },
-                    { "a9ae8ce6-55cb-48f1-8e73-894563807efa", 0, "39904446-0ccc-4d1b-a150-47f4008c209f", "user@localhost.com", false, "User", null, "User", false, null, "USER@LOCALHOST.COM", "USER@LOCALHOST.COM", "AQAAAAIAAYagAAAAEONyLtS/fKN7DG7B/m5479acNf4wnIoml8HziFNP5bL1Y7NdJR2Me4sm3z4x1Lys1w==", null, false, "9a01bffb-18bb-4ee7-9240-1c7d1931cf24", false, "user@localhost.com" }
+                    { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "1d5d3ca2-714f-404f-8bab-ceab2289330d", "admin@localhost.com", false, "Admin", null, "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEJvGrbvDuA4P0I7LkV/slf8RlIjOlJ1Z3ZDbrvW18M7ugTmLKWnuW56wcEuvs3Yk/w==", null, false, "c044d0b9-b91c-4ba0-aca1-3943efb57019", false, "admin@localhost.com" },
+                    { "a9ae8ce6-55cb-48f1-8e73-894563807efa", 0, "e6c6abfe-ed98-4195-bcc0-9cc0bee052f6", "user@localhost.com", false, "User", null, "User", false, null, "USER@LOCALHOST.COM", "USER@LOCALHOST.COM", "AQAAAAIAAYagAAAAELPzPFs1wINX8G8sSXNDR3+ToAuxEmtwnIHJHtgcZBWB6giHluTUhDsN5U4fgSD+KQ==", null, false, "18c34ded-d2e9-4142-b629-dfe626f10ad7", false, "user@localhost.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -563,8 +563,8 @@ namespace FoodNutritionWebsite.Server.Migrations
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "Gender", "SubscriptionID", "UpdatedBy", "UserDOB", "UserEmail", "UserName", "UserPassword", "UserPhoneNum" },
                 values: new object[,]
                 {
-                    { 1, "seed-script", new DateTime(2024, 2, 4, 0, 34, 20, 611, DateTimeKind.Local).AddTicks(6702), null, "Male", null, null, "12/1/2001", "TestingAccount@blazor.com", "TestingAccount", "TestingAccount_password123", "9012 0791" },
-                    { 2, "seed-script", new DateTime(2024, 2, 4, 0, 34, 20, 611, DateTimeKind.Local).AddTicks(6717), null, "Female", null, null, "12/1/2005", "TestAccount@blazor.com", "TestAccount@blazor.com", "TestAccount_password123", "9072 0791" }
+                    { 1, "seed-script", new DateTime(2024, 2, 4, 0, 28, 55, 346, DateTimeKind.Local).AddTicks(5667), null, "Male", null, null, "12/1/2001", "TestingAccount@blazor.com", "TestingAccount", "TestingAccount_password123", "9012 0791" },
+                    { 2, "seed-script", new DateTime(2024, 2, 4, 0, 28, 55, 346, DateTimeKind.Local).AddTicks(5692), null, "Female", null, null, "12/1/2005", "TestAccount@blazor.com", "TestAccount@blazor.com", "TestAccount_password123", "9072 0791" }
                 });
 
             migrationBuilder.InsertData(

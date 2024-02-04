@@ -2,95 +2,23 @@
 @inject HttpClient _client
 @inject NavigationManager _navManager
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
-         
-            <div class="card p-4">
-                <h3 class="mb-4 text-center">Edit Meal Plan</h3>
-                <EditForm Model="@mealplan" OnValidSubmit="@EditMealPlan">
-                    <DataAnnotationsValidator />
-                    <ValidationSummary class="text-danger" />
+<h3>Edit Meal Plan page</h3>
 
-                    <div class="form-group mb-3">
-                        <label for="mealPlanName" class="form-label">Name:</label>
-                        <InputText id="mealPlanName" @bind-Value="@mealplan.MealPlanName" class="form-control" placeholder="Enter meal plan name" />
-                        <ValidationMessage For="@(() => mealplan.MealPlanName)" class="text-danger" />
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label for="mealPlanCategory" class="form-label">Category:</label>
-                        <InputText id="mealPlanCategory" @bind-Value="@mealplan.MealPlanCategory" class="form-control" placeholder="Enter meal plan category" />
-                        <ValidationMessage For="@(() => mealplan.MealPlanCategory)" class="text-danger" />
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label for="staffID" class="form-label">Staff:</label>
-                        <InputSelect id="staffID" @bind-Value="@mealplan.StaffID" class="form-control">
-                            <option value="">-- Select Staff --</option>
-                            @if (Staffs != null)
-                            {
-                                foreach (var staff in Staffs)
-                                {
-                                    <option value="@staff.Id">@staff.FirstName</option>
-                                }
-                            }
-                        </InputSelect>
-                        <ValidationMessage For="@(() => mealplan.StaffID)" class="text-danger" />
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label for="mealplanPicture" class="form-label">Picture URL:</label>
-                        <InputText id="mealplanPicture" @bind-Value="@mealplan.Image" @onchange="@UpdateImage" class="form-control" placeholder="Enter image URL" />
-                        <ValidationMessage For="@(() => mealplan.Image)" class="text-danger" />
-                    </div>
-                    @if (!string.IsNullOrWhiteSpace(mealplan.Image))
-                    {
-                        <div class="form-group mb-4 text-center">
-                            <img src="@mealplan.Image" class="img-fluid img-thumbnail" alt="mealplan Image" style="max-height: 300px;" />
-                        </div>
-                    }
-
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button type="button" class="btn btn-secondary" @onclick="GoBack">
-                            <i class="oi oi-arrow-left"></i>
-                            Back
-                        </button>
-                        <button type="submit" class="btn btn-primary">
-                            <i class="oi oi-circle-check" style="margin-right: 2px;"></i>
-                            Update Meal Plan
-                        </button>
-                    </div>
-                </EditForm>
-            </div>
-        </div>
-    </div>
-</div>
+<FormComponent ButtonText="Update" OnValidSubmit="EditMealPlan" mealplan="mealplan" />
 
 @code {
-    [Parameter] public int id { get; set; }
-    private MealPlan? mealplan = new MealPlan();
-    private IList<Staff>? Staffs;
+	[Parameter] public int id { get; set; }
+	MealPlan? mealplan = new MealPlan();
 
-    protected override async Task OnInitializedAsync()
-    {
-        mealplan = await _client.GetFromJsonAsync<MealPlan>($"api/mealplans/{id}");
-        Staffs = await _client.GetFromJsonAsync<List<Staff>>($"api/staffs");
-    }
+	protected async override Task OnParametersSetAsync()	
+	{
+		mealplan = await _client.GetFromJsonAsync<MealPlan>($"{"api/mealplans"}/{id}");
+	}
 
-    private async Task EditMealPlan()
-    {
-        await _client.PutAsJsonAsync($"api/mealplans/{id}", mealplan);
-        _navManager.NavigateTo("/mealplans/");
-    }
+	async Task EditMealPlan()
+	{
+		await _client.PutAsJsonAsync($"{"api/mealplans"}/{id}", mealplan);
+		_navManager.NavigateTo("/MealPlans/");
 
-    private void GoBack()
-    {
-        _navManager.NavigateTo("/mealplans/");
-    }
-
-    private void UpdateImage(ChangeEventArgs e)
-    {
-        mealplan.Image = e.Value?.ToString();
-    }
+	}
 }

@@ -5,15 +5,41 @@
 	<DataAnnotationsValidator />
 	<ValidationSummary />
 	<fieldset disabled="@Disabled">
-		<div class="food-view-container">
-			<h1 class="food-view-title">@food.FoodName</h1>
-			<img src="@food.FoodPicture" class="food-view-image" style="max-width: 50%; max-height: 100%">
-			<div class="food-view-details">
-				<p><strong>Description:</strong> @food.FoodDescription</p>
-				<p><strong>Category:</strong> @food.FoodCategory</p>
-				<p><strong>Calories:</strong> @food.FoodCalory</p>
-			</div>
+	<div class="form-group">
+		<label>Name: </label>
+		<div>
+			<InputText @bind-Value="@food.FoodName" class="form-control" />
+			<ValidationMessage For="@(() => food.FoodName)" />
 		</div>
+	</div>
+	<div class="form-group">
+		<label>Description: </label>
+		<div>
+			<InputText @bind-Value="@food.FoodDescription" class="form-control" />
+			<ValidationMessage For="@(() => food.FoodDescription)" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label>Category: </label>
+		<div>
+			<InputText @bind-Value="@food.FoodCategory" class="form-control" />
+			<ValidationMessage For="@(() => food.FoodCategory)" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label>Picture: </label>
+		<div>
+			<InputText @bind-Value="@food.FoodPicture" class="form-control" />
+			<ValidationMessage For="@(() => food.FoodPicture)" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label>Calory: </label>
+		<div>
+			<InputText @bind-Value="@food.FoodCalory" class="form-control" />
+			<ValidationMessage For="@(() => food.FoodCalory)" />
+		</div>
+	</div>
 	</fieldset>
 	@if (!Disabled)
 	{
@@ -26,8 +52,8 @@
 
 
 @code {
-	[Parameter] public Food? food { get; set; }
-	[Parameter] public string ButtonText { get; set; } = "Save";
-	[Parameter] public EventCallback OnValidSubmit { get; set; }
+    [Parameter] public Food? food { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
 	[Parameter] public bool Disabled { get; set; } = false;
 }

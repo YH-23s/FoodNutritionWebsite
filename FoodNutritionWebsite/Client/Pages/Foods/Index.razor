@@ -11,10 +11,10 @@
 @implements IDisposable
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
-<h1>Food Index</h1>
+<h3>Food Index</h3>
 
 
-<a href="/Food/create" class="btn btn-primary">
+<a href="/Food/create" class="btn btn-secondary">
     <span class="oi oi-plus"></span>
     Create New Food
 </a>
@@ -32,8 +32,6 @@
             @foreach (var food in Food)
             {
                 <div class="col afood">
-
-
                     <div class="card h-100 foodcard" style="text-decoration: none;">
                         <img src="@food.FoodPicture" class="catfoodimage img-fluid" style="max-width: 100%; max-height: 100%">
 
@@ -49,7 +47,7 @@
                                     <i class="oi oi-pencil"></i> Edit
                                 </a>
                                 <button class="btn btn-danger actionbutton" @onclick="@(()=>Delete(@food.Id))">
-                                    <i class="oi oi-trash"></i>  Delete
+                                    <i class="oi oi-trash"></i> Delete
                                 </button>
                             </div>
                         </div>
