@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodNutritionWebsite.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240204064252_newdb")]
-    partial class newdb
+    [Migration("20240204071824_testing")]
+    partial class testing
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -244,7 +244,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f796d198-ddfb-45ed-ab81-fe9377de1447",
+                            ConcurrencyStamp = "2f2a1b7d-4a4e-4df9-bf78-7b5359767673",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -252,9 +252,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIWkkU2DpQORbE3My6hePP53WlZa824PejDI2NdWoJFosFKmXPK0GVowoEaFAFA5yA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAECqqnJ/JFDeYkXO9cBHUZIy7p3FSVpE4nFW5WO1GMaQQHdop7yXsEGDyyx0pNhlvxw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "345a3bb7-b46f-4cb9-a162-c9cc28eb3a45",
+                            SecurityStamp = "dd557c56-3cd2-4075-96a5-05128fb3afcb",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -262,7 +262,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = "a9ae8ce6-55cb-48f1-8e73-894563807efa",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "99d25516-dc1e-4eda-9ba9-f6fce633a676",
+                            ConcurrencyStamp = "3dbab305-6c65-4890-ab27-3a8c7208a46a",
                             Email = "user@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "User",
@@ -270,9 +270,9 @@ namespace FoodNutritionWebsite.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@LOCALHOST.COM",
                             NormalizedUserName = "USER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPRV2jef8oeUeNHgUXRTp8rkQi/MiGO4rVlxpRxeF4hK3CdEVfWi01fVrgpCsh23GQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAECuzx5tBD6mhyUBVl3nFiIP9bZtXyaddHJ3/h4EWfoiKlKj8+60EI/C2ebBRxuv3CQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d37b5b79-77be-47e0-82fa-4c7afdaa8730",
+                            SecurityStamp = "89cb5be8-582c-4bee-b417-df07a5809f67",
                             TwoFactorEnabled = false,
                             UserName = "user@localhost.com"
                         });
@@ -522,7 +522,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         new
                         {
                             Id = 1,
-                            DateUpdated = new DateTime(2024, 2, 4, 14, 42, 52, 60, DateTimeKind.Local).AddTicks(7237),
+                            DateUpdated = new DateTime(2024, 2, 4, 15, 18, 24, 159, DateTimeKind.Local).AddTicks(1920),
                             FoodID = 2,
                             Quantity = 2.0,
                             UserID = 1
@@ -530,7 +530,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         new
                         {
                             Id = 2,
-                            DateUpdated = new DateTime(2024, 2, 4, 14, 42, 52, 60, DateTimeKind.Local).AddTicks(7239),
+                            DateUpdated = new DateTime(2024, 2, 4, 15, 18, 24, 159, DateTimeKind.Local).AddTicks(1927),
                             FoodID = 3,
                             Quantity = 3.0,
                             UserID = 2
@@ -951,7 +951,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 2, 4, 14, 42, 52, 60, DateTimeKind.Local).AddTicks(6656),
+                            DateCreated = new DateTime(2024, 2, 4, 15, 18, 24, 159, DateTimeKind.Local).AddTicks(1320),
                             Gender = "Male",
                             UserDOB = "12/1/2001",
                             UserEmail = "TestingAccount@blazor.com",
@@ -963,7 +963,7 @@ namespace FoodNutritionWebsite.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "seed-script",
-                            DateCreated = new DateTime(2024, 2, 4, 14, 42, 52, 60, DateTimeKind.Local).AddTicks(6702),
+                            DateCreated = new DateTime(2024, 2, 4, 15, 18, 24, 159, DateTimeKind.Local).AddTicks(1355),
                             Gender = "Female",
                             UserDOB = "12/1/2005",
                             UserEmail = "TestAccount@blazor.com",

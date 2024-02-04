@@ -11,6 +11,7 @@ using FoodNutritionWebsite.Server.IRepository;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.AspNetCore.Identity;
 using FoodNutritionWebsite.Server.Models;
+using Microsoft.AspNetCore.Authorization;
 
 
 
@@ -21,15 +22,16 @@ namespace FoodNutritionWebsite.Server.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly IUnitOfWork  _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
         public UsersController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
-        // GET: api/Users
-        [HttpGet]
+		// GET: api/Users
+		[Authorize(Roles = "User")]
+		[HttpGet]
         public async Task<IActionResult> GetUsersssss()
         {
             var usersssss = await _unitOfWork.Usersssss.GetAll();
@@ -96,7 +98,7 @@ namespace FoodNutritionWebsite.Server.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
-            
+
             var user = await _unitOfWork.Usersssss.Get(q => q.Id == id);
             if (user == null)
             {
@@ -117,11 +119,9 @@ namespace FoodNutritionWebsite.Server.Controllers
         }
 
 
+
+
         
-
-
-
-
 
     }
 }
