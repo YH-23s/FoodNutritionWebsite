@@ -103,4 +103,9 @@
     {
         mealplan = await _client.GetFromJsonAsync<List<MealPlan>>($"api/mealplans");
     }
+
+    private async Task BackToList()
+    {
+        _navManager.NavigateTo("/Subscriptions");
+    }
 }

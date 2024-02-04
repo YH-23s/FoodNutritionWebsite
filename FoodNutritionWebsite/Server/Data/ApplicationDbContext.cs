@@ -18,7 +18,7 @@ namespace FoodNutritionWebsite.Server.Data
 		public DbSet<AddNutrition> AddNutritions { get; set; }
         public DbSet<Food> Foods { get; set; }
         public DbSet<User> Usersssss { get; set; }
-        public DbSet<FoodAddedL> FoodAddedLs { get; set; }
+        
         public DbSet<FoodAddedMP> FoodAddedMPs { get; set; }
         public DbSet<FoodLog> FoodLogs { get; set; }
         public DbSet<FoodNutrition> FoodNutritions { get; set; }
