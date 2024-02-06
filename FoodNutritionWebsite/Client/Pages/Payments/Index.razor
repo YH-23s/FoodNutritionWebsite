@@ -26,6 +26,10 @@
         }
         else
         {
+
+
+
+
             foreach (var payment in Payments)
             {
                 <div class="col">
@@ -41,12 +45,20 @@
                                 <a href="/Payments/view/@payment.Id" class="btn btn-primary m-1">
                                     <i class="oi oi-eye"></i> View
                                 </a>
-                                <a href="/Payments/edit/@payment.Id" class="btn btn-warning m-1">
-                                    <i class="oi oi-pencil"></i> Edit
-                                </a>
-                                <button class="btn btn-danger m-1" @onclick="@(() => Delete(payment.Id))">
-                                    <i class="oi oi-trash"></i> Delete
-                                </button>
+                                
+
+                                <AuthorizeView Roles="Administrator">
+                                    <Authorized>
+                                    <a href="/Payments/edit/@payment.Id" class="btn btn-warning m-1">
+                                        <i class="oi oi-pencil"></i> Edit
+                                    </a>
+
+                                    <button class="btn btn-danger m-1" @onclick="@(() => Delete(payment.Id))">
+                                        <i class="oi oi-trash"></i> Delete
+                                    </button>
+                                    </Authorized>
+                                </AuthorizeView>
+                                
                             </div>
                         </div>
                     </div>

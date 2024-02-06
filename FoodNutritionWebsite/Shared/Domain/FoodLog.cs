@@ -9,6 +9,8 @@ namespace FoodNutritionWebsite.Shared.Domain
 {
     public class FoodLog : BaseDomainModel
     {
+        [Required(ErrorMessage = "Quantity is required, please renter it.")]
+        [Range(0.1, double.MaxValue, ErrorMessage = "Quantity is required, please renter it, it should be greater than 0")]
         public double Quantity { get; set; }
         public DateTime? FoodLogDateTime { get; set; }
         public string? FoodType { get; set; }
