@@ -12,6 +12,11 @@
 </a>
 <br />
 <br />
+<div class="col-4 mt-3 justify-content-end ">
+    <Input @oninput="Search" placeholder="Seach Payments" class="p-3" />
+
+</div>
+<br />
 
 <div class="container-fluid">
     <div class="row row-cols-1 row-cols-md-4 g-4 mt-2">
@@ -85,6 +90,25 @@
         _interceptor.DisposeEvent();
     }
 
+    public async void Search(ChangeEventArgs args)
+    {
+        var searchTerm = (string)args.Value;
+        Payments = await _client.GetFromJsonAsync<List<Payment>>($"api/Payments");
+
+        if (string.IsNullOrWhiteSpace(searchTerm))
+        {
+            Payments = await _client.GetFromJsonAsync<List<Payment>>($"api/Payments");
+        }
+        else
+        {
+            Payments = Payments
+                .Where(x => x.CardNum.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
+                .OrderByDescending(x => x.Id)
+                .ToList();
+        }
+
+        StateHasChanged();
+    }
 
 }
 

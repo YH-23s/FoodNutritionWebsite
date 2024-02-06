@@ -20,7 +20,12 @@ else
             <a href="/users/create" class="btn btn-primary">
                 <span class="oi oi-plus"></span> Create New User
             </a>
-            <br /><br />
+            <br />
+            <br />
+            <div class="col-4 mt-3 justify-content-end ">
+                <Input @oninput="Search" placeholder="Seach Users" class="p-3" />
+            </div>
+            <br />
 
             <div class="container-fluid">
                 <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
@@ -109,5 +114,23 @@ else
         _interceptor.DisposeEvent();
     }
 
-   
+    public async void Search(ChangeEventArgs args)
+    {
+        var searchTerm = (string)args.Value;
+        Users = await _client.GetFromJsonAsync<List<User>>($"api/Users");
+
+        if (string.IsNullOrWhiteSpace(searchTerm))
+        {
+            Users = await _client.GetFromJsonAsync<List<User>>($"api/Users");
+        }
+        else
+        {
+            Users = Users
+                .Where(x => x.UserName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
+                .OrderByDescending(x => x.Id)
+                .ToList();
+        }
+
+        StateHasChanged();
+    }
 }

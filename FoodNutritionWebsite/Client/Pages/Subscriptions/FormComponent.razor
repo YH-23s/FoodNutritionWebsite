@@ -66,20 +66,22 @@
 
                             </div>
                         </div>
-
                         @if (!Disabled)
                         {
-                            <button type="submit" class="btn btn-primary btn-block" style="margin-top: 1.5rem; ">
+                            <button type="submit" class="btn btn-primary btn-block" style="margin-top: 1.5rem;">
                                 @ButtonText
                             </button>
-                            <br>
-                            <button type="button" class="btn btn-secondary btn-block" @onclick="BackToList">Back to List</button>
                         }
+
+                        <br>
+                        <button type="button" class="btn btn-secondary btn-block" @onclick="BackToList">Back to List</button>
+                        
                     </div>
                 </div>
             </div>
         </div>
     </fieldset>
+    
 
 
 </EditForm>
