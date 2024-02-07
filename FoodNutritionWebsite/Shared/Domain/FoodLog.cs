@@ -14,7 +14,6 @@ namespace FoodNutritionWebsite.Shared.Domain
         public double Quantity { get; set; }
         public DateTime? FoodLogDateTime { get; set; }
         public string? FoodType { get; set; }
-
         public string? FoodName { get; set; }
         public int? UserID { get; set; }
         public virtual User? User { get; set; }

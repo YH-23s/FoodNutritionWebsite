@@ -6,56 +6,108 @@
 @attribute [Authorize]
 
 <h3>Subscriptions Index</h3>
-
-<a href="/Subscriptions/create" class="btn btn-primary my-2">
-    <span class="oi oi-plus"></span> Create New Subscription Plan
-</a>
-<br />
-<br />
-<div class="col-4 mt-3 justify-content-end ">
-    <Input @oninput="Search" placeholder="Seach Subscription" class="p-3" />
-</div>
-<br />
-
-
-<div class="container-fluid">
-    <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
-        @if (Subscriptions == null)
-        {
-            <div class="alert alert-info">Loading Subscriptions...</div>
-        }
-        else
-        {
-            @foreach (var subscription in Subscriptions)
-            {
+<AuthorizeView Roles = "Administrator">
+    <Authorized>
+        <a href="/Subscriptions/create" class="btn btn-primary my-2">
+            <span class="oi oi-plus"></span> Create New Subscription Plan
+        </a>
+        <br />
+        <br />
+        <div class="col-4 mt-3 justify-content-end ">
+            <Input @oninput="Search" placeholder="Seach Subscription" class="p-3" />
+        </div>
+        <br />
 
 
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title" style="color: black">@subscription.SubscriptionName</h5>
-                            <p class="card-text" style="color: black">Meal Plan: @subscription.MealPlan.MealPlanName</p>
-                            <p class="card-text" style="color: black">Price: @subscription.SubscriptionPrice</p>
-                            <p class="card-text" style="color: black">Updated: @subscription.DateUpdated</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="/Subscriptions/view/@subscription.Id" class="btn btn-primary actionbutton">
-                                    <i class="oi oi-eye"></i> View
-                                </a>
-                                <a href="/Subscriptions/edit/@subscription.Id" class="btn btn-warning actionbutton">
-                                    <i class="oi oi-pencil"></i> Edit
-                                </a>
-                                <button class="btn btn-danger actionbutton" @onclick="@(()=>Delete(subscription.Id))">
-                                    <i class="oi oi-trash"></i> Delete
-                                </button>
+        <div class="container-fluid">
+            <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+                @if (Subscriptions == null)
+                {
+                    <div class="alert alert-info">Loading Subscriptions...</div>
+                }
+                else
+                {
+                    @foreach (var subscription in Subscriptions)
+                    {
+
+
+                        <div class="col">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="color: black">@subscription.SubscriptionName</h5>
+                                    <p class="card-text" style="color: black">Meal Plan: @subscription.MealPlan.MealPlanName</p>
+                                    <p class="card-text" style="color: black">Price: @subscription.SubscriptionPrice</p>
+                                    <p class="card-text" style="color: black">Updated: @subscription.DateUpdated</p>
+                                    <div class="d-flex justify-content-center">
+                                        <a href="/Subscriptions/view/@subscription.Id" class="btn btn-primary actionbutton">
+                                            <i class="oi oi-eye"></i> View
+                                        </a>
+                                        <a href="/Subscriptions/edit/@subscription.Id" class="btn btn-warning actionbutton">
+                                            <i class="oi oi-pencil"></i> Edit
+                                        </a>
+                                        <button class="btn btn-danger actionbutton" @onclick="@(()=>Delete(subscription.Id))">
+                                            <i class="oi oi-trash"></i> Delete
+                                        </button>
+
+                                        <a href="/Payments/create" class="btn btn-primary my-2">
+                                            <span class="oi oi-plus"></span> Buy
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            }
-        }
-    </div>
-</div>
+                    }
+                }
+            </div>
+        </div>
+    </Authorized>
+</AuthorizeView>
 
+<AuthorizeView Roles="User">
+    <Authorized>
+        <div class="col-4 mt-3 justify-content-end ">
+            <Input @oninput="Search" placeholder="Seach Subscription" class="p-3" />
+        </div>
+        <br />
+
+
+        <div class="container-fluid">
+            <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+                @if (Subscriptions == null)
+                {
+                    <div class="alert alert-info">Loading Subscriptions...</div>
+                }
+                else
+                {
+                    @foreach (var subscription in Subscriptions)
+                    {
+
+
+                        <div class="col">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="color: black">@subscription.SubscriptionName</h5>
+                                    <p class="card-text" style="color: black">Meal Plan: @subscription.MealPlan.MealPlanName</p>
+                                    <p class="card-text" style="color: black">Price: @subscription.SubscriptionPrice</p>
+                                    <p class="card-text" style="color: black">Updated: @subscription.DateUpdated</p>
+                                    <div class="d-flex justify-content-center">
+                                        <a href="/Subscriptions/view/@subscription.Id" class="btn btn-primary actionbutton">
+                                            <i class="oi oi-eye"></i> View
+                                        </a>
+ 
+                                        <a href="/Payments/create" class="btn btn-primary my-2">
+                                            <span class="oi oi-plus"></span> Buy
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </Authorized>
+</AuthorizeView>
 @code {
     public List<Subscription>? Subscriptions;
 
