@@ -40,6 +40,23 @@
             <ValidationMessage For="@(() => foodlog.FoodID)" />
         </div>
 
+
+        <div class="form-group">
+            <label style="color: black">Date: </label>
+            <div>
+                <InputDate @bind-Value="@foodlog.FoodLogDateTime" class="form-control" placeholder="Please input Start Date and Time" />
+                <ValidationMessage For="@(() => foodlog.FoodLogDateTime)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="gender">Description:</label>
+            <InputText id="gender" @bind-Value="@foodlog.FoodType" class="form-control" placeholder="Enter description" />
+            <ValidationMessage For="@(() => foodlog.FoodType)" />
+        </div>
+
+
+
         <div class="form-group">
             <label for="quantity" style="color: black">Quantity:</label>
             <InputNumber @bind-Value="foodlog.Quantity" id="quantity" class="form-control" placeholder="Enter Quantity" />
@@ -48,10 +65,17 @@
 
 
 
+       
+        
+       
+
+        
+        
+
 
         <div class="form-actions">
 
-            <button type="submit" class="btn btn-success btn-block">Create Payment</button>
+            <button type="submit" class="btn btn-success btn-block">Create FoodLog</button>
 
             <button type="button" class="btn btn-secondary" @onclick="BackToList">
                 <i class="oi oi-arrow-left" style="margin-right: 2px;"></i>

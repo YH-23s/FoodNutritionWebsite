@@ -53,6 +53,28 @@
 
             </div>
         </div>
+        
+        <div class="form-group">
+            <label for="gender">Description:</label>
+            <InputText id="gender" @bind-Value="@foodlog.FoodType" class="form-control" placeholder="Enter description" />
+            <ValidationMessage For="@(() => foodlog.FoodType)" />
+        </div>
+
+
+
+        <div class="form-group">
+            <label style="color: black">Start Date: </label>
+            <div>
+                <InputDate @bind-Value="@foodlog.FoodLogDateTime" class="form-control" placeholder="Please input Start Date and Time" />
+                <ValidationMessage For="@(() => foodlog.FoodLogDateTime)" />
+            </div>
+        </div>
+
+
+        
+
+
+
 
 
     </fieldset>
