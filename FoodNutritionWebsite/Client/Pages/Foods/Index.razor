@@ -13,12 +13,6 @@
 
 <h1>Food Index</h1>
 
-
-<a href="/Food/create" class="btn btn-primary">
-    <span class="oi oi-plus"></span>
-    Create New Food
-</a>
-<br />
 <div class="col-4 mt-3 justify-content-end ">
     <Input @oninput="Search" placeholder="Seach Food Name" class="p-3" />
 
@@ -26,46 +20,93 @@
 <br />
 <br />
 
+<AuthorizeView Roles="Administrator">
+    <Authorized>
+        <div class="container-fluid">
+            <a href="/Food/create" class="btn btn-primary">
+                <span class="oi oi-plus"></span>
+                Create New Food
+            </a>
+            <br />
+            <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+                @if (Food == null)
+                {
+                    <div class="alert alert-info">Loading Foods...</div>
+                }
+                else
+                {
+                    
+                    @foreach (var food in Food)
+                    {
+                       
+                        <div class="col afood">
 
-<div class="container-fluid">
-    <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
-        @if (Food == null)
-        {
-            <div class="alert alert-info">Loading Foods...</div>
-        }
-        else
-        {
-            @foreach (var food in Food)
-            {
-                
-                <div class="col afood">
+
+                            <div class="card h-100 foodcard" style="text-decoration: none;">
+                                <img src="@food.FoodPicture" class="catfoodimage img-fluid" style="max-width: 100%; max-height: 100%">
 
 
-                    <div class="card h-100 foodcard" style="text-decoration: none;">
-                        <img src="@food.FoodPicture" class="catfoodimage img-fluid" style="max-width: 100%; max-height: 100%">
-
-
-                        <div class="card-body foodcardbody">
-                            <h3 class="foodname">@food.FoodName</h3>
-                            <h5 class="foodprice">@food.FoodCalory</h5>
-                            <div class="d-flex justify-content-center">
-                                <a href="/food/view/@food.Id" class="btn btn-primary actionbutton">
-                                    <i class="oi oi-eye"></i> View
-                                </a>
-                                <a href="/food/edit/@food.Id" class="btn btn-warning actionbutton">
-                                    <i class="oi oi-pencil"></i> Edit
-                                </a>
-                                <button class="btn btn-danger actionbutton" @onclick="@(()=>Delete(@food.Id))">
-                                    <i class="oi oi-trash"></i>  Delete
-                                </button>
+                                <div class="card-body foodcardbody">
+                                    <h3 class="foodname">@food.FoodName</h3>
+                                    <h5 class="foodprice">@food.FoodCalory</h5>
+                                    <div class="d-flex justify-content-center">
+                                        <a href="/food/view/@food.Id" class="btn btn-primary actionbutton">
+                                            <i class="oi oi-eye"></i> View
+                                        </a>
+                                        <a href="/food/edit/@food.Id" class="btn btn-warning actionbutton">
+                                            <i class="oi oi-pencil"></i> Edit
+                                        </a>
+                                        <button class="btn btn-danger actionbutton" @onclick="@(()=>Delete(@food.Id))">
+                                            <i class="oi oi-trash"></i>  Delete
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            }
-        }
-    </div>
-</div>
+                    }
+                }
+            </div>
+        </div>
+    </Authorized>
+</AuthorizeView>
+
+<AuthorizeView Roles="User">
+    <Authorized>
+        <div class="container-fluid">
+            <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+                @if (Food == null)
+                {
+                    <div class="alert alert-info">Loading Foods...</div>
+                }
+                else
+                {
+                    @foreach (var food in Food)
+                    {
+
+                        <div class="col afood">
+
+
+                            <div class="card h-100 foodcard" style="text-decoration: none;">
+                                <img src="@food.FoodPicture" class="catfoodimage img-fluid" style="max-width: 100%; max-height: 100%">
+
+
+                                <div class="card-body foodcardbody">
+                                    <h3 class="foodname">@food.FoodName</h3>
+                                    <h5 class="foodprice">@food.FoodCalory</h5>
+                                    <div class="d-flex justify-content-center">
+                                        <a href="/food/view/@food.Id" class="btn btn-primary actionbutton">
+                                            <i class="oi oi-eye"></i> View
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </Authorized>
+</AuthorizeView>
 
 @code {
     public List<Food>? Food;
