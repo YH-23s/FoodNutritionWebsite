@@ -5,13 +5,19 @@
 @implements IDisposable
 @attribute [Authorize]
 
-<h3>MealPlan Index</h3>
+<h3>Meal Plan Index</h3>
 
 <a href="/MealPlans/create" class="btn btn-primary my-2">
-    <span class="oi oi-plus"></span> Create New MealPlan
+    <span class="oi oi-plus"></span> Create New Meal Plan
 </a>
 <br />
 <br />
+<div class="col-4 mt-3 justify-content-end ">
+    <input @oninput="Search" placeholder="seach meal plan" class="p-3" />
+
+</div>
+<br />
+
 
 <div class="container-fluid">
     <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
@@ -73,6 +79,8 @@
 
         }
 
+
+
     }
 
     public void Dispose()
@@ -80,6 +88,25 @@
         _interceptor.DisposeEvent();
     }
 
+    public async void Search(ChangeEventArgs args)
+    {
+        var searchTerm = (string)args.Value;
+        MealPlan = await _client.GetFromJsonAsync<List<MealPlan>>($"api/mealplans");
+
+        if (string.IsNullOrWhiteSpace(searchTerm))
+        {
+            MealPlan = await _client.GetFromJsonAsync<List<MealPlan>>($"api/mealplans");
+        }
+        else
+        {
+            MealPlan = MealPlan
+                .Where(x => x.MealPlanName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
+                .OrderByDescending(x => x.Id)
+                .ToList();
+        }
+
+        StateHasChanged();
+    }
 
 }
 

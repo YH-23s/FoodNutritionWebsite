@@ -19,7 +19,13 @@
     Create New Food
 </a>
 <br />
+<div class="col-4 mt-3 justify-content-end ">
+    <Input @oninput="Search" placeholder="Seach Food Name" class="p-3" />
+
+</div>
 <br />
+<br />
+
 
 <div class="container-fluid">
     <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
@@ -31,6 +37,7 @@
         {
             @foreach (var food in Food)
             {
+                
                 <div class="col afood">
 
 
@@ -93,6 +100,26 @@
     int GetFoodCount()
     {
         return Food?.Count ?? 0;
+    }
+
+    public async void Search(ChangeEventArgs args)
+    {
+        var searchTerm = (string)args.Value;
+        Food = await _client.GetFromJsonAsync<List<Food>>($"api/foods");
+
+        if (string.IsNullOrWhiteSpace(searchTerm))
+        {
+            Food = await _client.GetFromJsonAsync<List<Food>>($"api/foods");
+        }
+        else
+        {
+            Food = Food
+                .Where(x => x.FoodName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
+                .OrderByDescending(x => x.Id)
+                .ToList();
+        }
+
+        StateHasChanged();
     }
 
 }

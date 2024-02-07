@@ -7,17 +7,15 @@
 
 <h3>Subscriptions Index</h3>
 
-<AuthorizeView Roles="Administrator">
-    <Authorized>
-        <a href="/Subscriptions/create" class="btn btn-primary my-2">
-            <span class="oi oi-plus"></span> Create New Subscription Plan
-        </a>
-        <br />
-        <br />
-    </Authorized>
-</AuthorizeView>
-
-
+<a href="/Subscriptions/create" class="btn btn-primary my-2">
+    <span class="oi oi-plus"></span> Create New Subscription Plan
+</a>
+<br />
+<br />
+<div class="col-4 mt-3 justify-content-end ">
+    <Input @oninput="Search" placeholder="Seach Subscription" class="p-3" />
+</div>
+<br />
 
 
 <div class="container-fluid">
@@ -43,25 +41,12 @@
                                 <a href="/Subscriptions/view/@subscription.Id" class="btn btn-primary actionbutton">
                                     <i class="oi oi-eye"></i> View
                                 </a>
-                                <a href="/Payments/create" class="btn btn-primary my-2">
-                                    <span class="oi oi-plus"></span> Buy Plan
+                                <a href="/Subscriptions/edit/@subscription.Id" class="btn btn-warning actionbutton">
+                                    <i class="oi oi-pencil"></i> Edit
                                 </a>
-                                <br />
-                                <br />
-
-
-                                <AuthorizeView Roles="Administrator">
-                                    <Authorized>
-                                        <a href="/Subscriptions/edit/@subscription.Id" class="btn btn-warning actionbutton">
-                                            <i class="oi oi-pencil"></i> Edit
-                                        </a>
-                                        <button class="btn btn-danger actionbutton" @onclick="@(()=>Delete(subscription.Id))">
-                                            <i class="oi oi-trash"></i> Delete
-                                        </button>
-                                    </Authorized>
-                                </AuthorizeView>>
-
-                                
+                                <button class="btn btn-danger actionbutton" @onclick="@(()=>Delete(subscription.Id))">
+                                    <i class="oi oi-trash"></i> Delete
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -93,5 +78,25 @@
     public void Dispose()
     {
         _interceptor.DisposeEvent();
+    }
+
+    public async void Search(ChangeEventArgs args)
+    {
+        var searchTerm = (string)args.Value;
+        Subscriptions = await _client.GetFromJsonAsync<List<Subscription>>($"api/Subscriptions");
+
+        if (string.IsNullOrWhiteSpace(searchTerm))
+        {
+            Subscriptions = await _client.GetFromJsonAsync<List<Subscription>>($"api/Subscriptions");
+        }
+        else
+        {
+            Subscriptions = Subscriptions
+                .Where(x => x.SubscriptionName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
+                .OrderByDescending(x => x.Id)
+                .ToList();
+        }
+
+        StateHasChanged();
     }
 }
